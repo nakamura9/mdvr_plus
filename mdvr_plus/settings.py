@@ -37,7 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'webpack_loader'
+    'webpack_loader',
+    'common',
+    'reports',
+    'crispy_forms',
+    'django_filters',
+    'background_task'
 ]
 
 MIDDLEWARE = [
@@ -112,13 +117,18 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'assets', 'bundles'),
+)
+STATIC_ROOT = os.path.join(BASE_DIR, 'common', 'static')
+
 
 WEBPACK_LOADER = {
     'DEFAULT': {
@@ -126,3 +136,11 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, 'assets', 'webpack-stats.json'),
     }
 }
+
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/app/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = '/media/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

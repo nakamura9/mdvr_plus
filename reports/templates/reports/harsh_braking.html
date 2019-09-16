@@ -1,0 +1,29 @@
+{% extends 'window.html' %}
+{% load crispy_forms_tags %}
+{% block page_title %}
+Harsh Braking Report
+{% endblock page_title %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 shadow">
+            {% crispy form %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="shadow">
+                <iframe width="600" height="900" src="/app/empty-page" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    
+
+</script>
+
+
+{% endblock content %}

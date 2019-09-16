@@ -1,0 +1,10 @@
+
+[2019-08-30 14:24:45] Traceback (most recent call last):
+  File "client.py", line 39, in <module>
+    main()
+  File "client.py", line 26, in main
+    t = threading.Thread(start_server)
+  File "C:\Python36\lib\threading.py", line 780, in __init__
+    assert group is None, "group argument must be None for now"
+AssertionError: group argument must be None for now
+

@@ -1,0 +1,13 @@
+[
+    {
+        "model": "common.Config",
+        "pk": 1,
+        "fields": {
+            "email_address": "...",
+            "email_password": "...",
+            "smtp_server": "...",
+            "smtp_port": 123,
+            "default_reminder_email": "..."
+        }
+    }
+]
