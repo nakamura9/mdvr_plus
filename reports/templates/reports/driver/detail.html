@@ -1,0 +1,120 @@
+{% extends 'window.html' %}
+
+{% block page_title %}
+Driver Details
+{% endblock page_title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                            Actions
+                        </button>
+                <div class="dropdown-menu" aria-labelledby="triggerId">
+                    <a class="dropdown-item" href="{% url 'reports:update-driver' pk=object.pk %}"> <i class="fas fa-edit"></i> Edit</a>
+                    <a class="dropdown-item" href="{% url 'reports:create-driver' %}"> <fas class="fas fa-car"></fas> Add Driver</a>
+                    <a class="dropdown-item" href="{% url 'reports:create-ddc' pk=object.pk %}"> <i class="fas fa-file-alt"></i> Add Defensive Driving Certificate</a>
+                    <a class="dropdown-item" href="{% url 'reports:create-medical' pk=object.pk %}"> <i class="fas fa-file-medical-alt"></i> Record Medical</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-10 ">
+            <div class="card shadow">
+                <div class="card-body">
+                    <nav class="nav nav-tabs nav-stacked">
+                        <a href="#basic" class="nav-link active" data-toggle='tab'>Basic</a>
+                        <a href="#medical" class="nav-link" data-toggle='tab'>Medicals</a>
+                        <a href="#ddc" data-toggle='tab' class="nav-link">DDC's</a>
+                        <a href="#incidents" data-toggle='tab' class="nav-link">Incidents</a>
+                        <a href="#notes" data-toggle='tab' class="nav-link">Notes</a>
+                    </nav>
+                    <div class="tab-content panel-body">
+                        <div class="tab-pane active" id="basic">
+                            <h4>{{object}}</h4>
+                            
+                            <p>Date of birth: {{object.date_of_birth}}</p>
+                            <p>Age: {{object.age}}</p>
+                            <p>Gender: {{object.gender}}</p>
+                            <p>Phone: {{object.phone_number}}</p>
+                            <p>Address: {{object.address}}</p>
+                        </div>
+                        <div class="tab-pane" id="medical">
+                            {% for med in object.medicals %}
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>{{med.date}}</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>Location: {{med.location}}</p>
+                                        <p>Valid Until: {{med.valid_until}}</p>
+                                        <hr class="my-2">
+                                        <h6>Notes:</h6>
+                                        <ul class="list-group">
+                                        {% for note in med.notes.all %}
+                                            <li class="list-group-item">
+                                                <h5>Author: {{note.author}}</h5>
+                                                <h6>{{note.date}}</h6>
+                                                <p><i>{{note.subject}}:</i>
+                                                    {{note.note}}
+                                                </p>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+
+                                        <a href="{% url 'reports:create-note' app='reports' model='drivermedical' pk=med.pk %}" class="btn btn-secondary btn-sm" target='popup' onclick='linkClickHandler()'>Create Note</a>
+                                    </div>
+                                </div>
+                            
+                            {% endfor %}
+                        </div>
+                        <div class="tab-pane" id="ddc">
+                            {% for ddc in object.ddc_list %}
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>{{ddc.expiry_date}}</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>Number: {{ddc.number}}</p>
+                                    </div>
+                                </div>
+                            
+                            {% endfor %}
+                        </div>
+                        <div class="tab-pane" id="incidents">
+                            {% for incident in object.incidents %}
+                                <div class="card">
+                                <div class="card-header">
+                                    <h4>{{incident}}</h4>
+                                </div>
+                                <div class="card-body">
+                                    <p>Date: {{incident.date}}</p>
+                                    <p>Location: {{incident.location}}</p>
+                                    <p># Vehicles Involved: {{incident.number_of_vehicles_involved}}</p>
+                                    <p># Pedestrians Involved: {{incident.number_of_pedestrians_involved}}</p>
+                                    <p>Description: {{incident.description}}</p>
+                                    {% if incident.report %}
+                                        <a href="{{incident.report.url}}" class="btn btn-secondary btn-sm">Download Report</a>
+                                    {% endif %}
+                                    
+                                </div>
+                            </div>
+                            
+                            {% endfor %}
+                        </div>
+                        <div class="tab-pane" id="notes">
+                            {% include 'common/note_list.html' %}
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+            
+    </div>
+</div>
+
+{% endblock content %}

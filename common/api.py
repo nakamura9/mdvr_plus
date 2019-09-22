@@ -5,6 +5,14 @@ from reports.models import Reminder
 import datetime
 from background_task import background
 from background_task.models import Task
+from plyer import notification
+
+def create_toast_notification(reminder):
+    notification.notify(
+        title=reminder.reminder_type,
+        message=reminder.reminder_message,
+        app_name='MDVR+'
+    )
 
 def send_reminder_email(reminder):
     config = Config.objects.first()
@@ -47,8 +55,10 @@ def check_for_reminders():
         print(reminder)
         if reminder.date == today or reminder.repeat_on_date(today):
             send_reminder_email(reminder)
+            create_toast_notification(reminder)
             reminder.last_reminder = today
             reminder.save()
 
-check_for_reminders(repeat=60)
+
+#check_for_reminders(repeat=60)
 print('repeating tasks')

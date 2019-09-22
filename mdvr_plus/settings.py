@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'reports',
     'crispy_forms',
     'django_filters',
-    'background_task'
+    'background_task',
+    'django_select2'
 ]
 
 MIDDLEWARE = [

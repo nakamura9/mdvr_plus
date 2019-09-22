@@ -63,7 +63,7 @@ def get_month_data(array, user):
     event_objs = Reminder.objects.filter(filters)
     
     events += [{
-        'label': e.vehicle.name,
+        'label': e.label,
         'icon': 'truck',
         'date': e.date,
         'id': e.pk
@@ -76,7 +76,7 @@ def get_month_data(array, user):
             if evt.repeat_on_date(date):
                 events.append({
                     'label': evt.vehicle.name,
-                    'icon': 'truck',
+                    'icon': 'clock',
                     'date': date,
                     'id': evt.pk 
                 })

@@ -45,10 +45,35 @@
             <div class="dropdown">
                 <span class="card-link"id="nav-calendar" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
+                            Drivers
+                        </span>
+                <div class="dropdown-menu" aria-labelledby="nav-calendar">
+                    <a class="dropdown-item" href="{% url 'reports:create-driver' %}" id='calendar-link'>Add Driver</a>
+                    <a class="dropdown-item" href="{% url 'reports:list-drivers' %}">Driver List</a>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="dropdown">
+                <span class="card-link"id="nav-calendar" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                            Vehicles
+                        </span>
+                <div class="dropdown-menu" aria-labelledby="nav-calendar">
+                    <a class="dropdown-item" href="{% url 'reports:list-vehicles' %}" id='calendar-link'>Vehicle List</a>
+                    <a class="dropdown-item" href="{% url 'reports:create-vehicle' %}">Add Vehicle</a>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="dropdown">
+                <span class="card-link"id="nav-calendar" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
                             Reports
                         </span>
                 <div class="dropdown-menu" aria-labelledby="nav-calendar">
-                    <a class="dropdown-item" href="{% url 'reports:harsh-braking-report' %}">Harsh Braking Report</a>
+                    <a class="dropdown-item" href="{% url 'reports:harsh-braking-report-form' %}">Harsh Braking Report</a>
+                    <a class="dropdown-item" href="{% url 'reports:harsh-braking-report-form' %}">Speeding Report</a>
                 </div>
             </div>
         </li>

@@ -1,0 +1,2 @@
+when installing on a mysql database, comment out the background task before running the migrations
+dont forget to install fixtures

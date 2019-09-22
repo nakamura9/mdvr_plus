@@ -1,0 +1,38 @@
+{% extends 'common/list_template.html' %}
+
+{% block list_headings %}
+<tr>
+    <th>Full Name</th>
+    <th>Phone</th>
+    <th>License Number</th>
+    <th>DDC?</th>
+    <th>Actions</th>
+</tr>
+
+{% endblock list_headings %}
+
+{% block list_contents %}
+
+{% for d in object_list %}
+    <tr>
+        <td>{{d.first_names}}, {{d.last_name}}</td>
+        <td>{{d.phone_number}}</td>
+        <td>{{d.license_number}}</td>
+        <td>{{d.ddc_valid}}</td>
+        <td>
+            <div class="dropdown">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                            Actions
+                        </button>
+                <div class="dropdown-menu" aria-labelledby="triggerId">
+                    <a class="dropdown-item" href="{% url 'reports:update-driver' pk=d.pk %}"> <i class="fas fa-edit"></i> Edit</a>
+                    <a class="dropdown-item" href="{% url 'reports:driver-details' pk=d.pk %}"> <i class="fas fa-file"></i> Details</a>
+                </div>
+            </div>
+        </td>
+    </tr>
+
+{% endfor %}
+
+{% endblock list_contents %}

@@ -15,7 +15,8 @@ Reminder List
                             Actions
                         </button>
                 <div class="dropdown-menu" aria-labelledby="triggerId">
-                    <a class="dropdown-item" href="{% url  'reports:create-reminder' %}">Create New Reminder</a>
+                    <a class="dropdown-item" href="{% url  'reports:create-reminder' %}"> <i class='fas fa-plus'></i> Create New Reminder</a>
+                    <a class="dropdown-item" href="{% url  'reports:create-reminder-category' %}"> <i class='fas fa-plus-square'></i> Create Reminder Category</a>
                 </div>
             </div>
 
@@ -60,8 +61,8 @@ Reminder List
                                         Actions
                                     </button>
                             <div class="dropdown-menu" aria-labelledby="triggerId">
-                                <a class="dropdown-item" href=" {% url 'reports:update-reminder' pk=r.pk %} ">Edit</a>
-                                
+                                <a class="dropdown-item" href=" {% url 'reports:update-reminder' pk=r.pk %} "> <i class="fas fa-edit"></i> Edit</a>
+                                <a class="dropdown-item" href=" {% url 'reports:reminder-details' pk=r.pk %} "> <i class="fas fa-file"></i> Details</a>
                             </div>
                         </div> </td>
                     </tr>

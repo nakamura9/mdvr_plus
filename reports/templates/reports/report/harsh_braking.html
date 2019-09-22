@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block window %}
+
+<div style='background-color:#ccc;font-weight:250;font-size:2rem;'>MDVR+ <span style='float:right'>Zimplats</span></div>
+<table>
+    <tbody>
+        <tr>
+            <td>
+                <h5>Harsh Braking Report</h5>
+                <p>From: {{from}}</p>
+                <p>To: {{to}}</p>
+                <p>Vehicle ID: {{vehicle}}</p>
+
+            </td>
+            <td></td>
+            <td>
+                <p>Date: {{date}}</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th>Date- Time</th>
+            <th>Location</th>
+            <th>Delta</th>
+            <th>Initial Speed</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in events %}
+            <tr>
+                <td>{{record.timestamp}}</td>
+                <td>{{record.location}}</td>
+                <td>{{record.delta}}</td>
+                <td>{{record.init_speed}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock window %}

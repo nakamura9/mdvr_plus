@@ -11,3 +11,25 @@ class ReminderFilter(FilterSet):
             'vehicle__name': ['icontains'],
             'active': ['exact']
         }
+
+
+class DriverFilter(FilterSet):
+    class Meta:
+        model = models.Driver
+        fields = {
+            'last_name': ['icontains'],
+            'gender': ['exact'],
+            
+        }
+
+
+class VehicleFilter(FilterSet):
+    class Meta:
+        model = models.Vehicle
+        fields = {
+            'name': ['icontains'],
+            'make': ['icontains'],
+            'model': ['icontains'],
+            'year': ['exact', 'gt', 'lt']
+            
+        }

@@ -7,13 +7,13 @@ Harsh Braking Report
 <div class="container">
     <div class="row">
         <div class="col-12 shadow">
-            {% crispy form %}
+                {% crispy form %}
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12">
             <div class="shadow">
-                <iframe width="600" height="900" src="/app/empty-page" frameborder="0"></iframe>
+                <iframe width="600" height="900" src="/app/empty-page" frameborder="0" name='report_frame' id='id_report_frame'></iframe>
             </div>
         </div>
     </div>
@@ -21,7 +21,12 @@ Harsh Braking Report
 
 
 <script>
-    
+    $(document).ready(function(){
+        $('form').attr({
+            'method': 'GET',
+            'action': '/reports/harsh-braking-report/'
+        });
+    })
 
 </script>
 

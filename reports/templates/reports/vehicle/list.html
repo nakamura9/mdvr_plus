@@ -1,0 +1,35 @@
+{% extends 'common/list_template.html' %}
+
+{% block list_headings %}
+<tr>
+    <th>Name</th>
+    <th>Reg Number</th>
+    <th>Type</th>
+    <th>Seats/Loading Capcity</th>
+    <th>Actions</th>
+</tr>
+
+{% endblock list_headings %}
+
+{% block list_contents %}
+    {% for v in object_list %}
+        <tr>
+            <td>{{v.name}}</td>
+            <td>{{v.registration_number}}</td>
+            <td>{{v.vehicle_type}}</td>
+            <td>{{v.seats}}/{{v.loading_capacity_tons}}</td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                                Actions
+                            </button>
+                    <div class="dropdown-menu" aria-labelledby="triggerId">
+                        <a class="dropdown-item" href="{% url 'reports:update-vehicle' pk=v.pk %}"><i class='fas fa-edit'></i> Edit</a>
+                        <a class="dropdown-item" href="{% url 'reports:vehicle-details' pk=v.pk %}"> <i class='fas fa-file'></i> Details</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock list_contents %}

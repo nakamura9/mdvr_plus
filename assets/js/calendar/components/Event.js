@@ -49,10 +49,16 @@ const event = (props) =>{
             }} 
             >
             <div className={styles.eventBox}>
-                <div>
-                    <i className={"fas fa-" + props.data.icon}></i>
-                    <span> {props.data.label}</span>
-                </div>
+                <a href={'/reports/reminder-details/' + props.data.id} style={{
+                    'color':'white',
+                    'textDecoration': 'none'
+
+                }}>
+                    <div>
+                        <i className={"fas fa-" + props.data.icon}></i>
+                        <span> {props.data.label}</span>
+                    </div>  
+                </a>
                 {description}
                 
             </div>
