@@ -5,6 +5,9 @@ from reports.models import Vehicle
 from common.models import Config
 from common.forms import ConfigForm
 from common.mixins import ContextMixin
+from django.http import HttpResponse
+from reports.daily_reports import (generate_daily_harsh_braking_summary,
+                                  generate_daily_speeding_report)
 
 class Home(TemplateView):
     template_name = os.path.join('common', 'home.html')
@@ -29,3 +32,8 @@ class ConfigFormView(ContextMixin, UpdateView):
     form_class = ConfigForm
     template_name = os.path.join('common', 'create.html')
     success_url = '/app/'
+
+
+def daily(request):
+    generate_daily_harsh_braking_summary()
+    return HttpResponse('Done')

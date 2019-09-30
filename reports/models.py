@@ -218,15 +218,13 @@ class Incident(models.Model):
         return reverse("reports:vehicle-details", kwargs={"pk": self.vehicle.pk})
     
 class Reminder(models.Model):
-    REMINDER_CHOICES = [
-        ('service', 'Vehicle Service'),
-        ('certificate-of-fitness', 'Vehicle Certificate of Fitness')
-    ]
+    
     vehicle = models.ForeignKey('reports.vehicle', 
         on_delete=models.SET_NULL,
         null=True)
     driver = models.ForeignKey('reports.driver', 
         on_delete=models.SET_NULL,
+        blank=True,
         null=True)
     date = models.DateField()
     reminder_type = models.ForeignKey('reports.ReminderCategory', default=1, 
@@ -252,6 +250,9 @@ class Reminder(models.Model):
         if self.driver:
             return str(self.driver)
         return self.vehicle.name
+
+    def __str__(self):
+        return self.label
 
         
 class ReminderCategory(models.Model):

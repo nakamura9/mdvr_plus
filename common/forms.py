@@ -9,10 +9,10 @@ class ConfigForm(forms.ModelForm):
     class Meta:
         fields = "__all__"
         model = Config
-        widgets = {
-            'email_password': forms.PasswordInput,
-            'conn_password': forms.PasswordInput
-        }
+        """widgets = {
+            'email_password': forms.PasswordInput(),
+            'conn_password': forms.PasswordInput()
+        }"""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -25,7 +25,8 @@ class ConfigForm(forms.ModelForm):
                     'email_password',
                     'smtp_server',
                     'smtp_port',
-                    'default_reminder_email'
+                    'default_reminder_email',
+                    
                 ),
                 Tab('Server',
                     'server_ip',
@@ -33,6 +34,11 @@ class ConfigForm(forms.ModelForm):
                     'server_port',
                     'conn_account',
                     'conn_password',
+                ),
+                Tab('Other',
+                'DDC_reminder_days',
+                'company_name',
+                'speeding_threshold'
                 )
             )
         )

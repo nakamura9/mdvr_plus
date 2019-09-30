@@ -14,16 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf import settings 
 from django.conf.urls import static
 import datetime
 today = datetime.date.today()
 from reports.views import CalendarView
-
+from django.http import HttpResponseRedirect
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('django.contrib.auth.urls')),
+    re_path(r'^$', lambda r: HttpResponseRedirect('/login/')),
     path('app/', include('common.urls')),
     path('reports/', include('reports.urls')),
     path('calendar/month/<int:year>/<int:month>/', 

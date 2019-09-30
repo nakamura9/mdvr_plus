@@ -2,8 +2,45 @@
 
 {% block window %}
 
-<div style='background-color:#ccc;font-weight:250;font-size:2rem;'>MDVR+ <span style='float:right'>Zimplats</span></div>
-<table>
+{% if link %}
+<style>
+    .page-title {
+        padding: 10px;
+        background-color: #bbb;
+        color: white;
+        font-weight: 250;
+        border-left: 1px solid white;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            {% include 'nav.html' %}
+        </div>
+        <div class="col-sm-9">
+            <div class="page-title">
+                <h4 id='page-heading'> Speeding Report <span style='float:right;'>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="triggerId">
+                                <a class="dropdown-item" href="/reports/speeding-pdf/?vehicle={{vehicle.id}}&start={{from}}&end={{to}}">Export PDF</a>
+                                <a class="dropdown-item" href="/reports/speeding-csv/?vehicle={{vehicle.id}}&start={{from}}&end={{to}}">Export CSV</a>
+
+                            </div>
+                        </div>
+                    </span>
+            </div>
+            <div style="padding:5px;">
+
+
+
+                {% endif %}
+
+<div style='background-color:#ccc;font-weight:250;font-size:2rem;'>MDVR+ <span style='float:right'>{{config.company}}</span></div>
+<table class='table'>
     <tbody>
         <tr>
             <td>
@@ -13,23 +50,26 @@
                 <p>Vehicle ID: {{vehicle}}</p>
 
             </td>
-            <td></td>
+            <td>
+                                <div style='min-width:70%;'></div>
+            
+            </td>
             <td>
                 <p>Date: {{date}}</p>
-                <p>Cutoff Speed: {{date}}</p>
+                <p>Cutoff Speed: {{config.speeding_threshold}}</p>
             </td>
         </tr>
     </tbody>
 </table>
 
 
-<table class="table table-sm">
+<table class="table table-sm" id='report'>
     <thead>
         <tr>
             <th>Date- Time</th>
-            <th>Location</th>
-            <th>Recorded Speed</th>
-            <th>Duration</th>
+            <th>Location(Lat, Lng)</th>
+            <th>Recorded Speed km/hr</th>
+            <th>Duration (+/- 1.5s)</th>
         </tr>
     </thead>
     <tbody>
@@ -37,10 +77,19 @@
             <tr>
                 <td>{{record.timestamp}}</td>
                 <td>{{record.location}}</td>
-                <td>{{record.delta}}</td>
-                <td>{{record.init_speed}}</td>
+                <td>{{record.speed}}</td>
+                <td>{{record.duration}}</td>
             </tr>
         {% endfor %}
     </tbody>
 </table>
+
+
+                {% if link %}
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}
+{% endif %}
 {% endblock window %}

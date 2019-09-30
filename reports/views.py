@@ -15,13 +15,19 @@ from common.models import Config
 from common import api
 from django.apps import apps
 import datetime
+from django.http import HttpResponse
+import requests
+import json
 
 CREATE_TEMPLATE = os.path.join('common', 'create.html')
 #REMINDER_EMAIL = Config.objects.first().default_reminder_email
 from reports.report_views import (SpeedingPDFReport, 
                                   SpeedingReport, 
                                   HarshBrakingPDFReport, 
-                                  HarshBrakingReport)
+                                  HarshBrakingReport,
+                                  harsh_braking_csv_report,
+                                  speeding_report_csv
+                                )
 
 
 class VehicleCreateView(ContextMixin, CreateView):
@@ -98,10 +104,15 @@ class ReminderDetailView(DetailView):
     model = models.Reminder
 
     
-class HarshBrakingReportForm(ContextMixin,FormView):
-    form_class=forms.HarshBrakingReportForm
-    template_name = os.path.join('reports', 'harsh_braking.html')
+class ReportFormView(ContextMixin,FormView):
+    form_class=forms.ReportForm
+    template_name = os.path.join('reports', 'report_form.html')
     success_url = reverse('app:home')
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['action'] = self.kwargs['action']
+        return context
     
 
 
@@ -427,3 +438,51 @@ class CreateReminderCategory(ContextMixin, CreateView):
     template_name = CREATE_TEMPLATE
     form_class = forms.ReminderCategoryForm
     success_url = reverse('reports:reminder-list')
+
+class ImportVehiclesView(TemplateView):
+    template_name = os.path.join('reports', 'import.html')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        config = Config.objects.first()
+        # connect to the API
+        resp = requests.get(f'http://{config.host}:{config.server_port}/StandardApiAction_login.action', params={
+            'account':config.conn_account,
+            'password':config.conn_password
+        })
+        if resp.status_code != 200:
+            context['errors'] = f'An error prevented the application from' + \
+            f' communicating with the application server: code {resp.status_code}'
+            return context
+        # store session id 
+        data = json.loads(resp.content)
+        if data['result'] != 0:
+            context['errors'] = 'The server returned with an error'
+            return context
+
+        session = data['jsession']
+        # get the list of records
+        resp = requests.get(f'http://{config.host}:{config.server_port}/StandardApiAction_queryUserVehicle.action', params={
+            'jsession':session
+        })
+        data = json.loads(resp.content)
+        if data['result'] != 0:
+            context['errors'] = 'An error prevented a suitable response from being returned'
+            return context
+        
+        context['imported'] = []
+        for v in data['vehicles']:
+            if models.Vehicle.objects.filter(vehicle_id=v['id']).exists():
+                continue
+            vehicle = models.Vehicle.objects.create(
+                vehicle_id=v['id'],
+                device_id=v['dl'][0]['id'],
+                name=f"Vehicle #{v['id']}",
+                vehicle_type='truck'
+            )
+
+            context['imported'].append(vehicle)
+
+
+        return context

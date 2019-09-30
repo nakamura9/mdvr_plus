@@ -12,7 +12,9 @@ class Config(models.Model):
     server_port = models.IntegerField(default=8080)
     conn_account = models.CharField(max_length=255, default='admin')
     conn_password = models.CharField(max_length=32, default='', blank=True)
-
+    company_name = models.CharField(max_length=255)
+    speeding_threshold = models.FloatField(default=80.0)
+    
     def save(self, *args, **kwargs):
         self.pk = 1
         super().save(*args, **kwargs)

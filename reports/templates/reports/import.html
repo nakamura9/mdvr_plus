@@ -1,0 +1,32 @@
+{% extends 'window.html' %}
+{% block page_title %}
+Import Vehicles and Devices
+
+{% endblock page_title %}
+
+{% block content %}
+{{errors}}
+
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Device ID</th>
+            <th>Vehicle ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for v in imported %}
+            <tr>
+                <td>{{v.name}}</td>
+                <td>{{v.device_id}}</td>
+                <td>{{v.vehicle_id}}</td>
+            </tr>
+        {% empty %}
+        <tr>
+            <td colspan=3><b>No Vehicles imported</b></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock  %}

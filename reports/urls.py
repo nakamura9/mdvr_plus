@@ -4,11 +4,25 @@ from reports.api import get_month
 app_name = 'reports'
 
 report_urls = [
-    path('harsh-braking-form/', views.HarshBrakingReportForm.as_view(),
-        name='harsh-braking-report-form'),
+    
     path('harsh-braking-report/', 
         views.HarshBrakingReport.as_view(),
         name='harsh-braking-report'),
+    path('harsh-braking-pdf/', 
+        views.HarshBrakingPDFReport.as_view(),
+        name='harsh-braking-pdf'),
+    path('harsh-braking-csv/', 
+        views.harsh_braking_csv_report,
+        name='harsh-braking-csv'),
+    path('speeding-report/', 
+        views.SpeedingReport.as_view(),
+        name='speeding-report'),
+    path('speeding-pdf/', 
+        views.SpeedingPDFReport.as_view(),
+        name='speeding-pdf'),
+    path('speeding-csv/', 
+        views.speeding_report_csv,
+        name='speeding-csv'),
 ]
 
 driver_urls = [
@@ -67,6 +81,8 @@ urlpatterns = [
         name='create-note'),
     path('create-vehicle/', views.VehicleCreateView.as_view(), 
         name='create-vehicle'),
+    path('import-vehicles/', views.ImportVehiclesView.as_view(), 
+        name='import-vehicles'),
     path('list-vehicles/', views.VehicleListView.as_view(), 
         name='list-vehicles'),
     path('update-vehicle/<int:pk>', views.VehicleUpdateView.as_view(), 
@@ -84,7 +100,8 @@ urlpatterns = [
         name='update-reminder'),
     path('reminder-details/<int:pk>', views.ReminderDetailView.as_view(),
         name='reminder-details'),
-    
     path('api/month/<int:year>/<int:month>/', get_month),
+    path('report-form/<str:action>/', views.ReportFormView.as_view(),
+        name='report-form'),
 ] + driver_urls + insurance_urls + fitness_certificates_urls + \
     service_urls + incident_urls + report_urls

@@ -7,7 +7,7 @@ from crispy_forms.layout import (Layout,
                                  HTML)
 from reports import models
 from django_select2.forms import Select2Widget, Select2MultipleWidget
-class HarshBrakingReportForm(forms.Form):
+class ReportForm(forms.Form):
     start = forms.DateField()
     end = forms.DateField()
     vehicle = forms.ModelChoiceField(models.Vehicle.objects.all(),
@@ -17,11 +17,9 @@ class HarshBrakingReportForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Row(
-                Column('start',css_class='col-4'),
-                Column('end',css_class='col-4'),
-                Column('vehicle',css_class='col-4'),
-            )
+            'start',
+            'end',
+            'vehicle'
         )
         self.helper.add_input(Submit('submit', 'Generate'))
 
@@ -38,6 +36,10 @@ class VehicleForm(forms.ModelForm):
             'registration_number',
             'vehicle_type',
             Row(
+                Column('device_id', css_class="col-6"),
+                Column('vehicle_id', css_class="col-6")
+            ),
+            Row(
                 Column('make', css_class='col-4'),
                 Column('model', css_class='col-4'),
                 Column('year', css_class='col-4'),
@@ -53,7 +55,7 @@ class VehicleForm(forms.ModelForm):
 class ReminderForm(forms.ModelForm):
     class Meta:
         model = models.Reminder
-        fields = "__all__"
+        exclude = "last_reminder",
         widgets = {
             'reminder_message': forms.Textarea(attrs={'rows': 4})
         }

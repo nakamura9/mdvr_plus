@@ -24,6 +24,7 @@ def start_server():
 def main():
     sys.excepthook = cef.ExceptHook
     start_server()
+    
 
     cef.Initialize()
     cef.CreateBrowserSync(url="localhost:8888/login",
