@@ -9,7 +9,7 @@ from background_task.models import Task
 from plyer import notification
 from reports.daily_reports import (generate_daily_harsh_braking_summary, 
                                   generate_daily_speeding_report)
-
+from django.db.utils import OperationalError
 import logging
 logging.basicConfig(filename='background.log', level=logging.WARN)
 
@@ -85,14 +85,19 @@ def run_daily_reports():
         logging.critical('failed to generate daily summary reports')
         logging.error(e, exc_info=True)
 
-if not Task.objects.filter(task_name__contains='check_for_reminders'):
-    check_for_reminders(repeat=Task.DAILY)
 
-if not Task.objects.filter(task_name__contains='run_daily_reports').exists():
-    today = datetime.date.today()
-    run_daily_reports(schedule=datetime.datetime(
-        today.year, 
-        today.month, 
-        today.day,
-        23, 30, 0), repeat=Task.DAILY)
+try:
+    if not Task.objects.filter(task_name__contains='check_for_reminders'):
+        check_for_reminders(repeat=Task.DAILY)
 
+    if not Task.objects.filter(
+            task_name__contains='run_daily_reports').exists():
+        today = datetime.date.today()
+        run_daily_reports(schedule=datetime.datetime(
+            today.year, 
+            today.month, 
+            today.day,
+            23, 30, 0), repeat=Task.DAILY)
+
+except OperationalError:
+    pass

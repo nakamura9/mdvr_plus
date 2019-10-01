@@ -7,7 +7,6 @@ import copy
 
 from cefpython3 import cefpython as cef
 
-
 ENVIRONMENT = copy.deepcopy(os.environ)
 ENVIRONMENT['PATH'] = ";".join([
     os.path.abspath('python'),
@@ -18,6 +17,8 @@ ENVIRONMENT['PATH'] = ";".join([
 def start_server():
     os.chdir('server')
     subprocess.Popen(['python', 'manage.py', 'runserver', '127.0.0.1:8888'], 
+        env=ENVIRONMENT)
+    subprocess.Popen(['python', 'manage.py', 'process_tasks'], 
         env=ENVIRONMENT)
 
 

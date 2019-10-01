@@ -6,6 +6,7 @@ assets/node_modules/
 env/
 deploy_env/
 .vscode/
+deploy/deploy/
 deploy/build/
 deploy/dist/
 deploy/python/
