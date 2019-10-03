@@ -3758,3 +3758,304 @@ INFO:background_task.tasks:Ran task and deleting common.api.check_for_reminders
 DEBUG:background_task.management.commands.process_tasks:waiting for tasks
 DEBUG:background_task.management.commands.process_tasks:waiting for tasks
 WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /invoicing/
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /808gps/login.html
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+ERROR:django.request:Internal Server Error: /reports/harsh-braking-report/
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connection.py", line 160, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connectionpool.py", line 603, in urlopen
+    chunked=chunked)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connectionpool.py", line 355, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "C:\Python36\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "C:\Python36\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "C:\Python36\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "C:\Python36\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "C:\Python36\lib\http\client.py", line 964, in send
+    self.connect()
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connection.py", line 183, in connect
+    conn = self._new_conn()
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connection.py", line 169, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x0569CC30>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connectionpool.py", line 641, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\util\retry.py", line 399, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /StandardApiAction_login.action?account=admin&password= (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0569CC30>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py", line 115, in get
+    resp = self.get_vehicle_records()
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py", line 46, in get_vehicle_records
+    'password':config.conn_password
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /StandardApiAction_login.action?account=admin&password= (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0569CC30>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it',))
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+ERROR:django.request:Internal Server Error: /reports/harsh-braking-report/
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connection.py", line 160, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connectionpool.py", line 603, in urlopen
+    chunked=chunked)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connectionpool.py", line 355, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "C:\Python36\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "C:\Python36\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "C:\Python36\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "C:\Python36\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "C:\Python36\lib\http\client.py", line 964, in send
+    self.connect()
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connection.py", line 183, in connect
+    conn = self._new_conn()
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connection.py", line 169, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x04DB5030>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connectionpool.py", line 641, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\util\retry.py", line 399, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /StandardApiAction_login.action?account=admin&password= (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x04DB5030>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py", line 115, in get
+    resp = self.get_vehicle_records()
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py", line 46, in get_vehicle_records
+    'password':config.conn_password
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /StandardApiAction_login.action?account=admin&password= (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x04DB5030>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it',))
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+ERROR:django.request:Internal Server Error: /reports/harsh-braking-report/
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connection.py", line 160, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connectionpool.py", line 603, in urlopen
+    chunked=chunked)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connectionpool.py", line 355, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "C:\Python36\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "C:\Python36\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "C:\Python36\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "C:\Python36\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "C:\Python36\lib\http\client.py", line 964, in send
+    self.connect()
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connection.py", line 183, in connect
+    conn = self._new_conn()
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connection.py", line 169, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x04D15930>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connectionpool.py", line 641, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\util\retry.py", line 399, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /StandardApiAction_login.action?account=admin&password=admin (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x04D15930>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py", line 115, in get
+    resp = self.get_vehicle_records()
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py", line 46, in get_vehicle_records
+    'password':config.conn_password
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /StandardApiAction_login.action?account=admin&password=admin (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x04D15930>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it',))
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_login.action?account=admin&password=admin HTTP/1.1" 200 139
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=49ef5866-0662-4f40-be47-6df61e20dd40&devIdno=77779&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=1&pageRecords=100 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=49ef5866-0662-4f40-be47-6df61e20dd40&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=2&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=49ef5866-0662-4f40-be47-6df61e20dd40&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=3&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=49ef5866-0662-4f40-be47-6df61e20dd40&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=4&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=49ef5866-0662-4f40-be47-6df61e20dd40&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=5&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+WARNING:django.request:Not Found: /favicon.ico
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_login.action?account=admin&password=admin HTTP/1.1" 200 139
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=0d5debdb-a51f-4019-9e44-07226ef65682&devIdno=77779&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=1&pageRecords=100 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=0d5debdb-a51f-4019-9e44-07226ef65682&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=2&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=0d5debdb-a51f-4019-9e44-07226ef65682&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=3&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=0d5debdb-a51f-4019-9e44-07226ef65682&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=4&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=0d5debdb-a51f-4019-9e44-07226ef65682&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=5&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_login.action?account=admin&password=admin HTTP/1.1" 200 139
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=6c2bd30c-82d5-4dfb-81b0-3a72c6efb8b8&devIdno=77779&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=1&pageRecords=100 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=6c2bd30c-82d5-4dfb-81b0-3a72c6efb8b8&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=2&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=6c2bd30c-82d5-4dfb-81b0-3a72c6efb8b8&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=3&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=6c2bd30c-82d5-4dfb-81b0-3a72c6efb8b8&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=4&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=6c2bd30c-82d5-4dfb-81b0-3a72c6efb8b8&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=5&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_login.action?account=admin&password=admin HTTP/1.1" 200 139
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=ae866d79-3ab1-4a37-adee-52f10ee4af84&devIdno=77779&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=1&pageRecords=100 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=ae866d79-3ab1-4a37-adee-52f10ee4af84&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=2&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=ae866d79-3ab1-4a37-adee-52f10ee4af84&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=3&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=ae866d79-3ab1-4a37-adee-52f10ee4af84&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=4&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=ae866d79-3ab1-4a37-adee-52f10ee4af84&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=5&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\forms.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\forms.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\forms.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\forms.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\forms.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\forms.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\forms.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_login.action?account=admin&password=admin HTTP/1.1" 200 139
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=caa9a7f4-90b4-40a3-98a1-b55f8a18c8e5&devIdno=77779&begintime=2019-10-01+00%3A00%3A00&endtime=2019-10-07+23%3A59%3A59&currentPage=1&pageRecords=100 HTTP/1.1" 200 46
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_login.action?account=admin&password=admin HTTP/1.1" 200 139
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=4af7d84a-adde-4828-821e-b321d801979d&devIdno=77779&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=1&pageRecords=100 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=4af7d84a-adde-4828-821e-b321d801979d&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=2&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=4af7d84a-adde-4828-821e-b321d801979d&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=3&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=4af7d84a-adde-4828-821e-b321d801979d&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=4&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:8080
+DEBUG:urllib3.connectionpool:http://localhost:8080 "GET /StandardApiAction_queryTrackDetail.action?jsession=4af7d84a-adde-4828-821e-b321d801979d&begintime=2019-09-15+00%3A00%3A00&endtime=2019-09-21+23%3A59%3A59&currentPage=5&pageRecords=100&devIdno=77779 HTTP/1.1" 200 None
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.

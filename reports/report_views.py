@@ -2,17 +2,39 @@ from django.views.generic import TemplateView
 from wkhtmltopdf.views import PDFTemplateView
 import os 
 import datetime
-from reports.models import Vehicle
+from reports.models import Vehicle, Alarm
 from django.shortcuts import reverse
 import requests
 import json
 from common.models import Config
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 import datetime
 import csv
 from django.template.loader import render_to_string
 from bs4 import BeautifulSoup
 from django.test import Client
+
+def login():
+    """
+    login to the service and return the session
+    """
+    #get parameters from config
+    config = Config.objects.first()
+    # connect to the API
+    resp = requests.get(f'http://{config.host}:{config.server_port}/StandardApiAction_login.action', params={
+        'account':config.conn_account,
+        'password':config.conn_password
+    })
+    if resp.status_code != 200:
+        return HttpResponse('An error prevented the application from' 
+        ' communicating with the application server')
+    # store session id 
+    data = json.loads(resp.content)
+    if data['result'] != 0:
+        return HttpResponse('The server returned with an error')
+
+    return data['jsession']
+
 
 class HarshBrakingReport(TemplateView):
     template_name = os.path.join('reports', 'report', 'harsh_braking.html')
@@ -40,31 +62,26 @@ class HarshBrakingReport(TemplateView):
         
         #get parameters from config
         config = Config.objects.first()
-        # connect to the API
-        resp = requests.get(f'http://{config.host}:{config.server_port}/StandardApiAction_login.action', params={
-            'account':config.conn_account,
-            'password':config.conn_password
-        })
-        if resp.status_code != 200:
-            return HttpResponse('An error prevented the application from' 
-            ' communicating with the application server')
-        # store session id 
-        data = json.loads(resp.content)
-        if data['result'] != 0:
-            return HttpResponse('The server returned with an error')
-        session = data['jsession']
+       
+        session = login()
+        if isinstance(session, HttpResponse):
+            return session 
+
         # get the list of records
-        resp = requests.get(f'http://{config.host}:{config.server_port}/StandardApiAction_queryTrackDetail.action', params={
+        url = f'http://{config.host}:{config.server_port}/' + \
+            f'StandardApiAction_queryTrackDetail.action'
+        params = {
             'jsession':session,
             'devIdno': vehicle.device_id,
             'begintime':start.strftime('%Y-%m-%d %H:%M:%S'),
             'endtime':end.strftime('%Y-%m-%d %H:%M:%S'),
             'currentPage': 1,
             'pageRecords':100,
-        })
+        }
+        resp = requests.get(url, params=params)
         #process for harsh braking and discard each chunk
         data = json.loads(resp.content)
-        self.process_data(data)
+        self.process_data(data, config)
         #iterate over all the pages
         current_page = 1
         if not data['pagination']:
@@ -72,25 +89,17 @@ class HarshBrakingReport(TemplateView):
 
         while data['pagination']['hasNextPage']:
             current_page += 1
-            resp = requests.get(f'http://{config.host}:'
-                f'{config.server_port}/StandardApiAction_queryTrackDetail.action', 
-                params={
-                    'jsession':session,
-                    'begintime':start.strftime('%Y-%m-%d %H:%M:%S'),
-                    'endtime':end.strftime('%Y-%m-%d %H:%M:%S'),
-                    'currentPage': current_page,
-                    'pageRecords':100,
-                    'devIdno': vehicle.device_id,
-
-                })
+            params['currentPage'] = current_page
+            resp = requests.get(url, params=params)
+            
             if resp.status_code != 200:
                 break
             data = json.loads(resp.content)
-            self.process_data(data)
+            self.process_data(data, config)
             
             
 
-    def process_data(self, data):
+    def process_data(self, data, config):
         # compare the speeds of each successive record
         # if the delta > 40km/hr per 3 seconds, save that as harsh braking
         # create event dict with fields for, datetime, location, delta, and 
@@ -103,7 +112,7 @@ class HarshBrakingReport(TemplateView):
                 return
             next = data['tracks'][i + 1]
 
-            if track['sp'] - next['sp'] > 400:
+            if (track['sp'] - next['sp']) / 10.0 > config.harsh_braking_delta:
                 self.harsh_braking_records.append({
                     'timestamp': next['gt'],
                     'location': f'{next["lng"]}, {next["lng"]}',
@@ -160,7 +169,7 @@ class SpeedingReport(TemplateView):
 
         return context 
 
-    def process_data(self, data):
+    def process_data(self, data, config):
         # note the speeds of each successive record
         # if the speed > set point note it as speeding
         # create event dict with fields for, datetime, location, delta, and 
@@ -168,7 +177,7 @@ class SpeedingReport(TemplateView):
         if not data['tracks']:
             return 
         duration = 0
-        threshold = Config.objects.first().speeding_threshold
+        threshold = config.speeding_threshold
 
         for i in range(len(data['tracks'])):
             track = data['tracks'][i]
@@ -187,8 +196,8 @@ class HarshBrakingPDFReport(PDFTemplateView):
     template_name = os.path.join('reports', 'report', 'harsh_braking.html')
     harsh_braking_records = []
 
-    def process_data(self, data):
-        return HarshBrakingReport.process_data(self, data)
+    def process_data(self, data, config):
+        return HarshBrakingReport.process_data(self, data, config)
 
     def get(self, *args, **kwargs):
         resp = HarshBrakingReport.get_vehicle_records(self)
@@ -214,8 +223,8 @@ class SpeedingPDFReport(PDFTemplateView):
     template_name = SpeedingReport.template_name
     speeding_records = []
 
-    def process_data(self, data):
-        return SpeedingReport.process_data(self, data)
+    def process_data(self, data, config):
+        return SpeedingReport.process_data(self, data, config)
 
     def get(self, *args, **kwargs):
         resp = HarshBrakingReport.get_vehicle_records(self)
@@ -296,3 +305,6 @@ def speeding_report_csv(request):
         writer.writerow([i.string for i in row.find_all('td')])
 
     return response 
+
+
+

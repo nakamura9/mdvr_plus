@@ -14,6 +14,7 @@ class Config(models.Model):
     conn_password = models.CharField(max_length=32, default='', blank=True)
     company_name = models.CharField(max_length=255)
     speeding_threshold = models.FloatField(default=80.0)
+    harsh_braking_delta = models.FloatField(default=40.0)
     
     def save(self, *args, **kwargs):
         self.pk = 1

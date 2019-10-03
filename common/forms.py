@@ -13,6 +13,9 @@ class ConfigForm(forms.ModelForm):
             'email_password': forms.PasswordInput(),
             'conn_password': forms.PasswordInput()
         }"""
+        labels = {
+            'harsh_braking_delta': 'Harsh Braking Threshold(change in speed in km/hr per 3s)'
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -38,7 +41,8 @@ class ConfigForm(forms.ModelForm):
                 Tab('Other',
                 'DDC_reminder_days',
                 'company_name',
-                'speeding_threshold'
+                'speeding_threshold',
+                'harsh_braking_delta'
                 )
             )
         )

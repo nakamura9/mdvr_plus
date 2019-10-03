@@ -81,6 +81,15 @@ class ReminderForm(forms.ModelForm):
         )
         self.helper.add_input(Submit('submit', 'Submit'))
 
+
+    def clean(self, *args, **kwargs):
+        cleaned_data = super().clean(*args, **kwargs)
+
+        if not cleaned_data['vehicle'] and \
+                cleaned_data['reminder_method'] == 1:
+            raise forms.ValidationError('A reminder cannot be created for a driver while specifying a reminder method for mileage. Select "interval of time" instead.')
+
+        return cleaned_data
 class NoteForm(forms.ModelForm):
     class Meta:
         exclude = "date",
@@ -292,6 +301,7 @@ class DDCFrom(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
+            HTML('<h5>{{name}}</h5>'),
             'number',
             'expiry_date',
             'reminder_days',

@@ -28,6 +28,8 @@
                 <div class="dropdown-menu" aria-labelledby="triggerId">
                     <a class="dropdown-item" href="{% url 'reports:update-driver' pk=d.pk %}"> <i class="fas fa-edit"></i> Edit</a>
                     <a class="dropdown-item" href="{% url 'reports:driver-details' pk=d.pk %}"> <i class="fas fa-file"></i> Details</a>
+                    <a class="dropdown-item" href="{% url 'reports:create-ddc' pk=d.pk %}"> <i class="fas fa-file-alt"></i> Add Defensive Driving Certificate</a>
+                    <a class="dropdown-item" href="{% url 'reports:create-medical' pk=d.pk %}"> <i class="fas fa-file-medical-alt"></i> Record Medical</a>
                 </div>
             </div>
         </td>

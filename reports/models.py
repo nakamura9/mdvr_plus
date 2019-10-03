@@ -1,6 +1,13 @@
 from django.db import models
 from django.shortcuts import reverse
 import datetime
+import requests 
+from common.models import Config
+import logging
+import json
+
+logging.basicConfig(filename='background.log', level=logging.WARN)
+
 
 class VehicleService(models.Model):
     FREQUENCY = [
@@ -145,6 +152,31 @@ class Vehicle(models.Model):
         return self.vehicleservicelog_set.all().order_by('date')
 
 
+    def get_status(self):
+        config = Config.objects.first()
+        # connect to the API
+        resp = requests.get(f'http://{config.host}:{config.server_port}/StandardApiAction_login.action', params={
+            'account':config.conn_account,
+            'password':config.conn_password
+        })
+        if resp.status_code != 200:
+            logging.critical('Failed to login for obtaining vehicle #{} status'.format(self.vehicle_id))
+            return
+
+        session = json.loads(resp.content)['jsession']
+
+        resp = requests.get(f'http://{config.host}:{config.server_port}/StandardApiAction_getDeviceStatus.action', params={
+            'jsession':session,
+            'vehiIdno':self.vehicle_id,
+        })
+
+        if resp.status_code != 200:
+            logging.critical('Failed to retrieve status for vehicle #{}'.format(self.vehicle_id))
+            return
+
+        return json.loads(resp.content)['status']
+
+
 class Driver(models.Model):
     GENDER = [
         ('male', 'Male'),
@@ -218,7 +250,10 @@ class Incident(models.Model):
         return reverse("reports:vehicle-details", kwargs={"pk": self.vehicle.pk})
     
 class Reminder(models.Model):
-    
+    REMINDER_METHODS = [
+        (0, 'After an Inteval of Time'),
+        (1, 'After a stated mileage')
+    ]
     vehicle = models.ForeignKey('reports.vehicle', 
         on_delete=models.SET_NULL,
         null=True)
@@ -235,7 +270,9 @@ class Reminder(models.Model):
     reminder_message = models.TextField()
     active = models.BooleanField(default=True)
     last_reminder = models.DateField(null=True, blank=True)
-
+    last_reminder_mileage = models.IntegerField(default=0)
+    reminder_method = models.PositiveSmallIntegerField(choices=REMINDER_METHODS,
+                                                       default=0)
 
     def repeat_on_date(self, date):
         if date > self.date:
@@ -254,6 +291,23 @@ class Reminder(models.Model):
     def __str__(self):
         return self.label
 
+
+    
+
+    def save(self, **kwargs):
+
+        if self.pk is None and self.reminder_method == 1:
+            #record the current mileage
+             #get parameters from config
+            status = self.vehicle.get_status()
+            if status:
+                self.last_reminder_mileage = status['lc'] / 1000
+            else:
+                logging.critical('could not obtain the current mileage for setting a reminder for vehicle {}'.format(self.vehicle.vehicle_id))
+
+            super().save(**kwargs)
+
+
         
 class ReminderCategory(models.Model):
     name = models.CharField(max_length=255)
@@ -261,3 +315,11 @@ class ReminderCategory(models.Model):
 
     def __str__(self):
         return self.name
+
+class Alarm(models.Model):
+    timestamp = models.DateTimeField(auto_now=True)
+    description = models.TextField()
+    vehicle = models.ForeignKey('reports.vehicle', on_delete=models.CASCADE)
+    
+
+    

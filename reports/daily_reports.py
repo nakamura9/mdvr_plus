@@ -5,17 +5,40 @@ from common.models import Config
 import requests
 import json
 import logging
-
-
+from reports.report_views import login
+from django.http import HttpResponse
+import smtplib
+import ssl
+from email.mime.base import MIMEBase
+from email import encoders
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import ntpath
 #set up logging
 logging.basicConfig(filename='reports.log', level=logging.DEBUG)
 
 
-def process_speeding_events(data, events, vehicle):
+def get_vehicle_list(session, config):
+    resp = requests.get(f'http://{config.host}:{config.server_port}/StandardApiAction_queryUserVehicle.action', params={
+            'jsession':session
+        })
+    data = json.loads(resp.content)
+    if data['result'] != 0:
+        logging.critical(f'An error, {data["result"]}, prevented a ' + \
+        f'the system from returning the vehicle list')
+        return
+    
+    return [{
+        'id': v['id'], 
+        'did': v['dl'][0]['id'],
+        'plate': v['nm']
+        } for v in data['vehicles']]
+
+def process_speeding_events(data, events, vehicle, config):
     if not data['tracks']:
         return 
     duration = 0
-    threshold = Config.objects.first().speeding_threshold
+    threshold = config.speeding_threshold
 
     for i in range(len(data['tracks'])):
         track = data['tracks'][i]
@@ -48,35 +71,16 @@ def generate_daily_speeding_report():
     #login
     #get parameters from config
     config = Config.objects.first()
-    # connect to the API
-    resp = requests.get(f'http://{config.host}:{config.server_port}/StandardApiAction_login.action', params={
-        'account':config.conn_account,
-        'password':config.conn_password
-    })
-    if resp.status_code != 200:
-        logging.critical("Failed to login to the server, report generation aborting.")
-        return 
-    data = json.loads(resp.content)
-    if data['result'] != 0:
-        logging.critical(f"An error code was returned on login:{data['result']}")
-        return 
-    session = data['jsession']
     
-    #get vehicle list    
-    resp = requests.get(f'http://{config.host}:{config.server_port}/StandardApiAction_queryUserVehicle.action', params={
-            'jsession':session
-        })
-    data = json.loads(resp.content)
-    if data['result'] != 0:
-        logging.critical(f'An error, {data["result"]}, prevented a ' + \
-        f'the system from returning the vehicle list')
+    session = login()
+    if isinstance(session, HttpResponse):
+        logging.critical(session.content)
         return
     
-    vehicle_ids =[{
-        'id': v['id'], 
-        'did': v['dl'][0]['id'],
-        'plate': v['nm']
-        } for v in data['vehicles']]
+    #get vehicle list    
+    vehicle_ids = get_vehicle_list(session, config)
+    if not vehicle_ids:
+        return
         
     #get speeding records for each vehicle.
     for vehicle in vehicle_ids:
@@ -93,7 +97,7 @@ def generate_daily_speeding_report():
         resp = requests.get(url, params=params)
         #process for harsh braking and discard each chunk
         data = json.loads(resp.content)
-        process_speeding_events(data, events, vehicle)
+        process_speeding_events(data, events, vehicle, config)
         current_page = 1
         if not data['pagination']:
             continue
@@ -105,7 +109,7 @@ def generate_daily_speeding_report():
             if resp.status_code != 200:
                 break
             data = json.loads(resp.content)
-            process_speeding_events(data, events, vehicle)
+            process_speeding_events(data, events, vehicle, config)
     
     #store the records in a list and return the list.
     context.update({
@@ -113,15 +117,67 @@ def generate_daily_speeding_report():
         'vehicles': len(vehicle_ids),
         'config': config
     })
+
+    outfile = os.path.join('daily_reports', f'speeding-summary {today}.pdf')
     pdf_tools.render_pdf_from_template(
                 template, None, None, context,
                 cmd_options={
-                    'output': os.path.join('daily_reports', 
-                                f'speeding-summary {today}.pdf')
+                    'output': outfile
                 })
+                
+    email_speeding_report(outfile, config)
 
 
-def process_harsh_braking_events(data, events, vehicle):
+def email_speeding_report(path, config):
+    #preparing email
+    mime_msg = MIMEMultipart('alternative')
+    mime_msg['Subject'] = 'Daily Speeding Summary(MDVR+)'
+    mime_msg['From'] = config.email_address
+    mime_msg['To'] = config.default_reminder_email
+    mime_msg.attach(MIMEText('''
+    Please find attached the daily speeding summary report.
+    Regards,
+    MDVR+
+    ''', 'plain'))
+
+    attachment = MIMEBase('application', 'octet-stream')
+    with open(path, 'rb') as att:
+        attachment.set_payload(att.read())
+        encoders.encode_base64(attachment)
+        attachment.add_header(
+            'Content-disposition',
+            'attachment; filename={}'.format(
+                ntpath.basename(path)
+            )
+        )
+    mime_msg.attach(attachment)
+
+    #sending email
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL(
+            config.smtp_server, 
+            config.smtp_port, 
+            context=context) as server:
+        server.login(
+                config.email_address, 
+                config.email_password)
+        try:
+            resp = server.sendmail(config.email_address, 
+                                   mime_msg['To'], 
+                                   mime_msg.as_string())
+        except smtplib.SMTPException:
+            logging.error(f'Email not sent')
+        else:
+            if len(resp) == 0:
+                pass
+            else:
+                logger.error(f'Email not sent')
+
+        finally:
+            server.quit()
+
+
+def process_harsh_braking_events(data, events, vehicle, config):
     if not data['tracks']:
         return 
     for i in range(len(data['tracks'])):
@@ -130,7 +186,7 @@ def process_harsh_braking_events(data, events, vehicle):
             return
         next = data['tracks'][i + 1]
 
-        if track['sp'] - next['sp'] > 400:
+        if (track['sp'] - next['sp']) / 10.0 > config.harsh_braking_delta:
             events.append({
                 'vehicle_id': vehicle['id'],
                 'plate_no': vehicle['plate'],
@@ -155,34 +211,16 @@ def generate_daily_harsh_braking_summary():
     #get parameters from config
     config = Config.objects.first()
     # connect to the API
-    resp = requests.get(f'http://{config.host}:{config.server_port}/StandardApiAction_login.action', params={
-        'account':config.conn_account,
-        'password':config.conn_password
-    })
-    if resp.status_code != 200:
-        logging.critical("Failed to login to the server, report generation aborting.")
-        return 
-    data = json.loads(resp.content)
-    if data['result'] != 0:
-        logging.critical(f"An error code was returned on login:{data['result']}")
-        return 
-    session = data['jsession']
-    
-    #get vehicle list    
-    resp = requests.get(f'http://{config.host}:{config.server_port}/StandardApiAction_queryUserVehicle.action', params={
-            'jsession':session
-        })
-    data = json.loads(resp.content)
-    if data['result'] != 0:
-        logging.critical(f'An error, {data["result"]}, prevented a ' + \
-        f'the system from returning the vehicle list')
+     
+    session = login()
+    if isinstance(session, HttpResponse):
+        logging.critical(session.content)
         return
     
-    vehicle_ids =[{
-        'id': v['id'], 
-        'did': v['dl'][0]['id'],
-        'plate': v['nm']
-        } for v in data['vehicles']]
+    #get vehicle list    
+    vehicle_ids = get_vehicle_list(session, config)
+    if not vehicle_ids:
+        return
         
     #get speeding records for each vehicle.
     for vehicle in vehicle_ids:
@@ -199,7 +237,7 @@ def generate_daily_harsh_braking_summary():
         resp = requests.get(url, params=params)
         #process for harsh braking and discard each chunk
         data = json.loads(resp.content)
-        process_harsh_braking_events(data, events, vehicle)
+        process_harsh_braking_events(data, events, vehicle, config)
         current_page = 1
         if not data['pagination']:
             continue
@@ -211,7 +249,7 @@ def generate_daily_harsh_braking_summary():
             if resp.status_code != 200:
                 break
             data = json.loads(resp.content)
-            procees_harsh_braking_events(data, events, vehicle)
+            procees_harsh_braking_events(data, events, vehicle, config)
     
     #store the records in a list and return the list.
     context.update({

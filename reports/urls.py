@@ -103,5 +103,7 @@ urlpatterns = [
     path('api/month/<int:year>/<int:month>/', get_month),
     path('report-form/<str:action>/', views.ReportFormView.as_view(),
         name='report-form'),
+    path('alarms/', views.retrieve_alarms,
+        name='alarms'),
 ] + driver_urls + insurance_urls + fitness_certificates_urls + \
     service_urls + incident_urls + report_urls

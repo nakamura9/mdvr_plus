@@ -15,9 +15,11 @@ from common.models import Config
 from common import api
 from django.apps import apps
 import datetime
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 import requests
 import json
+from reports.models import Alarm
+from reports.serializers import AlarmSerializer
 
 CREATE_TEMPLATE = os.path.join('common', 'create.html')
 #REMINDER_EMAIL = Config.objects.first().default_reminder_email
@@ -406,7 +408,12 @@ class CreateDDC(ContextMixin, CreateView):
         return {
             'driver': self.kwargs['pk']
         }
-
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['name'] = models.Driver.objects.get(pk=self.kwargs['pk'])
+        return context 
+    
     def get_success_url(self):
         return reverse('reports:driver-details', kwargs={
             'pk': self.kwargs['pk']
@@ -486,3 +493,17 @@ class ImportVehiclesView(TemplateView):
 
 
         return context
+        
+
+def retrieve_alarms(request):
+    # delete all alarms older than 5 minutes 
+    now = datetime.datetime.now()
+    threshold = now - datetime.timedelta(seconds=300)
+    Alarm.objects.filter(timestamp__lte=threshold).delete()
+
+    # raise all alarms from the last minute
+    minute = now - datetime.timedelta(seconds=60)
+    current = Alarm.objects.filter(timestamp__gte=minute)
+    data = AlarmSerializer(current, many=True).data
+
+    return JsonResponse(data)
