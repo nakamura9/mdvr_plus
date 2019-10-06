@@ -33,7 +33,3 @@ class ConfigFormView(ContextMixin, UpdateView):
     template_name = os.path.join('common', 'create.html')
     success_url = '/app/'
 
-
-def daily(request):
-    generate_daily_harsh_braking_summary()
-    return HttpResponse('Done')

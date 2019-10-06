@@ -20,9 +20,10 @@ import requests
 import json
 from reports.models import Alarm
 from reports.serializers import AlarmSerializer
-
+from django.db.utils import OperationalError
 CREATE_TEMPLATE = os.path.join('common', 'create.html')
-#REMINDER_EMAIL = Config.objects.first().default_reminder_email
+
+
 from reports.report_views import (SpeedingPDFReport, 
                                   SpeedingReport, 
                                   HarshBrakingPDFReport, 
@@ -63,7 +64,7 @@ class VehicleListView(ContextMixin, FilterView):
         'title': 'Vehicle List',
         'action_list': [
             {
-                'link': reverse('reports:list-vehicles'),
+                'link': reverse('reports:create-vehicle'),
                 'icon': 'pen',
                 'label': 'Create New Vehicle'
             }
@@ -89,7 +90,7 @@ class ReminderUpdateView(ContextMixin, UpdateView):
     template_name =CREATE_TEMPLATE
     form_class = forms.ReminderForm
     queryset = models.Reminder.objects.all()
-    success_url = reverse('reports:reminder-list')
+    success_url = reverse('reports:reminders-list')
     context = {
         'title': 'Update Reminder'
     }
@@ -196,7 +197,7 @@ class CreateInsurance(ContextMixin, CreateView):
                 days=int(form.cleaned_data['reminder_days'])),
             interval_days=0,
             interval_mileage=0,
-            reminder_email=REMINDER_EMAIL,
+            reminder_email=Config.objects.first().default_reminder_email,
             reminder_message="""
             The insurance for vehicle {} will expire within {} days.
             Please renew.
@@ -247,7 +248,7 @@ class CreateFitnessCertificate(ContextMixin, CreateView):
                 days=int(form.cleaned_data['reminder_days'])),
             interval_days=0,
             interval_mileage=0,
-            reminder_email=REMINDER_EMAIL,
+            reminder_email=Config.objects.first().default_reminder_email,
             reminder_message="""
             The certificate of fitness for vehicle {} will expire within {} days.
             Please renew.
@@ -306,7 +307,7 @@ class CreateServiceLog(ContextMixin, CreateView):
                     service.frequency_time),
                 interval_days=0,
                 interval_mileage=0,
-                reminder_email=REMINDER_EMAIL,
+                reminder_email=Config.objects.first().default_reminder_email,
                 reminder_message="""
                 The vehicle is due for the following service: {}
                 .
@@ -318,7 +319,7 @@ class CreateServiceLog(ContextMixin, CreateView):
                 date=self.object.date,
                 interval_days=0,
                 interval_mileage=service.interval_mileage,
-                reminder_email=REMINDER_EMAIL,
+                reminder_email=Config.objects.first().default_reminder_email,
                 reminder_message="""
                 The vehicle will due for the following service: {}
                 after {}km.
@@ -383,7 +384,7 @@ class CreateMedical(ContextMixin, CreateView):
                     int(form.cleaned_data['reminder_days'])),
                 interval_days=0,
                 interval_mileage=0,
-                reminder_email=REMINDER_EMAIL,
+                reminder_email=Config.objects.first().default_reminder_email,
                 reminder_message="""
                 {} is due for another medical in {} days
                 .
@@ -428,7 +429,7 @@ class CreateDDC(ContextMixin, CreateView):
                     int(form.cleaned_data['reminder_days'])),
                 interval_days=0,
                 interval_mileage=0,
-                reminder_email=REMINDER_EMAIL,
+                reminder_email=Config.objects.first().default_reminder_email,
                 reminder_message="""
                 {}'s defensive driving certificate will expire in {} days.
                 Please renew.
@@ -444,7 +445,7 @@ class CreateReminderCategory(ContextMixin, CreateView):
     }
     template_name = CREATE_TEMPLATE
     form_class = forms.ReminderCategoryForm
-    success_url = reverse('reports:reminder-list')
+    success_url = reverse('reports:reminders-list')
 
 class ImportVehiclesView(TemplateView):
     template_name = os.path.join('reports', 'import.html')
@@ -506,4 +507,4 @@ def retrieve_alarms(request):
     current = Alarm.objects.filter(timestamp__gte=minute)
     data = AlarmSerializer(current, many=True).data
 
-    return JsonResponse(data)
+    return JsonResponse(data, safe=False)

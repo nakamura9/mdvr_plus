@@ -1,1 +1,520 @@
 INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /calendar/month/2019/2020/9
+ERROR:django.request:Internal Server Error: /reports/create-ddc/1
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 168, in get
+    return super().get(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 133, in get
+    return self.render_to_response(self.get_context_data())
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\views.py", line 414, in get_context_data
+    context['name'] = models.Driver.objects.get(pk=self.kwargs['pk'])
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\query.py", line 408, in get
+    self.model._meta.object_name
+reports.models.Driver.DoesNotExist: Driver matching query does not exist.
+WARNING:django.request:Not Found: /reports/driver-details/1/
+WARNING:django.request:Not Found: /reports/update-driver/1/
+ERROR:django.request:Internal Server Error: /reports/create-ddc/1
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 168, in get
+    return super().get(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 133, in get
+    return self.render_to_response(self.get_context_data())
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\views.py", line 414, in get_context_data
+    context['name'] = models.Driver.objects.get(pk=self.kwargs['pk'])
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\query.py", line 408, in get
+    self.model._meta.object_name
+reports.models.Driver.DoesNotExist: Driver matching query does not exist.
+WARNING:django.request:Not Found: /reports/driver-details/1/
+WARNING:django.request:Not Found: /reports/update-driver/1/
+ERROR:django.request:Internal Server Error: /reports/create-ddc/1
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 168, in get
+    return super().get(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 133, in get
+    return self.render_to_response(self.get_context_data())
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\views.py", line 414, in get_context_data
+    context['name'] = models.Driver.objects.get(pk=self.kwargs['pk'])
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\query.py", line 408, in get
+    self.model._meta.object_name
+reports.models.Driver.DoesNotExist: Driver matching query does not exist.
+WARNING:django.request:Not Found: /reports/driver-details/1/
+WARNING:django.request:Not Found: /reports/update-driver/1/
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /invoicing/
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /reports/reminder-details/1
+WARNING:django.request:Not Found: /reports/update-incident/1/
+WARNING:django.request:Not Found: /reports/update-reminder/1
+WARNING:django.request:Not Found: /reports/reminder-details/1
+WARNING:django.request:Not Found: /reports/update-reminder/1
+WARNING:django.request:Not Found: /reports/reminder-details/1
+WARNING:django.request:Not Found: /reports/update-reminder/1
+WARNING:django.request:Not Found: /reports/reminder-details/1
+WARNING:django.request:Not Found: /reports/update-reminder/1
+WARNING:django.request:Not Found: /reports/reminder-details/1
+WARNING:django.request:Not Found: /reports/update-reminder/1
+WARNING:django.request:Not Found: /reports/reminder-details/1
+WARNING:django.request:Not Found: /reports/update-reminder/1
+WARNING:django.request:Not Found: /reports/reminder-details/1
+WARNING:django.request:Not Found: /reports/update-reminder/1
+ERROR:django.request:Internal Server Error: /reports/alarms/
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\views.py", line 509, in retrieve_alarms
+    return JsonResponse(data)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\http\response.py", line 552, in __init__
+    'In order to allow non-dict objects to be serialized set the '
+TypeError: In order to allow non-dict objects to be serialized set the safe parameter to False.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /reports/
+ERROR:django.request:Internal Server Error: /reports/alarms/
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\views.py", line 509, in retrieve_alarms
+    return JsonResponse(data)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\http\response.py", line 552, in __init__
+    'In order to allow non-dict objects to be serialized set the '
+TypeError: In order to allow non-dict objects to be serialized set the safe parameter to False.
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /invoicing/
+WARNING:django.request:Not Found: /reports/
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+ERROR:django.request:Internal Server Error: /reports/create-medical/1
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 172, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\views.py", line 386, in form_valid
+    reminder_email=REMINDER_EMAIL,
+NameError: name 'REMINDER_EMAIL' is not defined
+WARNING:django.request:Not Found: /messaging/api/notifications
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+ERROR:django.request:Internal Server Error: /reports/create-medical/1
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: reports_reminder.reminder_email
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 172, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\views.py", line 399, in form_valid
+    form.cleaned_data['reminder_days'])
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\query.py", line 422, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\models.py", line 305, in save
+    super().save(**kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\base.py", line 741, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\base.py", line 779, in save_base
+    force_update, using, update_fields,
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\base.py", line 870, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\base.py", line 908, in _do_insert
+    using=using, raw=raw)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\query.py", line 1186, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\sql\compiler.py", line 1332, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: reports_reminder.reminder_email
+ERROR:django.request:Internal Server Error: /reports/create-medical/1
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: reports_reminder.reminder_email
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 172, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\views.py", line 399, in form_valid
+    form.cleaned_data['reminder_days'])
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\query.py", line 422, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\models.py", line 305, in save
+    super().save(**kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\base.py", line 741, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\base.py", line 779, in save_base
+    force_update, using, update_fields,
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\base.py", line 870, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\base.py", line 908, in _do_insert
+    using=using, raw=raw)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\query.py", line 1186, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\sql\compiler.py", line 1332, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: reports_reminder.reminder_email
+ERROR:django.request:Internal Server Error: /reports/create-medical/1
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: reports_reminder.reminder_email
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 172, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\views.py", line 399, in form_valid
+    form.cleaned_data['reminder_days'])
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\query.py", line 422, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\models.py", line 305, in save
+    super().save(**kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\base.py", line 741, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\base.py", line 779, in save_base
+    force_update, using, update_fields,
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\base.py", line 870, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\base.py", line 908, in _do_insert
+    using=using, raw=raw)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\query.py", line 1186, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\sql\compiler.py", line 1332, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: reports_reminder.reminder_email
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+WARNING:django.request:Not Found: /messaging/api/notifications
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+ERROR:django.request:Internal Server Error: /reports/create-service-log/1
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: NOT NULL constraint failed: reports_reminder.interval_mileage
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 172, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\views.py", line 326, in form_valid
+    """.format(service, service.interval_mileage)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\query.py", line 422, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\models.py", line 305, in save
+    super().save(**kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\base.py", line 741, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\base.py", line 779, in save_base
+    force_update, using, update_fields,
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\base.py", line 870, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\base.py", line 908, in _do_insert
+    using=using, raw=raw)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\query.py", line 1186, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\models\sql\compiler.py", line 1332, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: NOT NULL constraint failed: reports_reminder.interval_mileage
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\models.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /invoicing/
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+ERROR:django.request:Internal Server Error: /reports/create-reminder-category/
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 172, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 126, in form_valid
+    return super().form_valid(form)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 57, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 112, in get_success_url
+    if self.success_url:
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\utils\functional.py", line 151, in __wrapper__
+    res = func(*self.__args, **self.__kw)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\urls\base.py", line 90, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\urls\resolvers.py", line 660, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'reminder-list' not found. 'reminder-list' is not a valid view function or pattern name.
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+ERROR:django.request:Internal Server Error: /reports/update-reminder/1
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 126, in form_valid
+    return super().form_valid(form)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 57, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\edit.py", line 112, in get_success_url
+    if self.success_url:
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\utils\functional.py", line 151, in __wrapper__
+    res = func(*self.__args, **self.__kw)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\urls\base.py", line 90, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\urls\resolvers.py", line 660, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'reminder-list' not found. 'reminder-list' is not a valid view function or pattern name.
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader

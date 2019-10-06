@@ -12,3 +12,5 @@ deploy/dist/
 deploy/python/
 deploy/server/
 *.pdf
+.coverage
+htmlcov/

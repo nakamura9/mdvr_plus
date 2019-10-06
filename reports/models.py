@@ -23,7 +23,7 @@ class VehicleService(models.Model):
     description = models.TextField()
     repeat_method = models.PositiveSmallIntegerField(choices=REPEAT_METHOD)
     frequency_time = models.IntegerField()
-    interval_mileage= models.IntegerField(null=True, blank=True) 
+    interval_mileage= models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -291,9 +291,6 @@ class Reminder(models.Model):
     def __str__(self):
         return self.label
 
-
-    
-
     def save(self, **kwargs):
 
         if self.pk is None and self.reminder_method == 1:
@@ -305,7 +302,7 @@ class Reminder(models.Model):
             else:
                 logging.critical('could not obtain the current mileage for setting a reminder for vehicle {}'.format(self.vehicle.vehicle_id))
 
-            super().save(**kwargs)
+        super().save(**kwargs)
 
 
         

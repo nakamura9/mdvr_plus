@@ -25,7 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('django.contrib.auth.urls')),
     re_path(r'^$', lambda r: HttpResponseRedirect('/login/')),
-    path('app/', include('common.urls')),
+    path('app/', include('common.urls', 'app')),
     path('reports/', include('reports.urls')),
     path('calendar/month/<int:year>/<int:month>/', 
         CalendarView.as_view(), name='calendar')
