@@ -2,7 +2,7 @@ from django.test import TestCase
 from common.models import Config
 from django.test import Client
 from django.shortcuts import reverse
-
+import datetime
 
 class ModelTests(TestCase):
     #fixtures = ['common.json']
@@ -107,6 +107,6 @@ class ViewTests(TestCase):
                                             'server_port': 465,
                                             'conn_account': 'admin',
                                             'speeding_threshold': 80,
-                                            'harsh_braking_delta': 40.0
+                                            'harsh_braking_delta': 40.0,'daily_report_generation_time': datetime.time(23, 30)
                                         })
         self.assertEqual(resp.status_code, 302)

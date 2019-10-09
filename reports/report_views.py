@@ -42,6 +42,8 @@ class HarshBrakingReport(TemplateView):
     harsh_braking_records = []
 
     def get_vehicle_records(self):
+        self.request.session['pages'] = 1
+        self.request.session['current'] = 0
         #get vehicle
         vehicle = Vehicle.objects.get(pk=self.request.GET['vehicle'])
         #get time params
@@ -90,9 +92,8 @@ class HarshBrakingReport(TemplateView):
 
         while data['pagination']['hasNextPage']:
             current_page += 1
-            print(current_page)
-            print(data['pagination']['hasNextPage'])
-            print(data['pagination']['totalPages'])
+            self.request.session['current'] = current_page
+            self.request.session['pages'] = data['pagination']['totalPages']
             params['currentPage'] = current_page
             resp = requests.get(url, params=params)
             
@@ -329,4 +330,10 @@ def speeding_report_csv(request):
     return response 
 
 
-
+def report_progress(request):
+    progress = (request.session.get('current', 0) / \
+                    request.session.get('pages', 1)) * 100.0
+    print(progress)
+    return JsonResponse({
+        'progress': progress
+    })

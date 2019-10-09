@@ -725,6 +725,10 @@ class ViewTests(TestCase):
             'end': datetime.date.today(),
             'vehicle': 1,
         })
+        req.session = {
+            'current': 1,
+            'pages': 1
+        }
         resp = HarshBrakingPDFReport.as_view()(req)
         self.assertEqual(resp.status_code, 200)
         #look out for the single record
@@ -753,6 +757,10 @@ class ViewTests(TestCase):
             'end': datetime.date.today(),
             'vehicle': 1,
         })
+        req.session = {
+            'current': 1,
+            'pages': 1
+        }
         resp = SpeedingPDFReport.as_view()(req)
         self.assertEqual(resp.status_code, 200)
 

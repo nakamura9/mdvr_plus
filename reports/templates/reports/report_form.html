@@ -18,8 +18,82 @@
 </div>
 
 
+
+
+<style>
+    .progress-modal{
+            
+            display: none;
+            
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        } 
+
+        
+
+        .progress-modal-content{
+            background-color: #eee;
+            margin: 10px auto;
+            padding: 25px;
+            width: 50%;
+            height: 30%;
+            border-radius: 25px;
+        }
+
+        .progress-modal-content h4{
+            text-align: center;
+            font-weight: 250;
+        }
+
+        #progress-container {
+            height: 30px;
+            max-width: 100%;
+            margin: 20px 30px;
+            border: 1px solid #999;
+            background-color: #ddd;
+        }
+
+        #progress-bar {
+            height: 100%;
+            width: 30px;
+            background-color: powderblue;
+        }
+        
+</style>
+
+<div class="progress-modal" id="id-progress-modal">
+    <div class="progress-modal-content">
+        <h4>Report Generation Progress</h4>
+        <div id='progress-container'>
+            <div id="progress-bar"></div>
+        </div>
+    </div>
+</div>
+
 <script>
     $(document).ready(function(){
+
+        $("input[type='submit']").on('click', function(){
+            $('#id-progress-modal').show();
+            //check progress every second
+            setInterval(function(){
+                $.get('/reports/report-progress/', function(data){
+                    $('#progress-bar').css('width', data.progress)
+                })
+            }, 1000)
+        })
+
+        $("#id-progress-modal").on('click', function(){
+            $('#id-progress-modal').hide();
+        })
+
         $('form').attr({
             'method': 'GET',
             'action': '/reports/{{action}}/'
@@ -27,6 +101,8 @@
         var width = document.getElementById('report-container').clientWidth - 60;
         $('iframe').attr({'width': width});
     })
+
+
 
 </script>
 

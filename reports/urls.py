@@ -23,6 +23,9 @@ report_urls = [
     path('speeding-csv/', 
         views.speeding_report_csv,
         name='speeding-csv'),
+    path('report-progress/', 
+        views.report_progress,
+        name='report-progress'),
 ]
 
 driver_urls = [

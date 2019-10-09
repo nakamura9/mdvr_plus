@@ -29,7 +29,8 @@ from reports.report_views import (SpeedingPDFReport,
                                   HarshBrakingPDFReport, 
                                   HarshBrakingReport,
                                   harsh_braking_csv_report,
-                                  speeding_report_csv
+                                  speeding_report_csv,
+                                  report_progress
                                 )
 
 
@@ -59,6 +60,7 @@ class VehicleUpdateView(ContextMixin, UpdateView):
 class VehicleListView(ContextMixin, FilterView):
     filterset_class = filters.VehicleFilter
     queryset = models.Vehicle.objects.all()
+    paginate_by = 20
     template_name = os.path.join('reports', 'vehicle', 'list.html')
     context = {
         'title': 'Vehicle List',
@@ -152,6 +154,7 @@ class DriverListView(ContextMixin, FilterView):
     queryset = models.Driver.objects.all()
     template_name = os.path.join('reports', 'driver', 'list.html')
     filterset_class = filters.DriverFilter
+    paginate_by = 20
     context = {
         'title': 'Driver List',
         'action_list': [
