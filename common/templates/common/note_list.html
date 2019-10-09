@@ -1,0 +1,28 @@
+
+<style>
+    h5 {
+        font-weight: 250
+    }
+    h6 {
+        font-weight: 200
+    }
+</style>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Notes</h4>
+        <a href="{% url 'reports:create-note' app=app model=model pk=object.pk %}" class="btn btn-sm btn-secondary" target='popup' onclick='linkClickHandler()'>Create Note</a>
+        
+        <hr class='my-2' >
+        <ul class="list-group">
+            {% for note in object.notes.all %}
+                <li class="list-group-item">
+                    <h5>Author: {{note.author}}</h5>
+                    <h6>{{note.date}}</h6>
+                    <p><b><u>{{note.subject}}:</u></b>
+                        {{note.note}}
+                    </p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

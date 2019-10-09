@@ -1,0 +1,28 @@
+<style>
+.footer {
+    min-height: 150px;
+    height: 150px;
+    color: white;
+    background-color: #bbb;
+    padding: 20px;
+
+}
+
+.footer li {
+    list-style-type: none;
+}
+
+.footer a{
+    text-decoration: none;
+    color: white;
+}
+</style>
+
+
+<div id='footer' class='footer'>
+    <p>Hello <b>{{request.user.username}}!</b></p>
+    <ul>
+        <li><a href="/login/">Logout</a></li>
+        <li><a href="/app/config/1">Config</a></li>
+    </ul>
+</div>  

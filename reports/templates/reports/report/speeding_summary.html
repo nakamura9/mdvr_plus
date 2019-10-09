@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block window %}
+
+<div style='background-color:#ccc;font-weight:250;font-size:2rem;'>MDVR+ <span style='float:right'>{{config.company}}</span></div>
+<table class='table'>
+    <tbody>
+        <tr>
+            <td>
+                <h5>Speeding Summary Report</h5>
+                <p># of Vehicles: {{vehicles}}</p>
+
+            </td>
+            <td>
+                                <div style='min-width:70%;'></div>
+            
+            </td>
+            <td>
+                <p>Date: {{date}}</p>
+                <p>Cutoff Speed: {{config.speeding_threshold}}</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<table class="table table-sm" id='report'>
+    <thead>
+        <tr>
+            <th>Vehicle ID</th>
+            <th>Plate Number</th>
+            <th>Date- Time</th>
+            <th>Location(Lat, Lng)</th>
+            <th>Recorded Speed km/hr</th>
+            <th>Duration (+/- 1.5s)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in events %}
+            <tr>
+                <td>{{record.vehicle_id}}</td>
+                <td>{{record.plate_no}}</td>
+                <td>{{record.timestamp}}</td>
+                <td>{{record.location}}</td>
+                <td>{{record.speed}}</td>
+                <td>{{record.duration}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock window %}

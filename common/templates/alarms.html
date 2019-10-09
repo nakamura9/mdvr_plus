@@ -1,0 +1,138 @@
+{% load static %}
+
+<style>
+    .alarm-modal{
+            display: none;
+            position: fixed;
+            z-index: 10001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        } 
+
+        .alarm-modal-header {
+             background-color: #ddd;
+             width: 100%;
+             height: 40px;
+             padding: 5px;
+             margin-bottom: 2rem;
+        }
+
+        .alarm-modal-header h4{
+            display: inline-block;
+            font-weight: 250;
+        }
+
+        .alarm-modal-header button{
+            display: inline-block;
+            float: right;
+        }
+
+        .alarm-modal-content{
+            background-color: #eee;
+            margin: 10px auto;
+            padding: 5px;
+            width: 80%;
+            height: 80%;
+        }   
+
+
+        .alarms-minimized {
+            width: 200px;
+            height:40px;
+            padding: 5px;
+            background-color: #ddd;
+            position: fixed;
+            z-index: 10000;
+            bottom: 0px;
+            right: 200px;
+            transition: display 0.3s;
+        }
+
+        .alarms-minimized h4{
+            display: inline-block;
+            font-weight: 250;
+        }
+        .alarms-minimized button{
+            display: inline-block;
+            float: right;
+        }
+
+        
+</style>
+
+<audio id='chime' src='{% static "common/audio/chime.mp3" %}' autostart='false' width='0' height='0' enablejavascript='true' ></audio>
+
+
+<div class="alarm-modal" id="id-alarm-modal">
+    <div class="alarm-modal-content">
+        <div class="alarm-modal-header">
+            <h4> <i class="fas fa-bell"></i> Alarms</h4>
+            <button onclick="minimizeAlarms()"  class="btn btn-sm btn-warning"><i class="far fa-window-minimize"></i></button>
+        </div>
+        <div class="alarm-list">
+            <table class="table table-sm">
+                <thead>
+                    <tr class='bg-secondary'>
+                        <th>Timestamp</th>
+                        <th>Vehicle</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody id='alarm-data'>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<div id='alarm-thumbnail' class="alarms-minimized">
+    <h4> <i id='bell' class="fas fa-bell"></i> Alarms</h4>
+    <button class="btn btn-warning btn-sm" onclick='maximizeAlarms()'>
+        <i class="far fa-window-maximize"></i>
+    </button>
+    
+</div>
+
+<script>
+    function maximizeAlarms(){
+        $("#alarm-thumbnail").hide();
+        $("#id-alarm-modal").show();
+    }
+
+    function minimizeAlarms(){
+        $("#alarm-thumbnail").show();
+        $("#id-alarm-modal").hide();
+        $("#bell").css('color', 'black');
+
+    }
+
+    function checkAlarms(){
+        $.get('/reports/alarms/', function(data){
+            if(data.length > 0){
+                setTimeout(function(){
+                    var audio = document.getElementById('chime');
+                    audio.play()
+                }, 5000);
+                $("#bell").css('color', '#007bff');
+                $.each(data, function(index, value){
+                    $('#alarm-data').append('<tr><td>'+ value.timestamp +
+                                '</td><td>'+ value.vehicle   +
+                                '</td><td>'+ value.description+'</td></tr>')
+                })
+            }
+        })
+    }
+
+    $(document).ready(function(){
+        checkAlarms();
+        setInterval(checkAlarms, 60000)
+    })
+</script>

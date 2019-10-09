@@ -76,6 +76,20 @@ def get_vehicles():
     return data
 
 
+@route('/StandardApiAction_getDeviceOlStatus.action')
+def get_devices():
+    if request.query.get('jsession', None) != SESSION_ID:
+        return {
+            'result': 5
+        }
+
+    data = None
+    with open('data/devices.json', 'r') as f:
+        data = json.load(f)
+
+    return data
+
+
 #for controlling the server programatically
 class MyWSGIRefServer(ServerAdapter):
     server = None

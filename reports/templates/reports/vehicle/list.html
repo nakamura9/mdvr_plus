@@ -1,0 +1,42 @@
+{% extends 'common/list_template.html' %}
+
+{% block list_headings %}
+<tr>
+    <th>Name</th>
+    <th>Reg Number</th>
+    <th>Type</th>
+    <th>Seats/Loading Capcity</th>
+    <th>Actions</th>
+</tr>
+
+{% endblock list_headings %}
+
+{% block list_contents %}
+    {% for v in object_list %}
+        <tr>
+            <td>{{v.name}}</td>
+            <td>{{v.registration_number}}</td>
+            <td>{{v.vehicle_type}}</td>
+            <td>{{v.seats}}/{{v.loading_capacity_tons}}</td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                                Actions
+                            </button>
+                    <div class="dropdown-menu" aria-labelledby="triggerId">
+                        <a class="dropdown-item" href="{% url 'reports:update-vehicle' pk=v.pk %}"><i class='fas fa-edit'></i> Edit</a>
+                        <a class="dropdown-item" href="{% url 'reports:vehicle-details' pk=v.pk %}"> <i class='fas fa-file'></i> Details</a>
+                        <a class="dropdown-item" href="{% url 'reports:create-driver' %}"> <i class="fas fa-user"></i> Add Driver</a>
+                    <a class="dropdown-item" href="{% url 'reports:create-service' %}" onclick='linkClickHandler()' target='popup'> <i class="fas fa-plus"></i> Create Service</a>
+                    <a class="dropdown-item" href="{% url 'reports:create-service-log' pk=v.pk %}"> <i class="fas fa-clipboard-list"></i> Log Service</a>
+                    <a class="dropdown-item" href="{% url 'reports:create-insurance' pk=v.pk %}"> <i class="fas fa-file-alt"></i> Add Insurance</a>
+                    <a class="dropdown-item" href="{% url 'reports:create-vehicle' %}"> <i class="fas fa-list-ul"></i> Log Service</a>
+                    <a class="dropdown-item" href="{% url 'reports:create-fitness-certificate' pk=v.pk %}"> <i class="fas fa-certificate"></i> Add Certificate of fitness</a>
+                    <a class="dropdown-item" href="{% url 'reports:create-incident' pk=v.pk %}" target='popup' onclick='linkClickHandler()'><i class="fas fa-car-crash"></i> Record Incident</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock list_contents %}

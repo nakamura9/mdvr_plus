@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block head %}
+    {% block head_extended %}{% endblock %}
+{% endblock %}
+{% block window %}
+
+<style>
+    .page-title {
+        padding: 10px;
+        background-color: #bbb;
+        color: white;
+        font-weight: 250;
+        border-left: 1px solid white;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class='col-2' style="padding-right:0px;">
+            
+            {% include "nav.html" %}
+        </div>
+        <div class='col-10' style="min-height:500px;padding-left:0px;">
+            <div class="page-title">
+                <h4 id='page-heading'> {% block page_title %}{% endblock page_title %}</h4>
+            </div>
+            <div style="padding:5px;">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include "footer.html" %}
+
+{% include "iframe_window.html" %}
+{% include "alarms.html" %}
+
+{% endblock %}

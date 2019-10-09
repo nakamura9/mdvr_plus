@@ -1,0 +1,43 @@
+{% extends 'window.html' %}
+
+
+{% block page_title %}
+Reminder
+{% endblock page_title %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="card shadow">
+            <div class="card-body">
+                <h4>Details</h4>
+                <p>Date: {{object.date}}</p>
+                {% if object.vehicle %}
+                <p>Vehicle: {{object.date}}</p>
+
+                {% else %}
+                <p>Driver: {{object.date}}</p>
+
+                {% endif %}
+                <p>Category: {{object.reminder_type}}</p>
+                <h5>Intervals Between Reminders</h5>
+                <p>Days: {{object.interval_days}}</p>
+                <p>Mileage: {{object.interval_mileage}}</p>
+                <hr class="my-2">
+                <p>Last Reminder Date: {{object.last_reminder}}</p>
+            </div>
+        </div>
+        </div>
+        <div class='col-sm-6'>
+            <div class="card shadow">
+            <div class="card-body">
+                <h4>Reminder Message <span style='float:right'><a href="{% url 'reports:update-reminder' pk=object.pk %}" class='btn btn-secondary btn-sm' > <i class="fas fa-edit"></i> </a></span> </h4>
+                <p>{{object.reminder_message}}</p>                
+            </div>
+        </div>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock  %}

@@ -14,3 +14,4 @@ deploy/server/
 *.pdf
 .coverage
 htmlcov/
+*.log

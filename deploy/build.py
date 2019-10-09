@@ -18,14 +18,14 @@ ENV["PATH"] = PYTHON_PATH + ';' + ENV['PATH']
 
 SERVER_FILES = [
     'manage.py',
-    'createsuperuser.py',
+    os.path.join('deploy', 'db.sqlite3')
 ]
 NEW_DIRS = [
     'media',
     'daily_reports'
 ]
 DEST_DIR = os.path.abspath(os.path.join('deploy', 'server'))
-os.chdir('..')#mdvr_plus
+os.chdir('..')
 
 
 REQUIREMENTS = os.path.join(os.getcwd(), 'requirements.txt')
@@ -42,13 +42,13 @@ result = subprocess.run(['python', 'manage.py', 'collectstatic', '--noinput'])
 
 
 for dir in SERVER_DIRS:
-    copy_tree(os.path.join(os.getcwd(), dir), os.path.join(DEST_DIR, dir))
+    copy_tree(dir, os.path.join(DEST_DIR, dir))
 
 for fil in SERVER_FILES:
-    shutil.copy(os.path.join(os.getcwd(), fil), DEST_DIR)
+    shutil.copy(fil, DEST_DIR)
 
     
-shutil.copy(os.path.join(os.getcwd(), 'assets', 'webpack-stats.json'), 
+shutil.copy(os.path.join('assets', 'webpack-stats.json'), 
     os.path.join(DEST_DIR, 'assets'))
 
 for dir in NEW_DIRS:
@@ -59,29 +59,24 @@ for dir in NEW_DIRS:
 os.chdir('deploy')
 code = subprocess.run(['pyinstaller', 'deploy.spec', '--clean'])
 
-if code.returncode != 0:
-    raise Exception('failed to build to spec')
+if code.returncode == 0:
+    print('copying code')
+    copy_tree('server', os.path.join('dist', 'client', 'server'))
+    print('copying python')
+    
+    copy_tree('python', os.path.join('dist', 'client','python'))
 
-print('copying code')
-copy_tree('server', os.path.join('dist', 'client', 'server'))
+    
+    os.chdir(PYTHON_PATH)
+    subprocess.run(['./python', '-m', 'pip', 'install', '-r', REQUIREMENTS], 
+        env=ENV)
 
-print('copying python')
-copy_tree('python', os.path.join('dist', 'client','python'))
+    os.chdir(DEST_DIR)
 
+    #migrate database
+    subprocess.run(['python', 'manage.py', 'migrate'], 
+        env=ENV)
 
-os.chdir(PYTHON_PATH)
-subprocess.run(['./python', '-m', 'pip', 'install', '-r', REQUIREMENTS], 
-    env=ENV)
-
-os.chdir('../server')
-
-#migrate database
-subprocess.run(['python', 'manage.py', 'migrate'], 
-    env=ENV)
-
-#install fixtures
-subprocess.run(['python', 'manage.py', 'loaddata', 'common.json', 'reminders.json'], 
-    env=ENV)    
-
-#createsuperuser
-subprocess.run(['python', 'createsuperuser.py'], env=ENV)
+    #install fixtures
+    subprocess.run(['python', 'manage.py', 'loaddata', 'common.json', 'reminders.json'], 
+        env=ENV)    

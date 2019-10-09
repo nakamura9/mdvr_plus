@@ -1,0 +1,42 @@
+[
+    {
+        "model": "reports.ReminderCategory",
+        "pk": 1,
+        "fields": {
+            "name": "Insurance",
+            "description": "Reminder to renew insurance coverage before it expires"
+        }
+    },
+    {
+        "model": "reports.ReminderCategory",
+        "pk": 2,
+        "fields": {
+            "name": "Service",
+            "description": "Reminder to take the stated vehicle for service after a specified interval."
+        }
+    },
+    {
+        "model": "reports.ReminderCategory",
+        "pk": 3,
+        "fields": {
+            "name": "DDC",
+            "description": "Reminder for a driver to renew a defensive driver certificate before it expires"
+        }
+    },
+    {
+        "model": "reports.ReminderCategory",
+        "pk": 4,
+        "fields": {
+            "name": "Certificate of Fitness",
+            "description": "Reminder to renew a certificate of fitness with VID"
+        }
+    },
+    {
+        "model": "reports.ReminderCategory",
+        "pk": 5,
+        "fields": {
+            "name": "Driver Medical",
+            "description": "Reminder for drivers to renew their medicals"
+        }
+    }
+]

@@ -1,0 +1,112 @@
+<style>
+    .header {
+        color: white;
+        background-color: #bbb;
+        padding: 10px;
+    }
+    .header h4 {
+        text-align: center;
+    }
+    .list-group-item a{
+        color: blue
+    }
+    .list-group-item span{
+        color: blue
+    }
+
+    a.dropdown-item span.card-link {
+        color: #aaa;
+    }
+
+    
+
+</style>
+
+<div id='nav'>
+    <div class='header'>
+        <h4><span style="font-weight:250;">MDVR</span> <i class="fas fa-plus"></i></h4>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item"><a href="/app/">Dashboard</a></li>
+        <li class="list-group-item">
+            <div class="dropdown">
+                <span class="card-link"id="nav-calendar" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                            Reminders
+                        </span>
+                <div class="dropdown-menu" aria-labelledby="nav-calendar">
+                    <a class="dropdown-item" href="#" id='calendar-link'>Calendar</a>
+                    <a class="dropdown-item" href="{% url 'reports:reminders-list' %}">Reminder List</a>
+                    <a class="dropdown-item" href=" {% url 'reports:create-reminder' %}">Create Reminder</a>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="dropdown">
+                <span class="card-link"id="nav-calendar" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                            Drivers
+                        </span>
+                <div class="dropdown-menu" aria-labelledby="nav-calendar">
+                    <a class="dropdown-item" href="{% url 'reports:create-driver' %}" id='calendar-link'>Add Driver</a>
+                    <a class="dropdown-item" href="{% url 'reports:list-drivers' %}">Driver List</a>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="dropdown">
+                <span class="card-link"id="nav-calendar" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                            Vehicles
+                        </span>
+                <div class="dropdown-menu" aria-labelledby="nav-calendar">
+                    <a class="dropdown-item" href="{% url 'reports:list-vehicles' %}" id='calendar-link'>Vehicle List</a>
+                    <a class="dropdown-item" href="{% url 'reports:create-vehicle' %}">Add Vehicle</a>
+                    <a class="dropdown-item" href="{% url 'reports:import-vehicles' %}">Import Vehicles</a>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="dropdown">
+                <span class="card-link"id="nav-calendar" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                            Reports
+                        </span>
+                <div class="dropdown-menu" aria-labelledby="nav-calendar">
+                    <a class="dropdown-item" href="{% url 'reports:report-form' action='harsh-braking-report' %}">Harsh Braking Report</a>
+                    <a class="dropdown-item" href="{% url 'reports:report-form'  action='speeding-report'%}">Speeding Report</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<script>
+
+$(document).ready(function(){
+    var today = new Date();
+    var calendarURL = '/calendar/month/'
+    var month = today.getMonth() + 1;
+    var year = today.getFullYear()
+    calendarURL = calendarURL + year + '/' + month + '/';
+    
+    $('#calendar-link').attr({
+        href: calendarURL
+    });
+
+})
+
+</script>
+
+{% comment %} 
+<div class="dropdown">
+    <span class="card-link"id="nav-calendar" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+                Reminders
+            </span>
+    <div class="dropdown-menu" aria-labelledby="nav-calendar">
+        <a class="dropdown-item" href="#">Calendar</a>
+        <a class="dropdown-item" href="#">Reminder List</a>
+        <a class="dropdown-item" href="#">Create Reminder</a>
+    </div>
+</div> {% endcomment %}
