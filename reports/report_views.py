@@ -13,6 +13,7 @@ import csv
 from django.template.loader import render_to_string
 from bs4 import BeautifulSoup
 from django.test import Client
+from statistics import mean
 
 def login():
     """
@@ -149,6 +150,8 @@ class HarshBrakingReport(TemplateView):
 
 class SpeedingReport(TemplateView):
     speeding_records = []
+    speed_tracks = []
+    duration = 0
     template_name = os.path.join('reports', 'report','speeding.html')
 
     def get(self, *args, **kwargs):
@@ -173,30 +176,41 @@ class SpeedingReport(TemplateView):
 
         return context 
 
-    def process_data(self, data, config):
+    def process_data(self, data, config, vehicle_id=None):
         # note the speeds of each successive record
         # if the speed > set point note it as speeding
         # create event dict with fields for, datetime, location, delta, and 
         # initial speed
         if not data['tracks']:
             return 
-        duration = 0
         threshold = config.speeding_threshold
-        print('threshold')
-        print(threshold)
 
         for i in range(len(data['tracks'])):
             track = data['tracks'][i]
             if (track['sp'] / 10.0) > threshold:
-                duration += 3
-                self.speeding_records.append({
-                    'timestamp': track['gt'],
-                    'location': f'{track["lng"]}, {track["lng"]}',
-                    'speed': "{0:.2f}".format(track['sp'] / 10.0),
-                    'duration': duration
-                })
+                if self.duration == 0:
+                    self.start_mileage = track['lc']
+                    self.start_time = track['gt']
+                    self.start_location = f'{track["lng"]}, {track["lng"]}'
+                self.duration += 3
+                self.speed_tracks.append(track['sp'] / 10.0)
             else:
-                duration = 0
+                #only add track when speed is below threshold
+                if self.duration > 0:
+                    distance = (track['lc'] - self.start_mileage) / 1000
+                    self.speeding_records.append({
+                        'vehicle_id': vehicle_id,
+                        'timestamp': self.start_time,
+                        'location': self.start_location,
+                        'speed': "{0:.2f}".format(mean(self.speed_tracks)),
+                        'max_speed': "{0:.2f}".format(max(self.speed_tracks)),
+                        'duration': self.duration, #seconds
+                        'distance': distance #km
+                    })
+                self.duration = 0
+                self.speed_tracks = []
+                self.start_mileage = None
+                self.start_time = None
 
 class HarshBrakingPDFReport(PDFTemplateView):
     template_name = os.path.join('reports', 'report', 'harsh_braking.html')
@@ -228,6 +242,8 @@ class HarshBrakingPDFReport(PDFTemplateView):
 class SpeedingPDFReport(PDFTemplateView):
     template_name = SpeedingReport.template_name
     speeding_records = []
+    speed_tracks = []
+    duration = 0
 
     def process_data(self, data, config):
         return SpeedingReport.process_data(self, data, config)

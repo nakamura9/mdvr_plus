@@ -67,9 +67,11 @@
     <thead>
         <tr>
             <th>Date- Time</th>
-            <th>Location(Lat, Lng)</th>
-            <th>Recorded Speed km/hr</th>
+            <th>Start Location(Lat, Lng)</th>
+            <th>Recorded Avg Speed km/hr</th>
+            <th>Recorded Max Speed km/hr</th>
             <th>Duration (+/- 1.5s)</th>
+            <th>Distance (km)</th>
         </tr>
     </thead>
     <tbody>
@@ -78,7 +80,9 @@
                 <td>{{record.timestamp}}</td>
                 <td>{{record.location}}</td>
                 <td>{{record.speed}}</td>
+                <td>{{record.max_speed}}</td>
                 <td>{{record.duration}}</td>
+                <td>{{record.distance}}</td>
             </tr>
         {% endfor %}
     </tbody>

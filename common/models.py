@@ -1,5 +1,5 @@
 from django.db import models
-
+import datetime
 class Config(models.Model):
     email_address = models.CharField(max_length=128)
     email_password = models.CharField(max_length=64)
@@ -15,6 +15,9 @@ class Config(models.Model):
     company_name = models.CharField(max_length=255)
     speeding_threshold = models.FloatField(default=80.0)
     harsh_braking_delta = models.FloatField(default=40.0)
+    daily_report_generation_time = models.TimeField(
+        default=datetime.time(23,30))
+
     
     def save(self, *args, **kwargs):
         self.pk = 1

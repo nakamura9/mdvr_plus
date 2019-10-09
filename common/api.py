@@ -162,11 +162,12 @@ try:
     if not Task.objects.filter(
             task_name__contains='run_daily_reports').exists():
         today = datetime.date.today()
+        time = Config.objects.first().daily_report_generation_time
         run_daily_reports(schedule=datetime.datetime(
             today.year, 
             today.month, 
             today.day,
-            23, 30, 0), repeat=Task.DAILY)
+            time.hour, time.minute), repeat=Task.DAILY)
 
     if not Task.objects.filter(
             task_name__contains='live_harsh_braking_checks').exists():

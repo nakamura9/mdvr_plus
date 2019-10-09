@@ -16,10 +16,11 @@ from email.mime.text import MIMEText
 import ntpath
 #set up logging
 logging.basicConfig(filename='reports.log', level=logging.DEBUG)
+from reports.report_views import SpeedingReport
 
 
 def get_vehicle_list(session, config):
-    resp = requests.get(f'http://{config.host}:{config.server_port}/StandardApiAction_queryUserVehicle.action', params={
+    resp = requests.get(f'http://{config.host}:{config.server_port}/StandardApiAction_getDeviceOlStatus.action', params={
             'jsession':session
         })
     data = json.loads(resp.content)
@@ -29,10 +30,10 @@ def get_vehicle_list(session, config):
         return
     
     return [{
-        'id': v['id'], 
-        'did': v['dl'][0]['id'],
-        'plate': v['nm']
-        } for v in data['vehicles']]
+        'id': v['vid'], 
+        'did': v['did'],
+        'plate': v['vid']
+        } for v in data['onlines']]
 
 def process_speeding_events(data, events, vehicle, config):
     if not data['tracks']:
@@ -46,7 +47,6 @@ def process_speeding_events(data, events, vehicle, config):
             duration += 3
             events.append({
                 'vehicle_id': vehicle['id'],
-                'plate_no': vehicle['plate'],
                 'timestamp': track['gt'],
                 'location': f'{track["lng"]}, {track["lng"]}',
                 'speed': "{0:.2f}".format(track['sp'] / 10.0),
@@ -62,11 +62,9 @@ def generate_daily_speeding_report():
         'date': today,
     }
     events = []
-    start  =datetime.datetime(2019, 9, 15, 0, 0,0)
-    end  =datetime.datetime(2019, 9, 21, 23, 59,59)
     
-    #start  =datetime.datetime(today.year, today.month, today.day, 0, 0,0)
-    #end  =datetime.datetime(today.year, today.month, today.day, 23, 59,59)
+    start  =datetime.datetime(today.year, today.month, today.day, 0, 0,0)
+    end  =datetime.datetime(today.year, today.month, today.day, 23, 59,59)
 
     #login
     #get parameters from config
@@ -81,6 +79,13 @@ def generate_daily_speeding_report():
     vehicle_ids = get_vehicle_list(session, config)
     if not vehicle_ids:
         return
+
+    class EventTracker:
+        speeding_records = []
+        speed_tracks = []
+        duration = 0
+
+    tracker = EventTracker()
         
     #get speeding records for each vehicle.
     for vehicle in vehicle_ids:
@@ -97,7 +102,8 @@ def generate_daily_speeding_report():
         resp = requests.get(url, params=params)
         #process for harsh braking and discard each chunk
         data = json.loads(resp.content)
-        process_speeding_events(data, events, vehicle, config)
+        SpeedingReport.process_data(tracker, data, config,
+            vehicle_id=vehicle['id'])
         current_page = 1
         if not data['pagination']:
             continue
@@ -109,7 +115,8 @@ def generate_daily_speeding_report():
             if resp.status_code != 200:
                 break
             data = json.loads(resp.content)
-            process_speeding_events(data, events, vehicle, config)
+            SpeedingReport.process_data(tracker, data, config,
+                vehicle_id=vehicle['id'])
     
     #store the records in a list and return the list.
     context.update({
@@ -117,7 +124,6 @@ def generate_daily_speeding_report():
         'vehicles': len(vehicle_ids),
         'config': config
     })
-    print(context)
     outfile = os.path.abspath(
         os.path.join('daily_reports', f'speeding-summary {today}.pdf'))
     print(outfile)

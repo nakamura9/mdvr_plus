@@ -38,11 +38,12 @@ class ConfigForm(forms.ModelForm):
                     'conn_account',
                     'conn_password',
                 ),
-                Tab('Other',
+                Tab('Report Config',
                 'DDC_reminder_days',
                 'company_name',
                 'speeding_threshold',
-                'harsh_braking_delta'
+                'harsh_braking_delta',
+                'daily_report_generation_time'
                 )
             )
         )

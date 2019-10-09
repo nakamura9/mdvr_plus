@@ -28,7 +28,6 @@
                     <thead>
                         <tr>
                             <th>Vehicle ID</th>
-                            <th>Plate Number</th>
                             <th>Date- Time</th>
                             <th>Location</th>
                             <th>Delta</th>
@@ -39,7 +38,6 @@
                         {% for record in events %}
                         <tr>
                             <td>{{record.vehicle_id}}</td>
-                            <td>{{record.plate_no}}</td>
                             <td>{{record.timestamp}}</td>
                             <td>{{record.location}}</td>
                             <td>{{record.delta}}</td>

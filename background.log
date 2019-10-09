@@ -932,3 +932,12 @@ Traceback (most recent call last):
   File "C:\Python36\lib\json\decoder.py", line 357, in raw_decode
     raise JSONDecodeError("Expecting value", s, err.value) from None
 json.decoder.JSONDecodeError: Expecting value: line 2 column 5 (char 5)
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\api.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\api.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\api.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\api.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
