@@ -1,21 +1,113 @@
-from flask import Flask
-from flask import jsonify
+from bottle import request, route, run, Bottle, ServerAdapter
+import json
+import os
 
-app = Flask(__name__)
+SESSION_ID = '3u1239uuijjr8ew7324'
+VEHICLE_ID = '77779'
+PAGINATION_COUNTER = 0
+#urls 
+# device status
+# track detail
+# userVehicle
 
-@app.route('/StandardApiAction_login.action')
+
+@route('/StandardApiAction_login.action')
 def login():
-    return jsonify({
-        'result': 0,
-        'jsession': '3u1239uuijjr8ew7324'
-    })
+    if request.query.get('password', None)== 'admin' and \
+            request.query.get('account', None) == 'admin':
+        return {
+            'result': 0,
+            'jsession': SESSION_ID
+        }
+    return {
+        'result': 1
+    }
 
 
-@app.route('/StandardApiAction_queryTrackDetail.action')
+@route('/StandardApiAction_queryTrackDetail.action')
 def get_tracks():
-    return jsonify({
-        'result': 0
-    })
+    if request.query.get('jsession', None) != SESSION_ID:
+        return {
+            'result': 5
+        }
+
+    if request.query.get('devIdno', None) != VEHICLE_ID:
+        return {
+            'result': 19
+        }
+    #API simplified by not specifying the dates and times 
+    
+    #TODO handle pagination 
+    data = None
+    with open('data/trackDetail.json', 'r') as f:
+        data = json.load(f)
+
+    return data
+
+@route('/StandardApiAction_getDeviceStatus.action')
+def get_status():
+    if request.query.get('jsession', None) != SESSION_ID:
+        return {
+            'result': 5
+        }
+
+    if request.query.get('devIdno', None) != VEHICLE_ID:
+        return {
+            'result': 19
+        }
+
+    data = None
+    with open('data/deviceStatus.json', 'r') as f:
+        data = json.load(f)
+
+    return data
+
+@route('/StandardApiAction_queryUserVehicle.action')
+def get_vehicles():
+    if request.query.get('jsession', None) != SESSION_ID:
+        return {
+            'result': 5
+        }
+
+    data = None
+    with open('data/userVehicle.json', 'r') as f:
+        data = json.load(f)
+
+    return data
+
+
+#for controlling the server programatically
+class MyWSGIRefServer(ServerAdapter):
+    server = None
+
+    def run(self, handler):
+        from wsgiref.simple_server import make_server, WSGIRequestHandler
+        if self.quiet:
+            class QuietHandler(WSGIRequestHandler):
+                def log_request(*args, **kw): pass
+            self.options['handler_class'] = QuietHandler
+        self.server = make_server(self.host, self.port, handler, **self.options)
+        self.server.serve_forever()
+
+    def stop(self):
+        # self.server.server_close() <--- alternative but causes bad fd exception
+        self.server.shutdown()
+
+app = Bottle()
+server = MyWSGIRefServer(host='localhost', port=5000)
+
+
+def run_test_server():
+    try:
+        app.run(server=server)
+    except Exception as ex:
+        print(ex)
+
+def stop_test_server():
+    server.stop()
+
+
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    run(debug=True, port=5000, reloader=True)
+    #run_test_server()

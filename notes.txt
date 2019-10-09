@@ -1,4 +1,4 @@
 when installing on a mysql database, comment out the background task before running the migrations
 dont forget to install fixtures
 
-coverage html --omit="env/*, deploy/*, deploy_env/*"
+coverage html --omit="env/*, deploy/*, deploy_env/*, test_server/*"

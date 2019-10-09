@@ -1,0 +1,46 @@
+{
+    "result": 0,
+    "companys": [{
+        "id": 1,
+        "pId": 0,
+        "nm": "caleb"
+    }],
+    "vehicles": [{
+        "id": 1,
+        "desc": null,
+        "djb": null,
+        "dl": [{
+            "id": "77779",
+            "md": 361,
+            "io": "",
+            "us": null,
+            "sim": "",
+            "sdc": null,
+            "vt": null,
+            "cc": 4,
+            "tn": "",
+            "tc": 0,
+            "st": null,
+            "nflt": null,
+            "pid": 1,
+            "cn": "CH1,CH2,CH3,CH4",
+            "ic": 0,
+            "dId": null
+        }],
+        "adt": null,
+        "pvg": null,
+        "dt": null,
+        "dn": null,
+        "st": null,
+        "pid": 1,
+        "etm": null,
+        "linesOperation": null,
+        "nm": "77779",
+        "ic": 1,
+        "pnm": null,
+        "abbr": null,
+        "vtp": null,
+        "phone": null
+    }]
+}
+
