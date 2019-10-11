@@ -161,10 +161,11 @@ try:
     if not Task.objects.filter(task_name__contains='check_for_reminders'):
         check_for_reminders(repeat=Task.DAILY)
 
+    config = Config.objects.first()
     if not Task.objects.filter(
-            task_name__contains='run_daily_reports').exists():
+            task_name__contains='run_daily_reports').exists() and config:
         today = datetime.date.today()
-        time = Config.objects.first().daily_report_generation_time
+        time = config.daily_report_generation_time
         run_daily_reports(schedule=datetime.datetime(
             today.year, 
             today.month, 

@@ -4,4 +4,8 @@ import django
 django.setup()
 
 from django.contrib.auth.models import User
-User.objects.create_superuser('admin', password='admin', email='default@email.com')
+
+try:
+    User.objects.create_superuser('admin', password='admin', email='default@email.com')
+except:
+    pass

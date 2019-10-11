@@ -18,28 +18,36 @@ ENV["PATH"] = PYTHON_PATH + ';' + ENV['PATH']
 
 SERVER_FILES = [
     'manage.py',
+    'createsuperuser.py',
     os.path.join('deploy', 'db.sqlite3')
 ]
+
 NEW_DIRS = [
     'media',
     'daily_reports'
 ]
-DEST_DIR = os.path.abspath(os.path.join('deploy', 'server'))
+DEST_DIR = os.path.abspath(os.path.join('dist', 'client', 'server'))
 os.chdir('..')
 
+REQUIREMENTS = os.path.abspath('requirements.txt')
+result = subprocess.run(['python', 'manage.py', 'collectstatic', '--noinput'])
 
-REQUIREMENTS = os.path.join(os.getcwd(), 'requirements.txt')
 
+# build client executable
+os.chdir('deploy')
+code = subprocess.run(['pyinstaller', 'deploy.spec', '--clean'])
+
+if code.returncode != 0:
+    raise Exception('Failed to build client')
+
+os.chdir('..')
+print('copying code')
 if os.path.exists(DEST_DIR):
     #clear the exisitng data
     shutil.rmtree(DEST_DIR)
 
-    #create new server instance 
-    os.makedirs(DEST_DIR)
-
-
-result = subprocess.run(['python', 'manage.py', 'collectstatic', '--noinput'])
-
+#create new server instance 
+os.makedirs(DEST_DIR)
 
 for dir in SERVER_DIRS:
     copy_tree(dir, os.path.join(DEST_DIR, dir))
@@ -54,29 +62,26 @@ shutil.copy(os.path.join('assets', 'webpack-stats.json'),
 for dir in NEW_DIRS:
     os.makedirs(os.path.join(DEST_DIR, dir))
 
-
-# build client executable
 os.chdir('deploy')
-code = subprocess.run(['pyinstaller', 'deploy.spec', '--clean'])
+print('copying python')
+copy_tree('python', os.path.join('dist', 'client','python'))
 
-if code.returncode == 0:
-    print('copying code')
-    copy_tree('server', os.path.join('dist', 'client', 'server'))
-    print('copying python')
-    
-    copy_tree('python', os.path.join('dist', 'client','python'))
 
-    
-    os.chdir(PYTHON_PATH)
-    subprocess.run(['./python', '-m', 'pip', 'install', '-r', REQUIREMENTS], 
-        env=ENV)
+os.chdir(PYTHON_PATH)
+subprocess.run(['./python', '-m', 'pip', 'install', '-r', REQUIREMENTS], 
+    env=ENV)
 
-    os.chdir(DEST_DIR)
+os.chdir(DEST_DIR)
 
-    #migrate database
-    subprocess.run(['python', 'manage.py', 'migrate'], 
-        env=ENV)
+#migrate database
+subprocess.run(['python', 'manage.py', 'migrate'], 
+    env=ENV)
 
-    #install fixtures
-    subprocess.run(['python', 'manage.py', 'loaddata', 'common.json', 'reminders.json'], 
-        env=ENV)    
+#install fixtures
+subprocess.run(['python', 'manage.py', 'loaddata', 'common.json', 
+    'reminders.json'], env=ENV)    
+
+#create superuser
+subprocess.run(['python', 'createsuperuser.py'], env=ENV)
+os.chdir('../..')
+shutil.make_archive(os.path.abspath('client'), 'zip', os.getcwd())
