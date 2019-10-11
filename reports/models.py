@@ -220,6 +220,8 @@ class Driver(models.Model):
     
     @property
     def age(self):
+        if not self.date_of_birth:
+            return 0
         return int((datetime.date.today()- self.date_of_birth).days / 365)
 
     @property

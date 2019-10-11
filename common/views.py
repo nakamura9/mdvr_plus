@@ -33,3 +33,5 @@ class ConfigFormView(ContextMixin, UpdateView):
     template_name = os.path.join('common', 'create.html')
     success_url = '/app/'
 
+class AboutView(TemplateView):
+    template_name = os.path.join('common', 'about.html')

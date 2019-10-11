@@ -29,7 +29,7 @@
     <script type="text/javascript" src="{% static 'common/css/bootstrap/js/bootstrap.min.js' %}"></script>
     {% block head %}{% endblock %}
 </head>
-<body>
+<body style="background-image:url({% static 'common/assets/bg.png' %});background-repeat:repeat;">
     {% block window %}{% endblock %}
     <script>
         $(".dateinput").datepicker({

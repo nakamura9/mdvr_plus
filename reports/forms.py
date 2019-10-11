@@ -55,7 +55,7 @@ class VehicleForm(forms.ModelForm):
 class ReminderForm(forms.ModelForm):
     class Meta:
         model = models.Reminder
-        exclude = "last_reminder",
+        exclude = "last_reminder", 'last_reminder_mileage'
         widgets = {
             'reminder_message': forms.Textarea(attrs={'rows': 4})
         }
@@ -78,6 +78,7 @@ class ReminderForm(forms.ModelForm):
             ),
             'reminder_email', 
             'reminder_message',
+            'reminder_method'
         )
         self.helper.add_input(Submit('submit', 'Submit'))
 

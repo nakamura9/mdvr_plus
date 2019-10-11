@@ -10,7 +10,7 @@
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">Notes</h4>
-        <a href="{% url 'reports:create-note' app=app model=model pk=object.pk %}" class="btn btn-sm btn-secondary" target='popup' onclick='linkClickHandler()'>Create Note</a>
+        <a href="{% url 'reports:create-note' app=app model=model pk=object.pk %}" class="btn btn-sm btn-info" target='popup' onclick='linkClickHandler()'>Create Note</a>
         
         <hr class='my-2' >
         <ul class="list-group">
@@ -18,7 +18,9 @@
                 <li class="list-group-item">
                     <h5>Author: {{note.author}}</h5>
                     <h6>{{note.date}}</h6>
-                    <p><b><u>{{note.subject}}:</u></b>
+                    <p>{% if note.subject != "" %}
+                            <b><u>{{note.subject}}:</u>
+                        {% endif %}</b>
                         {{note.note}}
                     </p>
                 </li>

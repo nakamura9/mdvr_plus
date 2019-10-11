@@ -14,8 +14,9 @@ import logging
 from django.http import HttpResponse
 import requests
 from reports.daily_reports import get_vehicle_list, process_harsh_braking_events
+import json
 
-logging.basicConfig(filename='background.log', level=logging.WARN)
+logging.basicConfig(filename='background.log', level=logging.ERROR)
 from reports.report_views import login
 
 def create_toast_notification(reminder):
@@ -69,6 +70,7 @@ def check_for_reminders():
     reminders = Reminder.objects.filter(Q(active=True) & Q(
         Q(last_reminder__lt=today) | Q(last_reminder__isnull=True)
     ))
+    print(reminders)
     for reminder in reminders:
         if reminder.date == today or reminder.repeat_on_date(today):
             try:
@@ -175,3 +177,6 @@ try:
 except OperationalError:
     pass
 
+if __name__  == "__main__":
+    #live_harsh_braking_checks.now()
+    check_for_reminders.now()

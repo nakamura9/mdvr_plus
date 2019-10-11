@@ -7,17 +7,18 @@ const sidebar = (props) =>{
     const height = document.documentElement.clientHeight - navHeight -2;
     return(
         <div id="sidebar" className={styles.sidebar} style={{height:height}}>
-        <a href="/reports/create-reminder/"
-        className="btn btn-secondary btn-block"> <i className="fas fa-plus"></i> Add Reminder</a>
+        
             
             <div className="btn-group">
                 <button
-                    className="btn btn-secondary"
+                    className="btn btn-default"
                     onClick={props.prevHandler}>
                         <i className="fas fa-arrow-left"></i>
                 </button>    
+                <a href="/reports/create-reminder/"
+        className="btn btn-primary"> <i className="fas fa-plus"></i> Add Reminder</a>
                 <button
-                    className="btn btn-secondary"
+                    className="btn btn-default"
                     onClick={props.nextHandler}>
                         <i className="fas fa-arrow-right"></i>
                 </button>

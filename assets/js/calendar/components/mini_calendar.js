@@ -19,12 +19,12 @@ const MonthChooser  = (props) =>{
     return(
         <div>
             <select name="" id="" onChange={props.handleMonth}>
-                <option value="">Select Month</option>
-                {['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map((m,i) =>(<option key={i} value={i+1}>{m}</option>))}
+                <option value="">Month</option>
+                {['Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July', 'August', 'Sept', 'Oct', 'Nov', 'Dec'].map((m,i) =>(<option key={i} value={i+1}>{m}</option>))}
             </select>
             <select name="" id="" onChange={props.handleYear}>
-                <option value="">Select Year</option>
-                {rangeFunc(2000, 2050).map((i) =>(
+                <option value="">Year</option>
+                {rangeFunc(2015, 2050).map((i) =>(
                     <option key={i} value={i}>{i}</option>
                 ))}
             </select>

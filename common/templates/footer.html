@@ -1,9 +1,11 @@
+{% load static %}
+
 <style>
 .footer {
     min-height: 150px;
     height: 150px;
     color: white;
-    background-color: #bbb;
+    background-color: #829CD0;
     padding: 20px;
 
 }
@@ -20,9 +22,19 @@
 
 
 <div id='footer' class='footer'>
-    <p>Hello <b>{{request.user.username}}!</b></p>
-    <ul>
-        <li><a href="/login/">Logout</a></li>
-        <li><a href="/app/config/1">Config</a></li>
-    </ul>
+    <div class="row">
+        <div class="col-sm-4">
+            <p>Hello <b>{{request.user.username}}!</b></p>
+            <ul>
+                <li><a href="/login/">Logout</a></li>
+                <li><a href="/app/config/1">Config</a></li>
+                <li><a href="/app/about">About</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-4">
+            <div style='background-color:white;padding:10px;'>
+                <img src="{% static 'common/images/logo.png' %}" width="300" height="100" alt="">
+            </div>
+        </div>
+    </div>
 </div>  
