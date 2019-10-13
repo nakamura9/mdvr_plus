@@ -1,23 +1,33 @@
 <style>
     .header {
         color: white;
-        background-color: #829CD0;
+        background-color: #222831;
         padding: 10px;
     }
     .header h4 {
         text-align: center;
     }
     .list-group-item a{
-        color: blue
+        color: white
+    }
+
+    li.list-group-item {
+        background-color: #393E46;
     }
     .list-group-item span{
-        color: blue
+        color: white
     }
 
     a.dropdown-item span.card-link {
         color: #aaa;
     }
 
+     a.dropdown-item, div.dropdown-menu {
+         background-color: #00ADB5;
+         color: white;
+         font-weight: 200;
+     }
+  
     
 
 </style>
@@ -27,17 +37,17 @@
         <h4><span style="font-weight:250;">MDVR</span> <i class="fas fa-plus"></i></h4>
     </div>
     <ul class="list-group">
-        <li class="list-group-item"><a href="/app/">Dashboard</a></li>
+        <li class="list-group-item"><a href="/app/"> <i class="fa fa-desktop" aria-hidden="true"></i> Dashboard</a></li>
         <li class="list-group-item">
             <div class="dropdown">
                 <span class="card-link"id="nav-calendar" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                            Reminders
+                        <i class="fas fa-clock  "></i> Reminders
                         </span>
                 <div class="dropdown-menu" aria-labelledby="nav-calendar">
-                    <a class="dropdown-item" href="#" id='calendar-link'>Calendar</a>
-                    <a class="dropdown-item" href="{% url 'reports:reminders-list' %}">Reminder List</a>
-                    <a class="dropdown-item" href=" {% url 'reports:create-reminder' %}">Create Reminder</a>
+                    <a class="dropdown-item" href="#" id='calendar-link'> <i class="fa fa-calendar" aria-hidden="true"></i> Calendar</a>
+                    <a class="dropdown-item" href="{% url 'reports:reminders-list' %}"> <i class="fas fa-list-ol    "></i> Reminder List</a>
+                    <a class="dropdown-item" href=" {% url 'reports:create-reminder' %}"> <i class="fas fa-edit    "></i> Create Reminder</a>
                 </div>
             </div>
         </li>
@@ -45,11 +55,11 @@
             <div class="dropdown">
                 <span class="card-link"id="nav-calendar" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                            Drivers
+                           <i class="fa fa-user" aria-hidden="true"></i> Drivers
                         </span>
                 <div class="dropdown-menu" aria-labelledby="nav-calendar">
-                    <a class="dropdown-item" href="{% url 'reports:create-driver' %}" id='calendar-link'>Add Driver</a>
-                    <a class="dropdown-item" href="{% url 'reports:list-drivers' %}">Driver List</a>
+                    <a class="dropdown-item" href="{% url 'reports:create-driver' %}" id='calendar-link'> <i class="fa fa-user-plus" aria-hidden="true"></i> Add Driver</a>
+                    <a class="dropdown-item" href="{% url 'reports:list-drivers' %}"> <i class="fa fa-users" aria-hidden="true"></i> Driver List</a>
                 </div>
             </div>
         </li>
@@ -57,12 +67,12 @@
             <div class="dropdown">
                 <span class="card-link"id="nav-calendar" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                            Vehicles
+                           <i class="fa fa-truck" aria-hidden="true"></i> Vehicles
                         </span>
                 <div class="dropdown-menu" aria-labelledby="nav-calendar">
-                    <a class="dropdown-item" href="{% url 'reports:list-vehicles' %}" id='calendar-link'>Vehicle List</a>
-                    <a class="dropdown-item" href="{% url 'reports:create-vehicle' %}">Add Vehicle</a>
-                    <a class="dropdown-item" href="{% url 'reports:import-vehicles' %}">Import Vehicles</a>
+                    <a class="dropdown-item" href="{% url 'reports:list-vehicles' %}" id='calendar-link'> <i class="fa fa-list-ol" aria-hidden="true"></i> Vehicle List</a>
+                    <a class="dropdown-item" href="{% url 'reports:create-vehicle' %}"> <i class="fas fa-bus-alt    "></i> Add Vehicle</a>
+                    <a class="dropdown-item" href="{% url 'reports:import-vehicles' %}"> <i class="fa fa-plus" aria-hidden="true"></i> Import Vehicles</a>
                 </div>
             </div>
         </li>
@@ -70,11 +80,11 @@
             <div class="dropdown">
                 <span class="card-link"id="nav-calendar" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                            Reports
+                           <i class="fas fa-chart-line    "></i> Reports
                         </span>
                 <div class="dropdown-menu" aria-labelledby="nav-calendar">
-                    <a class="dropdown-item" href="{% url 'reports:report-form' action='harsh-braking-report' %}">Harsh Braking Report</a>
-                    <a class="dropdown-item" href="{% url 'reports:report-form'  action='speeding-report'%}">Speeding Report</a>
+                    <a class="dropdown-item" href="{% url 'reports:report-form' action='harsh-braking-report' %}"> <i class="fa fa-file-alt" aria-hidden="true"></i> Harsh Braking Report</a>
+                    <a class="dropdown-item" href="{% url 'reports:report-form'  action='speeding-report'%}"> <i class="fa fa-file" aria-hidden="true"></i> Speeding Report</a>
                 </div>
             </div>
         </li>

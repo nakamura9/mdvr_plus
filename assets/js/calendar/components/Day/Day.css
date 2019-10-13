@@ -6,12 +6,12 @@
 
 .day-header {
     padding: 5px;
-    background-color: slategray;
+    background-color: #343e46;
 }
 
 .eventBox {
     padding: 5px;
-    background-color: #bbb;
+    background-color: #343e46;
     width: 100%;
     box-sizing: border-box;
 }

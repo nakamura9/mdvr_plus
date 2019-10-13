@@ -11,14 +11,18 @@ const sidebar = (props) =>{
             
             <div className="btn-group">
                 <button
-                    className="btn btn-default"
+                    className="btn"
+                    style={{backgroundColor: "#00ADB5",color:'white'}}
                     onClick={props.prevHandler}>
                         <i className="fas fa-arrow-left"></i>
                 </button>    
                 <a href="/reports/create-reminder/"
+                style={{backgroundColor: "#222831",color:'white'}}
+
         className="btn btn-primary"> <i className="fas fa-plus"></i> Add Reminder</a>
                 <button
-                    className="btn btn-default"
+                    className="btn"
+                    style={{backgroundColor: "#00ADB5",color:'white'}}
                     onClick={props.nextHandler}>
                         <i className="fas fa-arrow-right"></i>
                 </button>

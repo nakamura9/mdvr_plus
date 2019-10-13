@@ -10,7 +10,7 @@ Driver Details
     <div class="row">
         <div class="col-2">
             <div class="dropdown">
-                <button class="btn btn-info dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                <button class="btn tertiary dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                             Actions
                         </button>
@@ -66,7 +66,7 @@ Driver Details
                                         {% endfor %}
                                     </ul>
 
-                                        <a href="{% url 'reports:create-note' app='reports' model='drivermedical' pk=med.pk %}" class="btn btn-info btn-sm" target='popup' onclick='linkClickHandler()'>Create Note</a>
+                                        <a href="{% url 'reports:create-note' app='reports' model='drivermedical' pk=med.pk %}" class="btn tertiary btn-sm" target='popup' onclick='linkClickHandler()'>Create Note</a>
                                     </div>
                                 </div>
                             
@@ -98,7 +98,7 @@ Driver Details
                                     <p># Pedestrians Involved: {{incident.number_of_pedestrians_involved}}</p>
                                     <p>Description: {{incident.description}}</p>
                                     {% if incident.report %}
-                                        <a href="{{incident.report.url}}" class="btn btn-info btn-sm">Download Report</a>
+                                        <a href="{{incident.report.url}}" class="btn tertiary btn-sm">Download Report</a>
                                     {% endif %}
                                     
                                 </div>

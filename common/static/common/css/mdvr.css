@@ -1,7 +1,8 @@
 .shadow {
     border: 1px solid grey;
     padding: 40px ;
-    box-shadow: 5px 10px 30px powderblue;
+    box-shadow: 5px 10px 5px powderblue;
+    margin-bottom: 15px;
 }
 
 input:required {
@@ -20,3 +21,16 @@ textarea:required {
     font-weight: 250;
 }
 
+
+.primary {
+    background-color: #222831;
+}
+
+.secondary {
+    background-color: #343e46;
+}
+
+.tertiary {
+    background-color: #00adb5;
+    color: white;
+}

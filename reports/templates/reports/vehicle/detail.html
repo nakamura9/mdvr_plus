@@ -10,7 +10,7 @@ Vehicle Detail
     <div class="row">
         <div class="col-2">
             <div class="dropdown">
-                <button class="btn btn-info dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                <button class="btn tertiary dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                             Actions
                         </button>
@@ -57,7 +57,7 @@ Vehicle Detail
                         {% for insurance in object.insurance %}
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>{{insurance.vendor}} <span style='float:right;'><a href="{% url 'reports:update-insurance' pk=insurance.pk %}" class="btn btn-info btn-sm"> <i class="fas fa-edit"></i> </a></span> </h4>
+                                    <h4>{{insurance.vendor}} <span style='float:right;'><a href="{% url 'reports:update-insurance' pk=insurance.pk %}" class="btn tertiary btn-sm"> <i class="fas fa-edit"></i> </a></span> </h4>
                                 </div>
                                 <div class="card-body">
                                     {% if insurance.valid %}
@@ -78,7 +78,7 @@ Vehicle Detail
                                             </li>
                                         {% endfor %}
                                     </ul>
-                                    <a href="{% url 'reports:create-note' app='reports' model='insurance' pk=insurance.pk %}" onclick='linkClickHandler()' target='popup' class="btn btn-sm btn-info">Add Note</a>
+                                    <a href="{% url 'reports:create-note' app='reports' model='insurance' pk=insurance.pk %}" onclick='linkClickHandler()' target='popup' class="btn btn-sm tertiary">Add Note</a>
                                 </div>
                             </div>
                         {% endfor %}
@@ -88,7 +88,7 @@ Vehicle Detail
                         {% for cof in object.fitness_certificates %}
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>{{cof.location}} <span style='float:right;'><a href="{% url 'reports:update-fitness-certificate' pk=cof.pk %}" class="btn btn-info btn-sm"> <i class="fas fa-edit"></i> </a></span> </h4>
+                                    <h4>{{cof.location}} <span style='float:right;'><a href="{% url 'reports:update-fitness-certificate' pk=cof.pk %}" class="btn tertiary btn-sm"> <i class="fas fa-edit"></i> </a></span> </h4>
                                 </div>
                                 <div class="card-body">
                                     {% if cof.valid %}
@@ -108,7 +108,7 @@ Vehicle Detail
                                             </li>
                                         {% endfor %}
                                     </ul>
-                                    <a href="{% url 'reports:create-note' app='reports' model='vehiclecertificateoffitness' pk=cof.pk %}" onclick='linkClickHandler()' target='popup' class="btn btn-sm btn-info">Add Note</a>
+                                    <a href="{% url 'reports:create-note' app='reports' model='vehiclecertificateoffitness' pk=cof.pk %}" onclick='linkClickHandler()' target='popup' class="btn btn-sm tertiary">Add Note</a>
                                 </div>
                             </div>
                         {% endfor %}
@@ -133,7 +133,7 @@ Vehicle Detail
                                             <p>Phone Number: {{d.phone_number}}</p>
                                             <p>License Number: {{d.license_number}}</p>
                                             <p>License Class: {{d.license_class}}</p>
-                                            <a href="{% url 'reports:driver-details' pk=d.pk %}" class="btn btn-info btn-sm">Details</a>
+                                            <a href="{% url 'reports:driver-details' pk=d.pk %}" class="btn tertiary btn-sm">Details</a>
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@ Vehicle Detail
                                             </li>
                                         {% endfor %}
                                     </ul>
-                                    <a href="{% url 'reports:create-note' app='reports' model='vehicleservicelog' pk=log.pk %}" onclick='linkClickHandler()' target='popup' class="btn btn-sm btn-info">Add Note</a>
+                                    <a href="{% url 'reports:create-note' app='reports' model='vehicleservicelog' pk=log.pk %}" onclick='linkClickHandler()' target='popup' class="btn btn-sm tertiary">Add Note</a>
                                 </div>
                             </div>
                         
@@ -181,7 +181,7 @@ Vehicle Detail
                                     <p># Pedestrians Involved: {{incident.number_of_pedestrians_involved}}</p>
                                     <p>Description: {{incident.description}}</p>
                                     {% if incident.report %}
-                                        <a href="{{incident.report.url}}" class="btn btn-info btn-sm">Download Report</a>
+                                        <a href="{{incident.report.url}}" class="btn tertiary btn-sm">Download Report</a>
                                     {% endif %}
                                     
                                 </div>

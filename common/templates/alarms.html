@@ -15,7 +15,6 @@
         } 
 
         .alarm-modal-header {
-             background-color: #ddd;
              width: 100%;
              height: 40px;
              padding: 5px;
@@ -45,7 +44,6 @@
             width: 200px;
             height:40px;
             padding: 5px;
-            background-color: #ddd;
             position: fixed;
             z-index: 10000;
             bottom: 0px;
@@ -70,14 +68,14 @@
 
 <div class="alarm-modal" id="id-alarm-modal">
     <div class="alarm-modal-content">
-        <div class="alarm-modal-header">
+        <div class="alarm-modal-header secondary text-white">
             <h4> <i class="fas fa-bell"></i> Alarms</h4>
-            <button onclick="minimizeAlarms()"  class="btn btn-sm btn-warning"><i class="far fa-window-minimize"></i></button>
+            <button onclick="minimizeAlarms()"  class="btn btn-sm tertiary"><i class="far fa-window-minimize"></i></button>
         </div>
         <div class="alarm-list">
             <table class="table table-sm">
                 <thead>
-                    <tr class='bg-secondary'>
+                    <tr class='secondary text-white'>
                         <th>Timestamp</th>
                         <th>Vehicle</th>
                         <th>Description</th>
@@ -93,9 +91,9 @@
 
 
 
-<div id='alarm-thumbnail' class="alarms-minimized">
+<div id='alarm-thumbnail' class="alarms-minimized secondary text-white">
     <h4> <i id='bell' class="fas fa-bell"></i> Alarms</h4>
-    <button class="btn btn-warning btn-sm" onclick='maximizeAlarms()'>
+    <button class="btn tertiary btn-sm" onclick='maximizeAlarms()'>
         <i class="far fa-window-maximize"></i>
     </button>
     
