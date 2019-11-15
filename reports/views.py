@@ -511,3 +511,16 @@ def retrieve_alarms(request):
     data = AlarmSerializer(current, many=True).data
 
     return JsonResponse(data, safe=False)
+
+
+class GPSView(TemplateView):
+    template_name = os.path.join('reports', 'gps.html')
+
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        context.update({
+            'lat': self.kwargs['lat'],
+            'lng': self.kwargs['lng']
+        })
+        
+        return context

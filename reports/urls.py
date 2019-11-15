@@ -108,5 +108,7 @@ urlpatterns = [
         name='report-form'),
     path('alarms/', views.retrieve_alarms,
         name='alarms'),
+    path('map/<str:lat>/<str:lng>/', views.GPSView.as_view(),
+        name='map'),
 ] + driver_urls + insurance_urls + fitness_certificates_urls + \
     service_urls + incident_urls + report_urls

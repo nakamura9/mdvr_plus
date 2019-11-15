@@ -5,6 +5,8 @@ from reports.models import Vehicle
 from common.models import Config
 from common.forms import ConfigForm
 from common.mixins import ContextMixin
+from rest_framework.generics import RetrieveAPIView
+from common.serializers import ConfigSerializer
 from django.http import HttpResponse
 from reports.daily_reports import (generate_daily_harsh_braking_summary,
                                   generate_daily_speeding_report)
@@ -35,3 +37,9 @@ class ConfigFormView(ContextMixin, UpdateView):
 
 class AboutView(TemplateView):
     template_name = os.path.join('common', 'about.html')
+
+
+class ConfigAPIView(RetrieveAPIView):
+    serializer_class = ConfigSerializer
+    queryset = Config.objects.all()
+    

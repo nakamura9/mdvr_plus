@@ -4,12 +4,17 @@ from distutils.dir_util import copy_tree
 import subprocess
 import copy 
 
+
+#separate application into two phases, the service that starts with the machine and the executable client that is launched.
+
+
 #copy server source
 SERVER_DIRS = [
     'common',
     'mdvr_plus',
     os.path.join('assets', 'bundles'),
-    'reports'
+    'reports',
+    'wkhtmltopdf'
 ]
 
 ENV = copy.deepcopy(os.environ)
@@ -84,4 +89,4 @@ subprocess.run(['python', 'manage.py', 'loaddata', 'common.json',
 #create superuser
 subprocess.run(['python', 'createsuperuser.py'], env=ENV)
 os.chdir('../..')
-shutil.make_archive(os.path.abspath('client'), 'zip', os.getcwd())
+#shutil.make_archive(os.path.abspath('client'), 'zip', os.getcwd())

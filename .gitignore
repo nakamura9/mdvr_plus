@@ -15,3 +15,4 @@ deploy/server/
 .coverage
 htmlcov/
 *.log
+wkhtmltopdf/

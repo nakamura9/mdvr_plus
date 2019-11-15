@@ -1,7 +1,7 @@
 {% load static %}
 
 <style>
-.footer {
+#footer {
     min-height: 150px;
     height: 150px;
     color: white;
@@ -10,18 +10,18 @@
 
 }
 
-.footer li {
+#footer li {
     list-style-type: none;
 }
 
-.footer a{
+#footer a{
     text-decoration: none;
     color: white;
 }
 </style>
 
 
-<div id='footer' class='footer'>
+<footer id='footer' class='footer mt-auto py-3'>
     <div class="row">
         <div class="col-sm-4">
             <p>Hello <b>{{request.user.username}}!</b></p>
@@ -32,9 +32,9 @@
             </ul>
         </div>
         <div class="col-sm-4">
-            <div style='background-color:white;padding:10px;'>
+            <div style='padding:10px;'>
                 <img src="{% static 'common/images/logo.png' %}" width="300" height="100" alt="">
             </div>
         </div>
     </div>
-</div>  
+</footer>  

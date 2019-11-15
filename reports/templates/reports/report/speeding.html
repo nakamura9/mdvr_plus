@@ -78,7 +78,18 @@
         {% for record in events %}
             <tr>
                 <td>{{record.timestamp}}</td>
-                <td>{{record.location}}</td>
+                <td>
+                {% if link %}
+                    <a href="{% url 'reports:map' lat=record.lat lng=record.lng %}"
+                        target='popup' onclick='linkClickHandler()'>
+                        {{record.location}}
+                    </a>
+                
+                {% else %}
+                    <a href="http://{{ip}}:8888/reports/map/{{record.lat}}/{{record.lng}}/">{{record.location}}</a>
+                {% endif %}
+                
+                </td>
                 <td>{{record.speed}}</td>
                 <td>{{record.max_speed}}</td>
                 <td>{{record.duration}}</td>
@@ -95,5 +106,7 @@
     </div>
 </div>
 {% include 'footer.html' %}
+{% include 'iframe_window.html' %}
+
 {% endif %}
 {% endblock window %}

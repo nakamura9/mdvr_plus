@@ -1,4 +1,6 @@
 {% extends 'window.html' %}
+{% load render_bundle from webpack_loader %}
+
 {% block page_title %}
 Dashboard
 {% endblock page_title %}
@@ -17,28 +19,76 @@ Dashboard
   li>a {
       color: #999;
   }
+
 </style>
-<div class="container-fluid">
+
+<div id="root"></div>
+{% comment %} <div class="container-fluid">
     <div class="row">
-        {% comment %} <div class="col-sm-2">
-            <h5 style="text-align:center;font-weight:200;">Vehicle List</h5>
-            <div class="vehicle-list">
-                <ul class="list-group">
-                    <li class="list-group-item bg-secondary"> <a class=" text-white" href=" {% url 'reports:create-vehicle' %} ">Add Vehicle <i class="fas fa-plus"></i></a></li>
-                    {% for car in vehicles %}
-                        <li class="list-group-item">
-                            <a href=" {% url 'reports:vehicle-details' pk=car.pk %} ">{{car.name}}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
+        
+        
+        <div class="col-sm-12 col-md-3">
+            <div class="card dash-card">
+                <div class="card-body">
+                    <h3>Online Vehicles</h3>
+                    <h1>5</h1>
+                </div>
             </div>
-        </div> {% endcomment %}
-        <div class="col-sm-12">
-            <div id="map"></div>
+        </div>
+        <div class="col-sm-12 col-md-3">
+            <div class="card dash-card">
+                <div class="card-body">
+                    <h3>Offline Vehicles</h3>
+                    <h1>6</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3">
+            <div class="card dash-card">
+                <div class="card-body">
+                    <h3>Moving Vehicles</h3>
+                    <h1>34</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3">
+            <div class="card dash-card">
+                <div class="card-body">
+                    <h3>Idling Vehicles</h3>
+                    <h1>16</h1>
+                </div>
+            </div>
         </div>
         
     </div>
-</div>
+    <hr class="my-4">
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr class='primary text-white'>
+                        <th></th>
+                        <th>Vehicle</th>
+                        <th>Registration</th>
+                        <th>Status</th>
+                        <th>Last Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><i class="fas fa-bus" style='font-size:1.5rem;color:#007bff;'></i></td>
+                        <td>77779</td>
+                        <td>23478923</td>
+                        <td>Online</td>
+                        <td>22 -12-19 15:30:29</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> {% endcomment %}
+{% render_bundle "dashboard" %}
+
 <script>
         var map;
         function initMap(){

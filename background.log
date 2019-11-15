@@ -1069,3 +1069,324 @@ INFO:django.utils.autoreload:Watching for file changes with StatReloader
 INFO:django.utils.autoreload:Watching for file changes with StatReloader
 INFO:django.utils.autoreload:Watching for file changes with StatReloader
 WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /invoicing/
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+ERROR:django.request:Internal Server Error: /reports/harsh-braking-report/
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py", line 130, in get
+    resp = self.get_vehicle_records()
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py", line 87, in get_vehicle_records
+    self.process_data(data, config)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py", line 112, in process_data
+    if not data['tracks']:
+KeyError: 'tracks'
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+ERROR:django.request:Internal Server Error: /reports/import-vehicles/
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connection.py", line 160, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connectionpool.py", line 603, in urlopen
+    chunked=chunked)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connectionpool.py", line 355, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "C:\Python36\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "C:\Python36\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "C:\Python36\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "C:\Python36\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "C:\Python36\lib\http\client.py", line 964, in send
+    self.connect()
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connection.py", line 183, in connect
+    conn = self._new_conn()
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connection.py", line 169, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x05104150>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\connectionpool.py", line 641, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\urllib3\util\retry.py", line 399, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /StandardApiAction_login.action?account=admin&password=admin (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x05104150>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 158, in get
+    context = self.get_context_data(**kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\views.py", line 463, in get_context_data
+    'password':config.conn_password
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /StandardApiAction_login.action?account=admin&password=admin (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x05104150>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it',))
+WARNING:django.request:Not Found: /app/static/images/spinner.gif
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /api/config/
+WARNING:django.request:Not Found: /favicon.ico
+ERROR:django.request:Internal Server Error: /app/api/config/
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\views.py", line 457, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\views.py", line 468, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\views.py", line 494, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\generics.py", line 92, in get_object
+    (self.__class__.__name__, lookup_url_kwarg)
+AssertionError: Expected view ConfigAPIView to be called with a URL keyword argument named "pk". Fix your URL conf, or set the `.lookup_field` attribute on the view correctly.
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\urls.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\urls.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /app/api/config/
+ERROR:django.request:Internal Server Error: /app/api/config/1
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\views.py", line 457, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\views.py", line 468, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\views.py", line 494, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\serializers.py", line 559, in data
+    ret = super().data
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\serializers.py", line 261, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\serializers.py", line 511, in to_representation
+    for field in fields:
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\serializers.py", line 372, in _readable_fields
+    for field in self.fields.values():
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\utils\functional.py", line 80, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\serializers.py", line 360, in fields
+    for key, value in self.get_fields().items():
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\serializers.py", line 1022, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\rest_framework\serializers.py", line 1123, in get_field_names
+    serializer_class=self.__class__.__name__
+AssertionError: The field 'host' was declared on serializer ConfigSerializer, but has not been included in the 'fields' option.
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\serializers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\serializers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\serializers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /invoicing/
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\common\api.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\daily_reports.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\daily_reports.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\daily_reports.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\daily_reports.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\daily_reports.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\daily_reports.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\daily_reports.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\urls.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\urls.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\urls.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\urls.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\urls.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\urls.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\urls.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+ERROR:django.request:Internal Server Error: /reports/speeding-report/
+Traceback (most recent call last):
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py", line 162, in get
+    resp = HarshBrakingReport.get_vehicle_records(self)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py", line 88, in get_vehicle_records
+    self.process_data(data, config)
+  File "C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py", line 209, in process_data
+    'lat': next['mlat'],
+TypeError: 'builtin_function_or_method' object is not subscriptable
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /invoicing/
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /ap/
+WARNING:django.request:Not Found: /reports/map/30.0123/17.112/
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /map/31.0335/17.8252/
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\daily_reports.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\daily_reports.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\daily_reports.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:C:\Users\nakamura9a\Documents\code\git\mdvr_plus\reports\daily_reports.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /invoicing/
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /invoicing/

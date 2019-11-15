@@ -39,7 +39,9 @@
                         <tr>
                             <td>{{record.vehicle_id}}</td>
                             <td>{{record.timestamp}}</td>
-                            <td>{{record.location}}</td>
+                            <td>
+                                <a href="http://{{ip}}:8888/reports/map/{{record.lat}}/{{record.lng}}/">{{record.location}}</a>
+                            </td>
                             <td>{{record.delta}}</td>
                             <td>{{record.init_speed}}</td>
                         </tr>
@@ -47,5 +49,5 @@
                     </tbody>
                 </table>
 
-
+<p>*<sub>Links only work under the same network as the software that generatedthe reports</sub></p>
 {% endblock window %}

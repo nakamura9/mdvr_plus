@@ -15,7 +15,7 @@
         <hr class='my-2' >
         <ul class="list-group">
             {% for note in object.notes.all %}
-                <li class="list-group-item">
+                <li class="list-group-item" style='background-color: #ccc'>
                     <h5>Author: {{note.author}}</h5>
                     <h6>{{note.date}}</h6>
                     <p>{% if note.subject != "" %}

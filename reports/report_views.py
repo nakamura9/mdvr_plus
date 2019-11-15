@@ -14,6 +14,8 @@ from django.template.loader import render_to_string
 from bs4 import BeautifulSoup
 from django.test import Client
 from statistics import mean
+import socket
+
 
 def login():
     """
@@ -78,6 +80,7 @@ class HarshBrakingReport(TemplateView):
             'devIdno': vehicle.device_id,
             'begintime':start.strftime('%Y-%m-%d %H:%M:%S'),
             'endtime':end.strftime('%Y-%m-%d %H:%M:%S'),
+            'toMap': 1,
             'currentPage': 1,
             'pageRecords':100,
         }
@@ -120,7 +123,9 @@ class HarshBrakingReport(TemplateView):
             if (track['sp'] - next['sp']) / 10.0 > config.harsh_braking_delta:
                 self.harsh_braking_records.append({
                     'timestamp': next['gt'],
-                    'location': f'{next["lng"]}, {next["lng"]}',
+                    'location': f'{next["mlng"]}, {next["mlat"]}',
+                    'lat': next['mlat'],
+                    'lng': next['mlng'],
                     'delta': "{0:.2f}".format((track['sp']- next['sp']) / 10.0),
                     'init_speed': "{0:.2f}".format(track['sp'] / 10.0),
                     'final_speed': "{0:.2f}".format(next['sp'] / 10.0),
@@ -192,7 +197,7 @@ class SpeedingReport(TemplateView):
                 if self.duration == 0:
                     self.start_mileage = track['lc']
                     self.start_time = track['gt']
-                    self.start_location = f'{track["lng"]}, {track["lng"]}'
+                    self.start_location = f'{track["mlng"]}, {track["mlat"]}'
                 self.duration += 3
                 self.speed_tracks.append(track['sp'] / 10.0)
             else:
@@ -203,6 +208,8 @@ class SpeedingReport(TemplateView):
                         'vehicle_id': vehicle_id,
                         'timestamp': self.start_time,
                         'location': self.start_location,
+                        'lat': track['mlat'],
+                        'lng': track['mlng'],
                         'speed': "{0:.2f}".format(mean(self.speed_tracks)),
                         'max_speed': "{0:.2f}".format(max(self.speed_tracks)),
                         'duration': self.duration, #seconds
@@ -237,6 +244,7 @@ class HarshBrakingPDFReport(PDFTemplateView):
             'to': self.request.GET['end'],
             'vehicle': vehicle,
             'company': Config.objects.first().company_name,
+            'ip': socket.gethostbyname(socket.gethostname())
         })
         return context 
 
@@ -265,7 +273,9 @@ class SpeedingPDFReport(PDFTemplateView):
             'from': self.request.GET['start'],
             'to': self.request.GET['end'],
             'vehicle': vehicle,
-            'config': Config.objects.first()
+            'config': Config.objects.first(),
+            'ip': socket.gethostbyname(socket.gethostname())
+
         })
         return context 
 
@@ -296,6 +306,7 @@ def harsh_braking_csv_report(request):
     writer.writerow(['Date-Time', 'Location', 'Delta', 'Initial Speed'])
     for row in rows:
         writer.writerow([i.string for i in row.find_all('td')])
+        print(row)
 
     return response 
 

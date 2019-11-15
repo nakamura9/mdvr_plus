@@ -1,0 +1,24 @@
+.dash_card {
+    border-top: 10px solid blue;
+    border-radius: 10px;
+
+}
+
+.dash_card h1 {
+    text-align: center;
+}
+
+.dash_card h3 {
+    text-align: center;
+    font-weight: 200;
+}
+
+.icon {
+    font-size: 1.5rem;
+    color: #007bff;
+}
+
+.imgCenter {
+    display: block;
+    margin: 0px auto;
+}

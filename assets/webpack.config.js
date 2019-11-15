@@ -7,7 +7,8 @@ module.exports = {
 
   entry: {
       base: './js/index',
-      calendar: './js/calendar/calendar'
+      calendar: './js/calendar/calendar',
+      dashboard: './js/dashboard/dashboard'
     }, 
   output: {
       path: path.resolve('./bundles/'),

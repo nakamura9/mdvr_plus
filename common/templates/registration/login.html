@@ -1,15 +1,23 @@
 {% extends 'base.html' %} 
 {% block window %}
 {% load crispy_forms_tags %}
-<div class="jumbotron">
+{% load static %}
+<style>
+.login {
+    border: 1px solid grey;
+    box-shadow: 5px 10px 5px;
+    margin-left: 60%;
+    margin-top: 5rem;
+    width:300px;
+    z-index: 1000;
+}
+</style>
+
+<div class="jumbotron card card-image" style='background-image:url({% static "common/images/carousel.jpg" %});background-size:cover;min-height:700px;'>
+    {% comment %} <img src='' alt='truck'> {% endcomment %}
     <h1 class="display-3">MDVR <i class="fas fa-plus"></i></h1>
     <hr class="my-2">
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
-            <div class="card secondary text-white " style="margin-top:20%;">
+    <div class="login card ">
                 <div class="card-header">
                     <h4 class="card-title">Please sign in</h4>
                 </div>
@@ -17,14 +25,13 @@
                     <form action="" method="POST">
                         {% csrf_token %} 
                         {{form.as_p}}
-                        <button class="btn btn-lg btn-default btn-block" type="submit">Sign in</button>
+                        <button class="btn btn-lg primary text-white btn-block" type="submit">Sign in</button>
                     </form>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-4"></div>
-    </div>
+
 </div>
+
 <script>
     $('input').addClass('form-control');
 </script>

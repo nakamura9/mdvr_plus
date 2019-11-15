@@ -138,6 +138,7 @@ def live_harsh_braking_checks():
             'begintime':start.strftime('%Y-%m-%d %H:%M:%S'),
             'endtime':now.strftime('%Y-%m-%d %H:%M:%S'),
             'currentPage': 1,
+            'toMap': 1,
             'pageRecords':100,
         }
         resp = requests.get(url, params=params)

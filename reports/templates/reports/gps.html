@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block window %}
+<style>
+#root {
+    min-height: 400px;
+    height:100vh;
+}
+
+</style>
+
+<div id="root"></div>
+
+<script>
+        var map;
+        function initMap(){
+            map = new google.maps.Map(document.getElementById('root'),{
+                center: {lng: {{lng}}, lat: {{lat}}},
+                zoom: 12
+            });
+            var marker = new google.maps.Marker({position: {
+                lat: {{lat}}, lng: {{lng}}
+            }, map: map})
+
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWiOLVHb0U4Ljf-5oteb2O9NCCzO84fLk&callback=initMap"
+    type="text/javascript">
+    
+</script>
+
+{% endblock window %}

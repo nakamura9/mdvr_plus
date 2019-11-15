@@ -17,6 +17,7 @@ import ntpath
 #set up logging
 logging.basicConfig(filename='reports.log', level=logging.DEBUG)
 from reports.report_views import SpeedingReport
+import socket
 
 
 def get_vehicle_list(session, config):
@@ -48,9 +49,11 @@ def process_speeding_events(data, events, vehicle, config):
             events.append({
                 'vehicle_id': vehicle['id'],
                 'timestamp': track['gt'],
-                'location': f'{track["lng"]}, {track["lng"]}',
+                'location': f'{track["mlng"]}, {track["mlat"]}',
                 'speed': "{0:.2f}".format(track['sp'] / 10.0),
-                'duration': duration
+                'duration': duration,
+                'lat': track['mlat'],
+                'lng': track['mlng'],
             })
         else:
             duration = 0
@@ -97,10 +100,11 @@ def generate_daily_speeding_report():
             'begintime':start.strftime('%Y-%m-%d %H:%M:%S'),
             'endtime':end.strftime('%Y-%m-%d %H:%M:%S'),
             'currentPage': 1,
+            'toMap': 1,
             'pageRecords':100,
         }
         resp = requests.get(url, params=params)
-        #process for harsh braking and discard each chunk
+        #process for speeding and discard each chunk
         data = json.loads(resp.content)
         SpeedingReport.process_data(tracker, data, config,
             vehicle_id=vehicle['id'])
@@ -122,7 +126,9 @@ def generate_daily_speeding_report():
     context.update({
         'events': events,
         'vehicles': len(vehicle_ids),
-        'config': config
+        'config': config,
+        'ip': socket.gethostbyname(socket.gethostname())
+
     })
     outfile = os.path.abspath(
         os.path.join('daily_reports', f'speeding-summary {today}.pdf'))
@@ -201,7 +207,9 @@ def process_harsh_braking_events(data, events, vehicle, config):
                 'vehicle_id': vehicle['id'],
                 'plate_no': vehicle['plate'],
                 'timestamp': next['gt'],
-                'location': f'{next["lng"]}, {next["lng"]}',
+                'location': f'{next["mlng"]}, {next["mlat"]}',
+                'lat': next['mlat'],
+                'lng': next['mlng'],
                 'delta': "{0:.2f}".format((track['sp']- next['sp']) / 10.0),
                 'init_speed': "{0:.2f}".format(track['sp'] / 10.0)
             })
@@ -242,6 +250,7 @@ def generate_daily_harsh_braking_summary():
             'begintime':start.strftime('%Y-%m-%d %H:%M:%S'),
             'endtime':end.strftime('%Y-%m-%d %H:%M:%S'),
             'currentPage': 1,
+            'toMap': 1,
             'pageRecords':100,
         }
         resp = requests.get(url, params=params)
@@ -265,7 +274,8 @@ def generate_daily_harsh_braking_summary():
     context.update({
         'events': events,
         'vehicles': len(vehicle_ids),
-        'config': config
+        'config': config,
+        'ip': socket.gethostbyname(socket.gethostname())
     })
     pdf_tools.render_pdf_from_template(
                 template, None, None, context,
