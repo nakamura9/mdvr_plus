@@ -147,4 +147,10 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"

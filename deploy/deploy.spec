@@ -63,7 +63,7 @@ exe = EXE(pyz,
           debug=True,#changed
           strip=False,
           upx=True,
-          console=True
+          console=False
         )
 COLLECT(exe,
         a.binaries,

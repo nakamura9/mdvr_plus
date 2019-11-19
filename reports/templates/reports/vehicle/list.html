@@ -3,7 +3,7 @@
 {% block list_headings %}
 <tr>
     <th>Name</th>
-    <th>Reg Number</th>
+    <th>Device ID</th>
     <th>Type</th>
     <th>Seats/Loading Capcity</th>
     <th>Actions</th>
@@ -15,7 +15,7 @@
     {% for v in object_list %}
         <tr>
             <td>{{v.name}}</td>
-            <td>{{v.registration_number}}</td>
+            <td>{{v.device_id}}</td>
             <td>{{v.vehicle_type}}</td>
             <td>{{v.seats}}/{{v.loading_capacity_tons}}</td>
             <td>

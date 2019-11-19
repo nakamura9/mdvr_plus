@@ -66,9 +66,7 @@ class MDVRService(win32serviceutil.ServiceFramework):
         pass
 
     def main(self):
-        import time
-        while True:
-            time.sleep(1)
+        #check license 
 
         os.chdir(os.path.join(WORKING_DIR, 'server'))
         subprocess.Popen(['python', 'manage.py', 'process_tasks'], 

@@ -6,7 +6,7 @@
         "pageRecords": 100,
         "currentPage": 1,
         "directQuery": false,
-        "hasNextPage": false,
+        "hasNextPage": true,
         "nextPage": 2,
         "previousPage": 1,
         "sortParams": null,

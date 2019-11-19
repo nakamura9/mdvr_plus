@@ -82,7 +82,7 @@ class HarshBrakingReport(TemplateView):
             'endtime':end.strftime('%Y-%m-%d %H:%M:%S'),
             'toMap': 1,
             'currentPage': 1,
-            'pageRecords':100,
+            'pageRecords':10,
         }
         resp = requests.get(url, params=params)
         #process for harsh braking and discard each chunk
@@ -92,11 +92,17 @@ class HarshBrakingReport(TemplateView):
         current_page = 1
         if not data['pagination']:
             return
+        
+        self.request.session['pages'] = data['pagination']['totalPages']
+        print('total pages: ', self.request.session['pages'])
 
         while data['pagination']['hasNextPage']:
+            print('multipage')
             current_page += 1
+            
             self.request.session['current'] = current_page
-            self.request.session['pages'] = data['pagination']['totalPages']
+            print('current: ', self.request.session['current'])
+            
             params['currentPage'] = current_page
             resp = requests.get(url, params=params)
             
@@ -342,9 +348,11 @@ def speeding_report_csv(request):
 
 
 def report_progress(request):
+    print('current(reported): ', request.session.get('current', 0))
+    print('pages(reported): ', request.session.get('pages', 0))
     progress = (request.session.get('current', 0) / \
                     request.session.get('pages', 1)) * 100.0
-    print(progress)
+    print('% progress: ', progress)
     return JsonResponse({
         'progress': progress
     })

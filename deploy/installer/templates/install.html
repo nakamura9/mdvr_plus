@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="welcome-card">
+<h1>Install</h1>
+<p>Your copy of MDVR+ is being installed. Please make sure you have a copy of the license file sent to you by your vendor in the same folder as this installer.</p>
+<img src="{{url_for('static', filename='spinner.gif')}}" width='50' height='50' alt="spinner" class='spinner'>
+<h4>Installation Notes</h4>
+<hr class="my-2">
+<ul id='notes-list'>
+
+</ul>
+<a href="" class="btn btn-secondary" id='button'>Finish</a>
+</div>
+>
+
+<script>
+function updateStatus(){
+    $.get('/status', function(data){
+        $('#notes-list').empty();
+        $.each(data.notes, function(i, val){
+            $('#notes-list').append($('<li>').text(val))
+        })
+        if(data.status.license_verified){
+            $('#button').addClass('btn-primary')
+                .removeClass('btn-secondary')
+                .attr('href', '/finish')
+        }
+    })
+}
+
+$(document).ready(function(){
+    setInterval(updateStatus, 5000)
+})
+</script>
+
+
+{% endblock content %}

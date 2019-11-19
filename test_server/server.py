@@ -26,6 +26,8 @@ def login():
 
 @route('/StandardApiAction_queryTrackDetail.action')
 def get_tracks():
+    global PAGINATION_COUNTER
+    PAGINATION_COUNTER += 1
     if request.query.get('jsession', None) != SESSION_ID:
         return {
             'result': 5
@@ -41,7 +43,9 @@ def get_tracks():
     data = None
     with open('data/trackDetail.json', 'r') as f:
         data = json.load(f)
-
+    if PAGINATION_COUNTER == 5:
+        data['pagination']['hasNextPage'] = False
+        PAGINATION_COUNTER = 0
     return data
 
 @route('/StandardApiAction_getDeviceStatus.action')

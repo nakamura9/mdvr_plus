@@ -2,7 +2,7 @@
 
 <style>
     .alarm-modal{
-            display: none;
+            visibility: hidden;
             position: fixed;
             z-index: 10001;
             left: 0;
@@ -10,35 +10,46 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(0,0,0,0);
+            transition: visibility 0s, background-color 0.6s linear;
         } 
 
         .alarm-modal-header {
              width: 100%;
-             height: 40px;
              padding: 5px;
              margin-bottom: 2rem;
+             
         }
 
         .alarm-modal-header h4{
             display: inline-block;
             font-weight: 250;
+
         }
 
         .alarm-modal-header button{
             display: inline-block;
-            float: right;
         }
 
         .alarm-modal-content{
             background-color: #eee;
-            margin: 10px auto;
+            position: absolute;
+            right: -50vw;
+            top: 0;
             padding: 5px;
-            width: 80%;
-            height: 80%;
+            width: 40vw;
+            height: 100vh;
+            transition: right 0.6s ease-in;
         }   
 
+        .modal-content-visible {
+            right: 0;
+        }
+
+        .modal-visible {
+            visibility: visible;
+            background-color: rgba(0,0,0,0.4);
+        }
 
         .alarms-minimized {
             width: 200px;
@@ -51,14 +62,24 @@
             transition: display 0.3s;
         }
 
-        .alarms-minimized h4{
-            display: inline-block;
-            font-weight: 250;
+
+        #bell {
+            transform: rotateZ(45deg);
+            {% comment %} animation: ring 1s infinite; {% endcomment %}
         }
-        .alarms-minimized button{
-            display: inline-block;
-            float: right;
-        }
+
+        @keyframes ring{
+            0% {
+                transform: rotateZ(45deg);
+            }
+
+            50% {
+                transform: rotateZ(-45deg);
+            }
+
+            100% {
+                transform: rotateZ(45deg);
+            }
 
         
 </style>
@@ -69,8 +90,8 @@
 <div class="alarm-modal" id="id-alarm-modal">
     <div class="alarm-modal-content">
         <div class="alarm-modal-header secondary text-white">
-            <h4> <i class="fas fa-bell"></i> Alarms</h4>
-            <button onclick="minimizeAlarms()"  class="btn btn-sm tertiary"><i class="far fa-window-minimize"></i></button>
+            <button onclick="minimizeAlarms()"  class="btn btn-sm tertiary"><i class="fas fa-arrow-right"></i></button>
+            <h4>Alarms <i class="fas fa-bell"></i> </h4>
         </div>
         <div class="alarm-list">
             <table class="table table-sm">
@@ -90,26 +111,25 @@
 </div>
 
 
-
-<div id='alarm-thumbnail' class="alarms-minimized secondary text-white">
-    <h4> <i id='bell' class="fas fa-bell"></i> Alarms</h4>
-    <button class="btn tertiary btn-sm" onclick='maximizeAlarms()'>
-        <i class="far fa-window-maximize"></i>
-    </button>
-    
-</div>
-
 <script>
     function maximizeAlarms(){
-        $("#alarm-thumbnail").hide();
-        $("#id-alarm-modal").show();
+        $("#id-alarm-modal").addClass('modal-visible');
+        $(".alarm-modal-content").addClass('modal-content-visible');
     }
 
     function minimizeAlarms(){
-        $("#alarm-thumbnail").show();
-        $("#id-alarm-modal").hide();
-        $("#bell").css('color', 'black');
+        $("#id-alarm-modal").removeClass('modal-visible');
+        $(".alarm-modal-content").removeClass('modal-content-visible');
+        $("#bell").css('color', 'white');
 
+    }
+
+    function toggleAlarms(){
+        if($('#id-alarm-modal').css('visibility') == 'hidden'){
+            maximizeAlarms()
+        }else{
+            minimizeAlarms()
+        }
     }
 
     function checkAlarms(){
@@ -132,5 +152,6 @@
     $(document).ready(function(){
         checkAlarms();
         setInterval(checkAlarms, 60000)
+        
     })
 </script>

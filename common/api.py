@@ -17,6 +17,8 @@ from reports.daily_reports import get_vehicle_list, process_harsh_braking_events
 import json
 
 logging.basicConfig(filename='background.log', level=logging.ERROR)
+logging.info('started task runner')
+
 from reports.report_views import login
 
 def create_toast_notification(reminder):

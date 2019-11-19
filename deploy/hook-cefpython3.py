@@ -69,7 +69,6 @@ def get_cefpython_modules():
     """Get all cefpython Cython modules in the cefpython3 package.
     It returns a list of names without file extension. Eg.
     'cefpython_py27'. """
-    print(CEFPYTHON3_DIR)
     pyds = glob.glob(os.path.join(CEFPYTHON3_DIR,
                                   "cefpython_py*" + CYTHON_MODULE_EXT))
     assert len(pyds) > 1, "Missing cefpython3 Cython modules"

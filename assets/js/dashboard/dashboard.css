@@ -1,6 +1,7 @@
 .dash_card {
     border-top: 10px solid blue;
     border-radius: 10px;
+    box-shadow: 5px 10px 15px;
 
 }
 
@@ -20,5 +21,10 @@
 
 .imgCenter {
     display: block;
+    margin: 0px auto;
+}
+
+.dashTable {
+    max-width: 900px;
     margin: 0px auto;
 }
