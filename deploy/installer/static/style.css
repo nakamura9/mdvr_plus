@@ -29,3 +29,8 @@ body{
     display: inline-block;
     margin: 5px auto;
 }
+
+.sign {
+    background-color: #FFF82A;
+    font-size: 5rem;
+}

@@ -8,7 +8,8 @@ import datetime
 
 def generate_license():
     if not os.path.exists('mdvr_key.txt'):
-        print('No key text was found! Exiting.')
+        print('No key text was found!')
+        input('Press any key to exit.')
         sys.exit()
 
     hid = None
@@ -18,6 +19,7 @@ def generate_license():
     
     customer = input('Enter a customer name: ')
     devices = input('Enter the number of devices the customer can manage: ')
+    print('Generating License')
     timestamp = datetime.datetime.now()
 
     license_data = {
@@ -38,10 +40,13 @@ def generate_license():
     with open('license.json', 'w') as lic_file:
         json.dump(license, lic_file)
 
+    input('Generated license successfully! Press any key to exit.')
+
 
 
 print('MDVR+ License Creator.')
 print("=========================")
+print(os.getcwd())
 print("""Select an option:
 1. Generate a license
 2. Exit""")

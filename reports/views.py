@@ -18,9 +18,12 @@ import datetime
 from django.http import HttpResponse, JsonResponse
 import requests
 import json
+import urllib
 from reports.models import Alarm
-from reports.serializers import AlarmSerializer
+from reports.serializers import AlarmSerializer, ReminderEventSerializer
 from django.db.utils import OperationalError
+from rest_framework.viewsets import ModelViewSet
+
 CREATE_TEMPLATE = os.path.join('common', 'create.html')
 
 
@@ -87,6 +90,27 @@ class ReminderCreateView(ContextMixin, CreateView):
         return {
             'reminder_email': config.default_reminder_email
         }
+
+    def form_valid(self, form):
+        resp = super().form_valid(form)
+        data = json.loads(
+                    urllib.parse.unquote(form.cleaned_data['reminder_data']))
+        for line in data:
+            event = models.ReminderEvent.objects.create(
+                reminder=self.object,
+            )
+            if line['eventType']  == 'Date':
+                event.date = line['value']
+            elif line['eventType'] == 'Mileage':
+                event.mileage = line['value']
+            else:
+                event.days_before = line['value']
+            
+            event.save()
+        
+        
+        return resp
+
 
 class ReminderUpdateView(ContextMixin, UpdateView):
     template_name =CREATE_TEMPLATE
@@ -524,3 +548,7 @@ class GPSView(TemplateView):
         })
         
         return context
+
+class ReminderEventViewset(ModelViewSet):
+    serializer_class = ReminderEventSerializer
+    queryset = models.ReminderEvent.objects.all()

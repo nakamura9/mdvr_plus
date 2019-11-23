@@ -13,8 +13,8 @@
 }
 </style>
 
+
 <div class="jumbotron card card-image" style='background-image:url({% static "common/images/carousel.jpg" %});background-size:cover;min-height:700px;'>
-    {% comment %} <img src='' alt='truck'> {% endcomment %}
     <h1 class="display-3">MDVR <i class="fas fa-plus"></i></h1>
     <hr class="my-2">
     <div class="login card ">
@@ -35,5 +35,27 @@
 <script>
     $('input').addClass('form-control');
 </script>
+{% comment %} 
+<style>
+
+#card {
+    width: 100px;
+    height: 100px;
+    background-color: steelblue;
+    position: absolute;
+    left: 300px;
+    top: 100px;
+    transition: transform 1s linear;
+}
+
+
+#card:hover {
+    transform: scale(0.7) translate(-100px) rotateZ(30deg);
+}
+</style>
+
+<div>
+    <div id='card'></div>
+</div> {% endcomment %}
 
 {% endblock %}

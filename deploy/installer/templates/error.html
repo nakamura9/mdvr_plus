@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="welcome-card">
+    <i class="fas fa-exclamation-triangle sign" aria-hidden="true"></i>
+    <h4>An error occured during installation</h4>
+    <p>{{reason}}</p>
+    <p>Please contact <a href="mailto:technical@latrom.co.zw">vendor</a> for assistance.</p>
+    <p>To improve support please attach a copy of dump.log which is located in the current folder for debugging purposes.</p>
+</div>
+
+{% endblock content %}
+

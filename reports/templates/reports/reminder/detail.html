@@ -9,34 +9,57 @@ Reminder
     <div class="row">
         <div class='col-sm-6'>
             <div class="card shadow">
-            <div class="card-body">
-                <h4>Details</h4>
-                <p>Date: {{object.date}}</p>
-                {% if object.vehicle %}
-                <p>Vehicle: {{object.date}}</p>
+                <div class="card-body">
+                    <h4>Details</h4>
+                    <p>Date: {{object.date}}</p>
+                    {% if object.vehicle %}
+                    <p>Vehicle: {{object.date}}</p>
 
-                {% else %}
-                <p>Driver: {{object.date}}</p>
+                    {% else %}
+                    <p>Driver: {{object.date}}</p>
 
-                {% endif %}
-                <p>Category: {{object.reminder_type}}</p>
-                <h5>Intervals Between Reminders</h5>
-                <p>Days: {{object.interval_days}}</p>
-                <p>Mileage: {{object.interval_mileage}}</p>
-                <hr class="my-2">
-                <p>Last Reminder Date: {{object.last_reminder}}</p>
+                    {% endif %}
+                    <p>Category: {{object.reminder_type}}</p>
+                    <h5>Intervals Between Reminders</h5>
+                    <p>Days: {{object.interval_days}}</p>
+                    <p>Mileage: {{object.interval_mileage}}</p>
+                    <hr class="my-2">
+                    <p>Last Reminder Date: {{object.last_reminder}}</p>
+                </div>
             </div>
-        </div>
         </div>
         <div class='col-sm-6'>
             <div class="card shadow">
-            <div class="card-body">
-                <h4>Reminder Message <span style='float:right'><a href="{% url 'reports:update-reminder' pk=object.pk %}" class='btn tertiary btn-sm' > <i class="fas fa-edit"></i> </a></span> </h4>
-                <p>{{object.reminder_message}}</p>                
+                <div class="card-body">
+                    <h4>Reminder Message <span style='float:right'><a
+                                href="{% url 'reports:update-reminder' pk=object.pk %}" class='btn tertiary btn-sm'> <i
+                                    class="fas fa-edit"></i> </a></span> </h4>
+                    <p>{{object.reminder_message}}</p>
+                </div>
+            </div>
+            <div class="card shadow">
+                <div class="card-body">
+                    <h4>Reminder Events List</h4>
+                    <table class="table">
+                        <thead>
+                            <tr class="primary text-white">
+                                <th>Event Type</th>
+                                <th>Event Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for evt in object.reminderevent_set.all %}
+                                <tr>
+                                    <td>{{evt.type_str}}</td>
+                                    <td>{{evt.value}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        </div>
-        
+
     </div>
 </div>
 

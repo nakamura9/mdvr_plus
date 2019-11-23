@@ -1,0 +1,16 @@
+.formModal {
+    padding: 2rem;
+    border-radius: 5px;
+    
+
+}
+
+.formContainer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(0,0,0,0.4);
+    width: 100vw;
+    height:100vh;
+}

@@ -15,7 +15,6 @@ class InstallApp():
     def start_server(self):
         def run_server():
             app.run(host='127.0.0.1', port='5000', threaded=True)#debug=False
-
         t = threading.Thread(target=run_server)
         t.daemon =True
         t.start()

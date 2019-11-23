@@ -1,4 +1,4 @@
-from flask import render_template, jsonify, request, url_for
+from flask import render_template, jsonify, request, url_for, redirect
 import os
 from installer import app
 import subprocess
@@ -8,13 +8,24 @@ import hashlib
 from winreg import *
 import winreg
 import copy
+import logging
+import shutil
+
+
+logger = logging.getLogger()
+logger.setLevel(logging.ERROR)
+handler = logging.FileHandler('dump.log')
+handler.setLevel(logging.ERROR)
+
+logger.addHandler(handler)
 
 class StateManager(object):
     _installation_messages = []
     _installation_status = {
-        'license_verified': False
+        'license_verified': False,
+        'error': ''
     }
-    
+
     @property
     def installation_status(self):
         return self._installation_status
@@ -44,13 +55,28 @@ def install_mdvr():
         key = CreateKey(HKEY_LOCAL_MACHINE, r'SOFTWARE\\mdvrplus')
         SetValueEx(key, "SERVICE_PATH", 0, REG_SZ, SERVICE_PATH)
         CloseKey(key)
-    except:
-        raise Exception('Failed to install registry')
+    except Exception as e:
+        state.set_installation_status('error', e)
+        logging.exception('Failed to access registry')
+        return -1
 
+        
     #write config
 
-    code = subprocess.run(['service.exe', '--startup=auto', 'install'], 
-        env=ENVIRONMENT)
+    try:
+        code = subprocess.run(['service.exe', '--startup=auto', 'install'], 
+            env=ENVIRONMENT, stdout=subprocess.PIPE)
+    except Exception as e:
+        state.set_installation_status('error', e)
+        logging.exception('failed to load service')
+        return -1 
+    else:
+        if code != 0:
+            state.set_installation_status('error', 'Failed to start application service')
+            return -1 
+        
+        shutil.move('license.json', 'service/server')
+        return 0
 
 def generate_hardware_id():
     result = subprocess.run('wmic csproduct get uuid', 
@@ -73,12 +99,17 @@ def generate_key_file():
 def home():
     return render_template('home.html')
 
+@app.route('/error')
+def error():
+    return render_template('error.html')
+
 
 @app.route('/keygen')
 def keygen():
     if not os.path.exists('mdvr_key.txt'):
+        logger.error(os.getcwd())
         state.set_messages('No license key found')
-        generate_hardware_id()
+        generate_key_file()
 
     return render_template('keygen.html')
 
@@ -101,7 +132,9 @@ def what_next():
                 state.set_messages('License check failed for this hardware. Please contact your vendor for assistance')
             else:
                 state.set_messages('License verified')
-                install_mdvr()
+                result = install_mdvr()
+                if result == -1:
+                    return render_template('error.html', reason=state.installation_status['error'])
 
                 state.set_installation_status('license_verified', True)
 

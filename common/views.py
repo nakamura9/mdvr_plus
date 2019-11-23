@@ -11,6 +11,11 @@ from django.http import HttpResponse
 from reports.daily_reports import (generate_daily_harsh_braking_summary,
                                   generate_daily_speeding_report)
 
+
+from common.api import live_status_checks
+# live_status_checks.now()
+
+
 class Home(TemplateView):
     template_name = os.path.join('common', 'home.html')
 
@@ -43,3 +48,6 @@ class ConfigAPIView(RetrieveAPIView):
     serializer_class = ConfigSerializer
     queryset = Config.objects.all()
     
+
+class ErrorPage(TemplateView):
+    template_name = os.path.join('common', 'error.html')

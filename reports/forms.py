@@ -7,6 +7,8 @@ from crispy_forms.layout import (Layout,
                                  HTML)
 from reports import models
 from django_select2.forms import Select2Widget, Select2MultipleWidget
+
+
 class ReportForm(forms.Form):
     start = forms.DateField()
     end = forms.DateField()
@@ -53,11 +55,13 @@ class VehicleForm(forms.ModelForm):
 
 
 class ReminderForm(forms.ModelForm):
+    reminder_data = forms.CharField()
     class Meta:
         model = models.Reminder
         exclude = "last_reminder", 'last_reminder_mileage'
         widgets = {
-            'reminder_message': forms.Textarea(attrs={'rows': 4})
+            'reminder_message': forms.Textarea(attrs={'rows': 4}),
+            'reminder_data': forms.HiddenInput()
         }
 
     def __init__(self, *args, **kwargs):
@@ -76,9 +80,15 @@ class ReminderForm(forms.ModelForm):
                 Column('interval_days', css_class="col-6"),
                 Column('interval_mileage', css_class="col-6")
             ),
-            'reminder_email', 
-            'reminder_message',
-            'reminder_method'
+            Row(
+                Column('reminder_email', 'reminder_message', css_class="col-6"),
+                Column(HTML("""
+            {% load render_bundle from webpack_loader %}
+            <div id='widget-root'></div>
+            {% render_bundle 'reminder' %}
+            """), css_class="col-6")
+            ),
+            'reminder_data'
         )
         self.helper.add_input(Submit('submit', 'Submit'))
 

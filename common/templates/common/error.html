@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block window %}
+
+{% load static %}
+<style>
+    .window {
+        background-image: url({% static 'common/images/hazard.jpg' %});
+        background-size: cover;
+        height: 100vh;
+    }
+    .window .card {
+        width: 300px;
+        margin: 3rem auto;
+        text-align: center;
+    }
+
+    .card i{
+        color: #F1BD35;
+    }
+</style>
+<div class="window">
+
+<div class="card">
+    <div class="card-body">
+        <i class="fa fa-exclamation-triangle" style='font-size:5rem;' aria-hidden="true"></i>
+        <h3>Error!</h3>
+        <p>The application has detected unlicensed use of MDVR+. Please Contact the <a href="mailto:technical@latrom.co.zw">vendors</a> to resolve the issue.</p>
+    </div>
+</div>
+
+</div>
+
+{% endblock  %}

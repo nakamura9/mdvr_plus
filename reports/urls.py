@@ -1,7 +1,11 @@
 from django.urls import path
 from . import views
 from reports.api import get_month
+from rest_framework.routers import DefaultRouter
 app_name = 'reports'
+
+event_router = DefaultRouter()
+event_router.register('api/reminder-events', views.ReminderEventViewset)
 
 report_urls = [
     
@@ -111,4 +115,4 @@ urlpatterns = [
     path('map/<str:lat>/<str:lng>/', views.GPSView.as_view(),
         name='map'),
 ] + driver_urls + insurance_urls + fitness_certificates_urls + \
-    service_urls + incident_urls + report_urls
+    service_urls + incident_urls + report_urls + event_router.urls

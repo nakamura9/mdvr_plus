@@ -22,8 +22,15 @@ class Dashboard extends Component{
 
     decToBin(num){
         //used to read status bytes 
+        //needs to convert bytes to 32 bits
         const numShifted = `${num}`*1;
-        return numShifted.toString(2)
+        const bits = numShifted.toString(2);
+        const padding = new Array(32 - bits.length)
+                                .fill(0)
+                                .join('');
+        return padding + bits
+
+
     }
 
 
@@ -83,12 +90,14 @@ class Dashboard extends Component{
                 method: 'GET',
             }).then(res =>{
                 let status = res.data.status[0];
+                const statusBits = this.decToBin(status.s1)
+                const accStatus = statusBits[30] //for bit 1
                 return({
                     id: status.id,
                     //all states must be matched with an online Vehicle
                     moving: status.sp > 0 && status.ol == 1,
                     //to check idling the speed must be zero and the ACC must be on
-                    idling: status.sp == 0 && this.decToBin(status.s1)[1] ==1
+                    idling: status.sp == 0 && accStatus ==1
                         && status.ol == 1,
                     timestamp: status.gt,
                     location: `${status.mlat}, ${status.mlng}`,

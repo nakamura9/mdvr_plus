@@ -1,0 +1,16 @@
+create a reminder
+    reminder can be triggered by mileage or time
+    reminders can be repeated, based on intervals
+    a reminder can have a set date and interval days
+    a reminder may also have a reminder_mileage calculated from date of creation
+    it may also have an interval mileage that determines when it will be called
+
+create reminder events 
+    each reminder is linked to the reminder's type
+        mileage reminders can have events based on the mileage until the events
+        date reminders can have events based on 
+            specific dates specified by the user
+            a number of days before the event.
+
+
+!! Calculate a vehicle's average daily mileage and create an estimate for the next vehicle service.
