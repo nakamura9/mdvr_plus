@@ -1,7 +1,12 @@
 import smtplib
 import ssl 
 from common.models import Config
-from reports.models import Reminder, Alarm, Vehicle
+from reports.models import (CalendarReminder, 
+                            MileageReminder,
+                            CalendarReminderAlert,
+                            MileageReminderAlert,
+                            Alarm,
+                            Vehicle)
 import datetime
 from django.db.models import Q
 from background_task import background
@@ -16,8 +21,17 @@ import requests
 from reports.daily_reports import get_vehicle_list, process_harsh_braking_events
 import json
 
-logging.basicConfig(filename='background.log', level=logging.ERROR)
-logging.info('started task runner')
+logger = logging.getLogger()
+
+log_format = logging.Formatter("%(asctime)s [%(levelname)-5.5s ] %(message)s")
+
+logger.setLevel(logging.ERROR)
+handler = logging.FileHandler('background.log')
+handler.setLevel(logging.ERROR)
+handler.setFormatter(log_format)
+
+
+logger.addHandler(handler)
 
 from reports.report_views import login
 
@@ -27,12 +41,30 @@ def create_toast_notification(reminder):
         message=reminder.reminder_message,
         app_name='MDVR+'
     )
+    return 0
 
 def send_reminder_email(reminder):
     config = Config.objects.first()
     context = ssl.create_default_context()
-    logging.debug(f'sending reminder email for reminder ' +\
+    logger.debug(f'sending reminder email for reminder ' +\
                   f'#{reminder.reminder_email}')
+
+    if 'localhost' in config.smtp_server:
+        with smtplib.SMTP(config.smtp_server, 
+                        config.smtp_port) as server:
+            logger.info('logged in successfully')
+            resp = server.sendmail(config.email_address,
+                                   reminder.reminder_email, 
+                                   """
+                                   This is an automated message,
+                                   Please take note of the following reminder regarding, {}.
+                                   {}
+
+                                   MDVR+
+                                   """.format(reminder.reminder_type, 
+                                              reminder.reminder_message))
+            
+        return 0
     with smtplib.SMTP_SSL(
             config.smtp_server, 
             config.smtp_port, 
@@ -40,7 +72,7 @@ def send_reminder_email(reminder):
         server.login(
                 config.email_address, 
                 config.email_password)
-        logging.info('logged in successfully')
+        logger.info('logged in successfully')
         try:
             resp = server.sendmail(config.email_address,
                                    reminder.reminder_email, 
@@ -52,64 +84,92 @@ def send_reminder_email(reminder):
                                    MDVR+
                                    """.format(reminder.reminder_type, 
                                               reminder.reminder_message))
-            logging.info('Email sent successfully')
+            logger.info('Email sent successfully')
         except smtplib.SMTPException:
-            logging.error(f'Email to {reminder.reminder_email} not sent')
+            logger.error(f'Email to {reminder.reminder_email} not sent')
+            server.quit()
+            return -1
+
         else:
             if len(resp) == 0:
-                pass
-            else:
-                logging.error(f'Email to {", ".join(resp.keys())} not sent')
+                server.quit()
+                return 0
 
-        finally:
-            server.quit()
+            else:
+                logger.error(f'Email to {", ".join(resp.keys())} not sent')
+                server.quit()
+                return -1 
+
+@background
+def check_for_calendar_reminders():
+    reminder_count = 0
+
+    logger.info('checking calendar reminders')
+    today = datetime.date.today()
+    reminders = CalendarReminder.objects.filter(Q(active=True) & Q(
+        Q(last_reminder_date__lt=today) | Q(last_reminder_date__isnull=True)
+    ))
+
+    def alert_on_reminder(reminder):
+        try:
+            send_reminder_email(reminder)
+        except Exception as e:
+            logger.error(e, exc_info=True)
+            logger.critical('failed to send email')
+        create_toast_notification(reminder)
+        reminder.last_reminder_date = today
+        reminder.save()
+        
+    for reminder in reminders:
+        if reminder.date == today or \
+                reminder.repeat_on_date(today) or \
+                reminder.alert_on_date(today):
+            
+            alert_on_reminder(reminder)
+            reminder_count += 1
+
+    return reminder_count
+
 
 
 @background
-def check_for_reminders():
-    logging.info('checking reminders')
-    today = datetime.date.today()
-    reminders = Reminder.objects.filter(Q(active=True) & Q(
-        Q(last_reminder__lt=today) | Q(last_reminder__isnull=True)
-    ))
-    print(reminders)
-    for reminder in reminders:
-        if reminder.date == today or reminder.repeat_on_date(today):
-            try:
-                send_reminder_email(reminder)
-            except Exception as e:
-                logging.error(e, exc_info=True)
-                logging.critical('failed to send email')
-            create_toast_notification(reminder)
-            reminder.last_reminder = today
-            reminder.save()
-
-    mileage_reminders = Reminder.objects.filter(reminder_method=1, active=True)
+def check_for_mileage_reminders():
+    reminder_count = 0
+    mileage_reminders = MileageReminder.objects.filter(active=True)
     for reminder in mileage_reminders:
-        curr_mileage = reminder.vehicle.get_status()['lc'] / 1000
-        if curr_mileage - \
-                reminder.last_reminder_mileage > reminder.interval_mileage:
+        print(f'reminder: {datetime.datetime.now()}')
+        if reminder.reminder_at_mileage() or \
+                reminder.alert_at_mileage():
+            print('should update')
             try:
                 send_reminder_email(reminder)
             except Exception as e:
-                logging.error(e, exc_info=True)
-                logging.critical('failed to send email')
+                logger.error(e, exc_info=True)
+                logger.critical('failed to send email')
             create_toast_notification(reminder)
-            reminder.last_reminder_mileage = curr_mileage
-            reminder.save()
-            
+            reminder.update_last_reminder()
+            reminder_count += 1
+
+    return reminder_count
 
             
 @background
 def run_daily_reports():
-    logging.info('running daily reports')
+    logger.info('running daily reports')
     try:
         generate_daily_harsh_braking_summary()
-        generate_daily_speeding_report()
+        try:
+            generate_daily_speeding_report()
+            return 0
+        except Exception as e:
+            logger.critical('failed to generate daily speeding report')
+            logger.error(e, exc_info=True)
+            raise e
     except Exception as e:
-        logging.critical('failed to generate daily summary reports')
-        logging.error(e, exc_info=True)
-
+        logger.critical('failed to generate daily harsh braking report')
+        logger.error(e, exc_info=True)
+        return -1
+    
 
 @background 
 def live_status_checks():
@@ -124,16 +184,16 @@ def live_status_checks():
     #camera failure s4 bit 12
     #channel video lost s3 0-7bit
     #hard disk state s1 bit9, 10
+    alarm_count = 0
     session = login()
     if isinstance(session, HttpResponse):
-        logging.critical(session.content)
+        logger.critical(session.content)
 
     ids = get_vehicle_list(session, config)
     if not ids:
         return
 
     for vehicle in ids:
-        print(vehicle)
         vehicle_obj = Vehicle.objects.get(
             vehicle_id=vehicle['id']
         )
@@ -148,7 +208,6 @@ def live_status_checks():
         resp = requests.get(url, params=params)
         #process for harsh braking and discard each chunk
         data = json.loads(resp.content)['status'][0]
-        print(data)
         status_1 = '{0:032b}'.format(data['s1'])
         status_2 = '{0:032b}'.format(data['s2'])
         status_3 = '{0:032b}'.format(data['s3'])
@@ -170,23 +229,30 @@ def live_status_checks():
                 description=f'Vehicle {vehicle_obj} has experienced a camera video loss on camera number 1',
                 vehicle=vehicle_obj
             )
+            alarm_count += 1
         if camera_2 > 0:
             Alarm.objects.create(
                 description=f'Vehicle {vehicle_obj} has experienced a camera video loss on camera number 2',
                 vehicle=vehicle_obj
             )
+            alarm_count += 1
+
 
         if camera_3 > 0:
             Alarm.objects.create(
                 description=f'Vehicle {vehicle_obj} has experienced a camera video loss on camera number 3',
                 vehicle=vehicle_obj
             )
+            alarm_count += 1
+
 
         if camera_4 > 0:
             Alarm.objects.create(
                 description=f'Vehicle {vehicle_obj} has experienced a camera video loss on camera number 4',
                 vehicle=vehicle_obj
             )
+            alarm_count += 1
+
         
         #check for camera system errors
         if camera_status > 0:
@@ -194,6 +260,8 @@ def live_status_checks():
                 description=f'Vehicle {vehicle_obj} has reported an error on the camera system.',
                 vehicle=vehicle_obj
             )
+            alarm_count += 1
+
         
         #check for hard drive errors
         if hdd_status == 1:
@@ -201,11 +269,17 @@ def live_status_checks():
                 description=f'Vehicle {vehicle_obj} has reported that its hard drive is not operational. This could be due to a physical disconnection of the drive',
                 vehicle=vehicle_obj
             )
+            alarm_count += 1
+
         if hdd_status == 2:
             Alarm.objects.create(
                 description=f'Vehicle {vehicle_obj} has reported that its hard drive has experienced a power outage.',
                 vehicle=vehicle_obj
             )
+            alarm_count += 1
+
+    return alarm_count
+
 
 
 @background
@@ -214,9 +288,10 @@ def live_harsh_braking_checks():
     # check if harsh braking has happened in the last minute
     # create an alarm for each instance
     # have a method view that retrieves all the alarms and raises them in the software
+    braking_events = 0
     session = login()
     if isinstance(session, HttpResponse):
-        logging.critical(session.content)
+        logger.critical(session.content)
 
     # last 60 seconds
     now = datetime.datetime.now()
@@ -244,7 +319,7 @@ def live_harsh_braking_checks():
         #process for harsh braking and discard each chunk
         data = json.loads(resp.content)
         process_harsh_braking_events(data, events, vehicle, config)
-
+        
         #no pagination because there are only 20 records per minute
     
     #create alarms 
@@ -256,11 +331,19 @@ def live_harsh_braking_checks():
             """.format(event['vehicle_id'], event['timestamp'], 
                         event['location'])
         )
+        braking_events += 1
+
+    return braking_events
 
 try:
-    if not Task.objects.filter(task_name__contains='check_for_reminders'):
-        check_for_reminders(repeat=Task.DAILY)
+    if not Task.objects.filter(
+            task_name__contains='check_for_calendar_reminders'):
+        check_for_calendar_reminders(repeat=Task.DAILY)
+    if not Task.objects.filter(
+            task_name__contains='check_for_mileage_reminders'):
+        check_for_mileage_reminders(repeat=Task.HOURLY)
 
+    check_for_mileage_reminders(repeat=60)
     config = Config.objects.first()
     if not Task.objects.filter(
             task_name__contains='run_daily_reports').exists() and config:

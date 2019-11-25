@@ -2,14 +2,24 @@ from django_filters import FilterSet
 from . import models
 
 
-class ReminderFilter(FilterSet):
+class CalendarReminderFilter(FilterSet):
     class Meta:
-        model = models.Reminder
+        model = models.CalendarReminder
         fields = {
             'date': ['exact'],
-            'reminder_type': ['exact'],
+            'repeatable': ['exact'],
             'vehicle__name': ['icontains'],
-            'active': ['exact']
+            'driver': ['exact'],
+        }
+
+
+class MileageReminderFilter(FilterSet):
+    class Meta:
+        model = models.MileageReminder
+        fields = {
+            'repeat_interval_mileage': ['exact'],
+            'repeatable': ['exact'],
+            'vehicle__name': ['icontains'],
         }
 
 

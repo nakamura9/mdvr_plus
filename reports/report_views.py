@@ -94,14 +94,11 @@ class HarshBrakingReport(TemplateView):
             return
         
         self.request.session['pages'] = data['pagination']['totalPages']
-        print('total pages: ', self.request.session['pages'])
 
         while data['pagination']['hasNextPage']:
-            print('multipage')
             current_page += 1
             
             self.request.session['current'] = current_page
-            print('current: ', self.request.session['current'])
             
             params['currentPage'] = current_page
             resp = requests.get(url, params=params)
@@ -345,14 +342,3 @@ def speeding_report_csv(request):
         writer.writerow([i.string for i in row.find_all('td')])
 
     return response 
-
-
-def report_progress(request):
-    print('current(reported): ', request.session.get('current', 0))
-    print('pages(reported): ', request.session.get('pages', 0))
-    progress = (request.session.get('current', 0) / \
-                    request.session.get('pages', 1)) * 100.0
-    print('% progress: ', progress)
-    return JsonResponse({
-        'progress': progress
-    })

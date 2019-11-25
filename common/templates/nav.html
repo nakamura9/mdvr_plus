@@ -29,7 +29,7 @@
      }
   
     #nav {
-        height: 85vh;
+        height: 90vh;
     }
 
 </style>
@@ -47,9 +47,10 @@
                         <i class="fas fa-clock  "></i> Reminders
                         </span>
                 <div class="dropdown-menu" aria-labelledby="nav-calendar">
-                    <a class="dropdown-item" href="#" id='calendar-link'> <i class="fa fa-calendar" aria-hidden="true"></i> Calendar</a>
-                    <a class="dropdown-item" href="{% url 'reports:reminders-list' %}"> <i class="fas fa-list-ol    "></i> Reminder List</a>
-                    <a class="dropdown-item" href=" {% url 'reports:create-reminder' %}"> <i class="fas fa-edit    "></i> Create Reminder</a>
+                    
+                    <a class="dropdown-item" href="{% url 'reports:reminders-list' %}"> <i class="fas fa-calendar-alt    "></i> Calendar Reminders</a>
+                    <a class="dropdown-item" href=" {% url 'reports:mileage-reminders-list' %}"> <i class="fas fa-route    "></i> Mileage Reminders</a>
+                    <a class="dropdown-item" href=" {% url 'reports:upcoming-reminders' %}"> <i class="fa fa-clock    "></i> Upcoming Reminders</a>
                 </div>
             </div>
         </li>
@@ -93,22 +94,7 @@
     </ul>
 </div>
 
-<script>
 
-$(document).ready(function(){
-    var today = new Date();
-    var calendarURL = '/calendar/month/'
-    var month = today.getMonth() + 1;
-    var year = today.getFullYear()
-    calendarURL = calendarURL + year + '/' + month + '/';
-    
-    $('#calendar-link').attr({
-        href: calendarURL
-    });
-
-})
-
-</script>
 
 {% comment %} 
 <div class="dropdown">

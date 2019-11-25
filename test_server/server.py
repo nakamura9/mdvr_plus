@@ -1,6 +1,7 @@
 from bottle import request, route, run, Bottle, ServerAdapter
 import json
 import os
+import sys
 
 SESSION_ID = '3u1239uuijjr8ew7324'
 VEHICLE_ID = '77779'
@@ -114,18 +115,10 @@ class MyWSGIRefServer(ServerAdapter):
 app = Bottle()
 server = MyWSGIRefServer(host='localhost', port=5000)
 
-
-def run_test_server():
-    try:
-        app.run(server=server)
-    except Exception as ex:
-        print(ex)
-
 def stop_test_server():
     server.stop()
 
 
-
 if __name__ == "__main__":
+    print('### running server')
     run(debug=True, port=5000, reloader=True)
-    #run_test_server()

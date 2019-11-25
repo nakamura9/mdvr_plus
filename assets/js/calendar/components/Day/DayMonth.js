@@ -50,7 +50,7 @@ const dayMonth = (props) => {
                     width: `100%`,//here
                     height:`2rem`
                 }}>
-            {eventList.length < 2 ? 
+            {eventList.length < 3 ? 
                 eventList.map((event, i) =>(
                     <Event 
                         width={props.width}
@@ -59,11 +59,8 @@ const dayMonth = (props) => {
                         view={props.view}/>
                 ))
                 :
-                    <div className={styles.eventBox}>
-                    <a style={{
-                        textDecoration: 'none',
-                        color: 'white'
-                    }} href={`/calendar/day/${props.data.date}`}>({eventList.length}) Events</a>
+                    <div className={styles.eventBox + ' text-white'}>
+                    ({eventList.length}) Events
                     </div>
             }
             </div>

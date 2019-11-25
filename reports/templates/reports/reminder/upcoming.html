@@ -1,0 +1,76 @@
+{% extends 'window.html' %}
+
+{% block page_title %}
+Upcoming Events
+{% endblock page_title %}
+
+{% block content %}
+
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">By Date</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">By Mileage</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <table class="table table-sm">
+        <tbody>
+            <thead>
+                <tr class="text-white primary">
+                    <th>Target</th>
+                    <th>Date</th>
+                    <th>Message</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tr class="secondary text-white">
+                <td colspan='4'><h4>Today</h4></td>
+            </tr>
+            {% for i in today %}
+                <tr>
+                    <td>{{i}}</td>
+                    <td>{{i.date}}</td>
+                    <td>{{i.reminder_message |truncatechars:80}}</td>
+                    <td>
+                        <a href="{% url 'reports:reminder-details' pk=i.pk %}" class="btn btn-sm btn-dark"><i class="fa fa-file" aria-hidden="true"></i> </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr class="secondary text-white">
+                <td colspan='4'><h4>In 7 Days</h4></td>
+            </tr>
+            {% for i in seven %}
+                <tr>
+                    <td>{{i}}</td>
+                    <td>{{i.date}}</td>
+                    <td>{{i.reminder_message |truncatechars:80}}</td>
+                    <td>
+                        <a href="{% url 'reports:reminder-details' pk=i.pk %}" class="btn btn-sm btn-dark"><i class="fa fa-file" aria-hidden="true"></i> </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr class="secondary text-white">
+                <td colspan='4'><h4>In 30 Days</h4></td>
+            </tr>
+            {% for i in thirty %}
+                <tr>
+                    <td>{{i}}</td>
+                    <td>{{i.date}}</td>
+                    <td>{{i.reminder_message |truncatechars:80}}</td>
+                    <td>
+                        <a href="{% url 'reports:reminder-details' pk=i.pk %}" class="btn btn-sm btn-dark"><i class="fa fa-file" aria-hidden="true"></i> </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  
+  </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"> <p>Under construction</p> </div>
+</div>
+
+{% endblock content %}

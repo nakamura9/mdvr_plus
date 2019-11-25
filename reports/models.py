@@ -123,9 +123,6 @@ class Vehicle(models.Model):
     def __str__(self):
         return self.name
 
-    @property
-    def reminders(self):
-        return self.reminder_set.all()
 
     def get_absolute_url(self):
         return reverse("reports:vehicle-details", kwargs={"pk": self.pk})
@@ -176,8 +173,12 @@ class Vehicle(models.Model):
         if resp.status_code != 200:
             logging.critical('Failed to retrieve status for vehicle #{}'.format(self.vehicle_id))
             return
-
-        return json.loads(resp.content)['status']
+        
+        data = json.loads(resp.content)
+        if data['result'] != 0:
+            logging.critical(f'An error in the API connection prevented the server from getting any data. Error #{data["result"]}')
+            return
+        return data['status'][0]
 
 
 class Driver(models.Model):
@@ -254,133 +255,207 @@ class Incident(models.Model):
     def get_absolute_url(self):
         return reverse("reports:vehicle-details", kwargs={"pk": self.vehicle.pk})
 
-class ReminderEvent(models.Model):
-    EVENT_CHOICES = [
-        (0, 'Date'),
-        (1, 'Days Before'),
-        (2, 'Mileage'),
-    ]
-    
-    reminder = models.ForeignKey('reports.reminder', on_delete=models.CASCADE)
-    #remind on a specific date
-    date = models.DateField(blank=True, null=True)
-    #remind days before the event
-    days_before = models.IntegerField(default=0.0)
-    # remind a certain mileage before the event
-    mileage = models.FloatField(default=0.0)
-
-    event_type = models.PositiveSmallIntegerField(default=0,
-        choices=EVENT_CHOICES)
-    
-    @property
-    def type_str(self):
-        mapping = dict(self.EVENT_CHOICES)
-        return mapping[self.event_type]
-
-    @property
-    def value(self):
-        mapping = {
-            0: self.date,
-            1: self.days_before,
-            2: self.mileage
-        }
-        return mapping[self.event_type]
-
 class Reminder(models.Model):
+    class Meta:
+        abstract = True
     
     vehicle = models.ForeignKey('reports.vehicle', 
         on_delete=models.CASCADE,
         null=True)
-    driver = models.ForeignKey('reports.driver', 
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True)
-
-    # reminder date
-    date = models.DateField()
+    
 
     reminder_type = models.ForeignKey('reports.ReminderCategory', default=1, 
         on_delete=models.SET_DEFAULT)
 
     #repeat event after a number of days
-    repeat_after_days = models.BooleanField(default=False)
-    interval_days = models.IntegerField(default=180)
-    # repeat event after a certain mileage
-    repeat_after_mileage = models.BooleanField(default=False)
-    interval_mileage = models.IntegerField(default=5000)
-    
+    repeatable = models.BooleanField(default=False)
     reminder_email = models.EmailField()
     reminder_message = models.TextField()
     active = models.BooleanField(default=True)
-    last_reminder = models.DateField(null=True, blank=True)
-    last_reminder_mileage = models.IntegerField(default=0)
     
-
-    @property
-    def next_reminder(self):
-        today = datetime.date.today()
-        if not self.repeat_after_days:
-            return self.date
-
-        if self.last_reminder:
-            return self.last_reminder + \
-                datetime.timedelta(days=self.interval_days)
-
-
-    def repeat_on_date(self, date):
-        if date > self.date:
-            delta = (date - self.date).days
-            if self.interval_days and delta % self.interval_days == 0:
-                return True
-            
-        return False
-
-    @property
-    def event_at_mileage(self):
-        return self.mileage_till_event <= 0
-
-    @property
-    def mileage_since_reminder(self):
-        status = self.vehicle.get_status()
-        if status:
-            current_mileage = status['lc'] / 1000.0
-            return current_mileage - self.last_reminder_mileage
-    
-        return -1
-    
-    @property
-    def mileage_till_event(self):
-        covered = self.mileage_since_reminder
-        if covered != -1:
-            return self.interval_mileage - covered
-        
-        return -1
 
     @property 
     def label(self):
-        if self.driver:
-            return str(self.driver)
-        elif self.vehicle:
+        if self.vehicle:
             return self.vehicle.name
+        elif hasattr(self, 'driver') and self.driver:
+            return str(self.driver)
+        
         return ''
 
     def __str__(self):
         return self.label
 
-    def save(self, **kwargs):
 
+
+class MileageReminder(Reminder):
+    mileage = models.IntegerField(default=5000)
+    repeat_interval_mileage = models.IntegerField(default=5000)
+    last_reminder_mileage = models.IntegerField(default=0)
+    reminder_count = models.IntegerField(default=0)
+
+    def current_mileage(self):
+        status = self.vehicle.get_status()
+        if status:
+            current_mileage = status['lc'] / 1000.0
+            return current_mileage
+    
+        return -1
+
+    def mileage_since_reminder(self):
+        curr_mileage = self.current_mileage()
+        if curr_mileage != -1:
+            return curr_mileage - self.last_reminder_mileage
+    
+        return -1
+        
+    def mileage_till_reminder(self):
+        covered = self.mileage_since_reminder()
+        if covered != -1:
+            #if the initial reminder has passed, 
+            if self.repeatable and self.reminder_count > 0:
+                return self.interval_mileage - covered
+            else:
+                return self.mileage - covered
+        return -1
+
+    def reminder_at_mileage(self):
+        return self.mileage_till_reminder() <= 0
+
+    def alert_at_mileage(self):
+        for alert in self.mileagereminderalert_set.all():
+            if alert.alert_at_mileage():
+                return True
+
+        return False
+
+    def update_last_reminder(self):
+        status = self.vehicle.get_status()
+        if status:
+            self.last_reminder_mileage = status['lc'] / 1000
+            self.reminder_count += 1
+            self.save()
+        else:
+            logging.critical('could not obtain the current mileage while '
+            'updating the last reminder mileage for vehicle {}'.format(
+                self.vehicle.vehicle_id))
+
+    def save(self, **kwargs):
         if self.pk is None:
             #record the current mileage
              #get parameters from config
             status = self.vehicle.get_status()
             if status:
-                self.last_reminder_mileage = status['lc'] / 1000
+                self.last_reminder_mileage = self.current_mileage()
             else:
                 logging.critical('could not obtain the current mileage for setting a reminder for vehicle {}'.format(self.vehicle.vehicle_id))
 
         super().save(**kwargs)
 
 
+class CalendarReminder(Reminder):
+    driver = models.ForeignKey('reports.driver', 
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True)
+    date = models.DateField()
+    repeat_interval_days = models.IntegerField(default=180)
+    last_reminder_date = models.DateField(null=True, blank=True)
+
+    @property
+    def next_reminder_date(self):
+        if self.repeatable and self.last_reminder_date:
+            return self.last_reminder_date + \
+                datetime.timedelta(days=self.repeat_interval_days)
+
+        else:
+            return self.date
+
+    def repeat_on_date(self, date):
+        if not self.repeatable or date == self.date:
+            return False
+        if date > self.date:
+            comp = self.last_reminder_date if self.last_reminder_date \
+                        else self.date
+            delta = abs((date - comp).days)
+            return delta % self.repeat_interval_days == 0
+        return date == self.next_reminder_date
+        
+
+    def alert_on_date(self, date):
+        for alert in self.calendarreminderalert_set.all():
+            print('##alert')
+            if alert.alert_on_date(date):
+                return True
+
+        return False
+
+
+class CalendarReminderAlert(models.Model):
+    METHODS = [
+        (0, 'Date'),
+        (1, 'Days Before'),
+    ]
+
+    reminder = models.ForeignKey('reports.calendarreminder', 
+        on_delete=models.CASCADE)
+    method = models.PositiveSmallIntegerField(default=0,
+        choices=METHODS)
+    date = models.DateField(blank=True, null=True)
+    #remind days before the event
+    days = models.IntegerField(default=0.0)
+
+    def get_absolute_url(self):
+        return reverse("reports:reminders-list")
+
+    def alert_on_date(self, date):
+        if self.method == 0:
+            return date == self.date
+
+        print('reminder_date ', self.reminder.next_reminder_date)
+        date_before = self.reminder.next_reminder_date - datetime.timedelta(
+            days=self.days)
+
+        return date == date_before
+
+    @property
+    def value(self):
+        if self.method == 0:
+            return self.date
+
+        return self.days
+
+    @property
+    def alert_date(self):
+        if self.method == 0:
+            return self.date
+
+        return self.reminder.next_reminder_date - datetime.timedelta(
+            days=self.days)
+    
+    @property
+    def alert_type(self):
+        if self.method == 0:
+            return 'On Date'
+
+        return 'Days before Reminder'
+
+class MileageReminderAlert(models.Model):
+   
+
+    reminder = models.ForeignKey('reports.mileagereminder', 
+        on_delete=models.CASCADE)
+    mileage =models.FloatField(default=0.0)
+
+    def get_absolute_url(self):
+        return reverse("reports:mileage-reminders-list")
+
+    def alert_at_mileage(self):
+        curr_mileage = self.reminder.current_mileage()
+        delta = curr_mileage - self.reminder.last_reminder_mileage
+        return abs(delta) < 50
+        
+    
         
 class ReminderCategory(models.Model):
     name = models.CharField(max_length=255)

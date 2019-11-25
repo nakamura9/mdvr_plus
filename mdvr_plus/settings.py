@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_filters',
     'background_task',
-    'django_select2'
+    'django_select2',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +55,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'common.middleware.license.LicenseMiddleware'
+    'corsheaders.middleware.CorsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'mdvr_plus.urls'

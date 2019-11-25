@@ -4,6 +4,9 @@ from django.test import Client
 from django.shortcuts import reverse
 import datetime
 
+    
+
+
 class ModelTests(TestCase):
     #fixtures = ['common.json']
     def create_config(self):
@@ -51,29 +54,6 @@ class ModelTests(TestCase):
         obj = Config.objects.first()
         self.assertEqual(obj.host, domain)
 
-
-    
-class ServicesTests(TestCase):
-    def test_create_toast(self):
-        pass
-
-    def test_send_reminder_email(self):
-        pass
-
-    def test_check_for_reminders_time(self):
-        pass
-
-    def test_check_for_reminders_mileage(self):
-        pass
-
-    def test_run_daily_reports(self):
-        pass
-
-    def test_live_harsh_braking_checks(self):
-        pass
-
-    
-
 class ViewTests(TestCase):
     fixtures = ['common.json']
     
@@ -88,6 +68,10 @@ class ViewTests(TestCase):
 
     def test_empty_page(self):
         resp = self.client.get(reverse('app:empty-page'))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_error_page(self):
+        resp = self.client.get(reverse('app:error-page'))
         self.assertEqual(resp.status_code, 200)
 
     def test_get_config_page(self):

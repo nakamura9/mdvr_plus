@@ -3,7 +3,7 @@
     "status": [{
         "id": "77779",
         "dt": 1,
-        "lc": 0,
+        "lc": 100000,
         "dn": null,
         "vid": null,
         "pt": 1,

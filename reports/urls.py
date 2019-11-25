@@ -4,8 +4,13 @@ from reports.api import get_month
 from rest_framework.routers import DefaultRouter
 app_name = 'reports'
 
-event_router = DefaultRouter()
-event_router.register('api/reminder-events', views.ReminderEventViewset)
+calendar_alert_router = DefaultRouter()
+calendar_alert_router.register('api/calendar-reminder-alerts', 
+    views.CalendarReminderAlertViewset)
+
+mileage_alert_router = DefaultRouter()
+mileage_alert_router.register('api/mileage-reminder-alerts', 
+    views.MileageReminderAlertViewset)
 
 report_urls = [
     
@@ -27,9 +32,6 @@ report_urls = [
     path('speeding-csv/', 
         views.speeding_report_csv,
         name='speeding-csv'),
-    path('report-progress/', 
-        views.report_progress,
-        name='report-progress'),
 ]
 
 driver_urls = [
@@ -81,6 +83,35 @@ service_urls = [
         name='update-service'),
 ]
 
+reminder_urls = [
+    path('create-reminder/', views.CalendarReminderCreateView.as_view(),
+        name='create-reminder'),
+    path('create-reminder-category/', 
+        views.CreateReminderCategory.as_view(),
+        name='create-reminder-category'),
+    path('reminders-list/', views.CalendarReminderListView.as_view(),
+        name='reminders-list'),
+    path('update-reminder/<int:pk>', views.CalendarReminderUpdateView.as_view(),
+        name='update-reminder'),
+    path('reminder-details/<int:pk>', 
+        views.CalendarReminderDetailView.as_view(),
+        name='reminder-details'),
+    path('create-mileage-reminder/', views.MileageReminderCreateView.as_view(),
+        name='create-mileage-reminder'),
+    path('mileage-reminders-list/', views.MileageReminderListView.as_view(),
+        name='mileage-reminders-list'),
+    path('update-mileage-reminder/<int:pk>', views.MileageReminderUpdateView.as_view(),
+        name='update-mileage-reminder'),
+    path('mileage-reminder-details/<int:pk>', 
+        views.MileageReminderDetailView.as_view(),
+        name='mileage-reminder-details'),
+    path('create-mileage-reminder-alert/<int:pk>', 
+        views.MileageReminderAlertCreateView.as_view(),
+        name='create-mileage-reminder-alert'),
+    path('create-reminder-alert/<int:pk>', 
+        views.CalendarReminderAlertCreateView.as_view(),
+        name='create-reminder-alert'),
+]
 
 urlpatterns = [
     path('create-note/<str:app>/<str:model>/<int:pk>', 
@@ -96,23 +127,16 @@ urlpatterns = [
         name='update-vehicle'),
     path('vehicle-details/<int:pk>/', views.VehicleDetailView.as_view(), 
         name='vehicle-details'),
-    path('create-reminder/', views.ReminderCreateView.as_view(),
-        name='create-reminder'),
-    path('create-reminder-category/', 
-        views.CreateReminderCategory.as_view(),
-        name='create-reminder-category'),
-    path('reminders-list/', views.ReminderListView.as_view(),
-        name='reminders-list'),
-    path('update-reminder/<int:pk>', views.ReminderUpdateView.as_view(),
-        name='update-reminder'),
-    path('reminder-details/<int:pk>', views.ReminderDetailView.as_view(),
-        name='reminder-details'),
     path('api/month/<int:year>/<int:month>/', get_month),
     path('report-form/<str:action>/', views.ReportFormView.as_view(),
         name='report-form'),
     path('alarms/', views.retrieve_alarms,
         name='alarms'),
+    path('upcoming-reminders/', views.UpcomingRemindersViews.as_view(),
+        name='upcoming-reminders'),
     path('map/<str:lat>/<str:lng>/', views.GPSView.as_view(),
         name='map'),
 ] + driver_urls + insurance_urls + fitness_certificates_urls + \
-    service_urls + incident_urls + report_urls + event_router.urls
+    service_urls + incident_urls + report_urls + calendar_alert_router.urls + \
+        mileage_alert_router.urls + reminder_urls
+

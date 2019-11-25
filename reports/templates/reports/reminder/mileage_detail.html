@@ -11,21 +11,18 @@ Reminder
             <div class="card shadow">
                 <div class="card-body">
                     <h4>Details</h4>
-                    <p>Reminder Date: {{object.date}}</p>
-                    {% if object.driver %}
-                    <p>Driver: {{object.driver}}</p>
-
-                    {% else %}
+                    <p>Mileage: {{object.mileage}}</p>
                     <p>Vehicle: {{object.vehicle}}</p>
-
-                    {% endif %}
                     <p>Category: {{object.reminder_type}}</p>
-                    <p>Active: {{object.active}}</p>
+                    <p>Active? {{object.active}}</p>
                     <h5>Intervals Between Reminders</h5>
                     <p>Repeatable? {{object.repeatable}}</p>
-                    <p>Repeat Interval(days): {{object.repeat_interval_days}}</p>
+                    <p>Reminder Repeat Mileage: {{object.repeat_interval_mileage}}</p>
                     <hr class="my-2">
-                    <p>Last Reminder Date: {{object.last_reminder_date}}</p>
+                    <p>Last Reminder Mileage: {{object.last_reminder_mileage}}</p>
+                    <p>Reminder Count: {{object.reminder_count}}</p>
+                    <p>Current Mileage: {{current}} </p>
+                    <p>Distance Covered: {{covered}} </p>
                 </div>
             </div>
         </div>
@@ -33,7 +30,7 @@ Reminder
             <div class="card shadow">
                 <div class="card-body">
                     <h4>Reminder Message <span style='float:right'><a
-                                href="{% url 'reports:update-reminder' pk=object.pk %}" class='btn tertiary btn-sm'> <i
+                                href="{% url 'reports:update-mileage-reminder' pk=object.pk %}" class='btn tertiary btn-sm'> <i
                                     class="fas fa-edit"></i> </a></span> </h4>
                     <h6>To: {{object.reminder_email}}</h6>
                     <h6>Message</h6>
@@ -42,28 +39,25 @@ Reminder
             </div>
             <div class="card shadow">
                 <div class="card-body">
-                    <h4>Reminder Alerts List <span class='float-right'><a class="btn btn-success" href="{% url 'reports:create-reminder-alert' pk=object.pk %}" target='popup' onclick='linkClickHandler()'><i class="fas fa-plus"></i></a></span></h4>
+                    <h4>Reminder Alert List <span class='float-right'><a class="btn btn-success" href="{% url 'reports:create-mileage-reminder-alert' pk=object.pk %}" target='popup' onclick='linkClickHandler()'><i class="fas fa-plus"></i></a></span></h4>
                     <table class="table">
                         <thead>
                             <tr class="primary text-white">
-                                <th>Alert Type</th>
-                                <th>Value</th>
-                                <th></th>
+                                <th>Mileage</th>
+                                <td></td>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for evt in object.calendarreminderalert_set.all %}
+                            {% for evt in object.mileagereminderalert_set.all %}
                                 <tr>
-                                    <td>{{evt.alert_type}}</td>
-                                    <td>{{evt.value}}</td>
-                                    <td> {% if evt.alert_date <= date %} <i class="fa fa-check" aria-hidden="true"></i> {% endif %} </td>
+                                    <td>{{evt.mileage}}</td>
+                                    <td>{% if evt.mileage < covered %} <i class="fas fa-check"></i> {% endif %}</td>
                                 </tr>
                             {% endfor %}
-                                <tr>
-                                    <td>On Date<sup>*</sup> </td>
-                                    <td>{{object.date}}</td>
-                                    <td> {% if object.date <= date %} <i class="fa fa-check" aria-hidden="true"></i> {% endif %} </td>
-                                </tr>
+                            <tr>
+                                <td>{{object.mileage}}</td>
+                                <td>{% if object.reminder_count > 0 %} <i class="fas fa-check"></i> {% endif %}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

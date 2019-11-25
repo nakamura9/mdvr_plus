@@ -132,7 +132,6 @@ def generate_daily_speeding_report():
     })
     outfile = os.path.abspath(
         os.path.join('daily_reports', f'speeding-summary {today}.pdf'))
-    print(outfile)
 
     pdf_tools.render_pdf_from_template(
                 template, None, None, context,

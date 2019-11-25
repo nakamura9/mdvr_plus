@@ -25,13 +25,16 @@
         padding: 0.5rem;
     }
 
+    .content {
+        height: 80vh;
+    }
    
 
     
 </style>
 
-<main class="flex-shrink-0" style='max-height:90vh;overflow-y:auto;'>
-<div class="container-fluid">
+<main style='max-height:90vh;overflow-y:auto;overflow-x:hidden;'>
+<div class="container-fluid" style=''>
     <div class="row">
         <div class='col-2' style="padding-right:0px;background-color:#393E46;">
             
@@ -42,7 +45,7 @@
                 <h4 id='page-heading'> {% block page_title %}{% endblock page_title %}</h4>
                 <span onclick="toggleAlarms()"><i id='bell' class="fa fa-bell" aria-hidden="true"></i></span>
             </div>
-            <div style="padding:5px;">
+            <div class='content' style="padding:5px;">
                 {% block content %}{% endblock %}
             </div>
         </div>

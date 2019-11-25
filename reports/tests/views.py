@@ -1,16 +1,15 @@
+from bs4 import BeautifulSoup
 from django.test import TestCase, Client
 from reports import models 
 import datetime
 from common.models import Config
 from django.test.client import RequestFactory
 from django.shortcuts import reverse
-from test_server.server import (run_test_server, 
-                                stop_test_server, 
+from test_server.server import (stop_test_server, 
                                 MyWSGIRefServer)
-import threading
 import subprocess
 import os
-from bs4 import BeautifulSoup
+import signal
 from reports.views import (HarshBrakingPDFReport,
                            SpeedingPDFReport)
 
@@ -18,24 +17,8 @@ from reports.daily_reports import ( generate_daily_speeding_report,
                                     generate_daily_harsh_braking_summary
                                   )
 
-
-class ModelTests(TestCase):
-    fixtures = ['common.json','reminders.json']
-
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        #load test server
-        os.chdir('test_server')
-        cls.proc = subprocess.Popen(['python', 'server.py'])
-        os.chdir('..')
-        
-
-    @classmethod
-    def tearDownClass(cls):
-        super().tearDownClass()
-        cls.proc.terminate()#TODO fix, fails to close open sockets
-
+class ReminderViewTests(TestCase):
+    fixtures = ['common.json', 'reminders.json']
 
     @classmethod
     def setUpTestData(cls):
@@ -49,203 +32,172 @@ class ModelTests(TestCase):
 
         cls.vehicle = models.Vehicle.objects.create(
             device_id='77779',
-            vehicle_id='77779',
+            vehicle_id='1000',
             registration_number='1000',
             name='T-1'
         )
 
-        cls.vehicle_service =  models.VehicleService.objects.create(
-            name='service',
-            description='description',
-            repeat_method=0,
-            frequency_time=100,
-        )
-
-        cls.driver = models.Driver.objects.create(
-            first_names='Test',
-            last_name='Driver',
-            date_of_birth = datetime.date(1989,2,15),
-            gender='male',
-            license_number='123456',
-        )
-
-        return super().setUpTestData()
-
-    def test_create_vehicle_service(self):
-        obj = self.vehicle_service
-        self.assertIsInstance(obj, models.VehicleService)
-
-    def create_service_log(self):
-        return models.VehicleServiceLog.objects.create(
-            date=datetime.date.today(),
-            odometer=1000,
-            vendor='Vendor',
-            vehicle=self.vehicle,
-            service=self.vehicle_service
-        )
-
-    def test_vehicle_service_log(self):
-        obj = self.create_service_log()
-        self.assertIsInstance(obj, models.VehicleServiceLog)
-
-    def create_certificate_of_fitness(self):
-        return models.VehicleCertificateOfFitness.objects.create(
-            date=datetime.date.today(),
-            location='somewhere',
-            vehicle=self.vehicle,
-            valid_until=datetime.date.today() + datetime.timedelta(days=100),
-        )
-    def test_vehicle_certificate_of_fitness(self):
-        obj = self.create_certificate_of_fitness()
-        self.assertIsInstance(obj, models.VehicleCertificateOfFitness)
-
-    def create_medical(self):
-        return models.DriverMedical.objects.create(
-            date=datetime.date.today(),
-            driver=self.driver,
-            location='locaiton',
-            valid_until=datetime.date.today() + datetime.timedelta(days=100)
-        )
-
-    def test_driver_medical(self):
-        obj = self.create_medical()
-        self.assertIsInstance(obj, models.DriverMedical)
-
-    def create_ddc(self):
-        return models.DDC.objects.create(
-            driver=self.driver,
-            expiry_date = datetime.date.today() + datetime.timedelta(days=100),
-        )
-
-    def test_ddc(self):
-        obj = self.create_ddc()
-        self.assertIsInstance(obj, models.DDC)
-        self.assertTrue(obj.valid)
-
-    def create_insurance(self):
-        return models.Insurance.objects.create(
-            vendor='Vendor',
-            coverage='comprehensive',
-            valid_until=datetime.date.today() + datetime.timedelta(days=100),
-            vehicle=self.vehicle
-        )
-
-    def test_insurance(self):
-        obj = self.create_insurance()
-
-        self.assertIsInstance(obj, models.Insurance)
-        self.assertTrue(obj.valid)
-
-
-    def test_vehicle(self):
-        self.assertIsInstance(self.vehicle, models.Vehicle)
-
-    def test_get_vehicle_status(self):
-        self.assertIsInstance(self.vehicle.get_status(), list)
-
-    def test_vehicle_incidents(self):
-        self.create_incident()
-        incidents = self.vehicle.incidents.count()
-        self.assertNotEqual(incidents, 0)
-
-    def test_vehicle_insurance(self):
-        self.create_insurance()
-        self.assertNotEqual(self.vehicle.insurance.count(), 0)
-
-
-    def test_vehicle_fitness_certificates(self):
-        self.create_certificate_of_fitness()
-        certificates = self.vehicle.fitness_certificates.count()
-        self.assertNotEqual(certificates, 0)
-
-    def test_vehicle_drivers(self):
-        self.driver.vehicles.add(self.vehicle)
-        self.driver.save()
-        self.assertNotEqual(self.vehicle.drivers.count(), 0)
-
-    def test_vehicle_service_logs(self):
-        self.create_service_log()
-        self.assertNotEqual(self.vehicle.service_logs.count(), 0)
-    
-    def test_driver(self):
-        self.assertIsInstance(self.driver, models.Driver)
-
-    def test_driver_ddc_valid(self):
-        self.create_ddc()
-        self.assertTrue(self.driver.ddc_valid)
-
-    def test_driver_ddc_list(self):
-        self.create_ddc()
-        self.assertNotEqual(self.driver.ddc_list.count(), 0)
-        
-
-    def test_driver_medicals(self):
-        self.create_medical()
-        self.assertNotEqual(self.driver.medicals.count(), 0)
-
-    def test_driver_age(self):
-        self.assertGreater(self.driver.age, 29)
-
-    def test_driver_incidents(self):
-        self.create_incident()
-        self.assertNotEqual(self.driver.incidents.count(), 0)
-
-    def test_note(self):
-        obj = models.Note.objects.create(
-            date=datetime.date.today(),
-            author='aurthur',
-            subject='excalibur',
-            note='I call upon thee'
-        )
-        self.assertIsInstance(obj, models.Note)
-
-
-    def create_incident(self):
-        return models.Incident.objects.create(
-            vehicle=self.vehicle,
-            date=datetime.date.today(),
-            driver=self.driver,
-            description='some accident'
-        )
-
-
-    def test_incident(self):
-        obj = self.create_incident()
-        self.assertIsInstance(obj, models.Incident)
-
-    def create_reminder(self):
-        return models.Reminder.objects.create(
-            vehicle=self.vehicle,
-            driver=self.driver,
+        cls.reminder = models.CalendarReminder.objects.create(
+            vehicle=cls.vehicle,
             date=datetime.date.today(),
             reminder_email='test@mail.com',
             reminder_message='some message'
         )
 
-    def test_reminder(self):
-        obj = self.create_reminder()
-        self.assertIsInstance(obj, models.Reminder)
-
-    def test_reminder_repeat_on_date(self):
-        obj = self.create_reminder()
-        self.assertFalse(obj.repeat_on_date(datetime.date.today()))
-        self.assertTrue(obj.repeat_on_date(
-            datetime.date.today() + datetime.timedelta(days=obj.interval_days)))
-
-    def test_reminder_category(self):
-        obj = models.ReminderCategory.objects.create(
-            name='reminder',
-            description='has a category'
+        cls.mileage_reminder = models.MileageReminder.objects.create(
+            vehicle=cls.vehicle,
+            mileage= 5000,
+            reminder_email='test@mail.com',
+            reminder_message='some message'
         )
-        self.assertIsInstance(obj, models.ReminderCategory)
 
-    def test_alarm(self):
-        obj = models.Alarm.objects.create(
-            description='some alarm',
-            vehicle=self.vehicle
-        )
-        self.assertIsInstance(obj, models.Alarm)
+        return super().setUpTestData()
+        
 
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.client = Client()
+        os.chdir('test_server')
+        cls.proc = subprocess.Popen(['python', 'server.py'],
+            stdout=subprocess.PIPE, shell=True, 
+            creationflags=subprocess.CREATE_NEW_PROCESS_GROUP)
+        os.chdir('..')
+
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
+        cls.proc.send_signal(signal.CTRL_BREAK_EVENT)
+        cls.proc.kill()
+        
+
+
+class MileageReminderViewTests(ReminderViewTests):
+    def test_get_create_mileage_reminder_view(self):
+        resp = self.client.get(reverse('reports:create-mileage-reminder'))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_post_create_mileage_reminder(self):
+        resp = self.client.post(reverse('reports:create-mileage-reminder'), data={
+            'vehicle': 1,
+            'reminder_type': 1,
+            'mileage': 5000,
+            'repeatable': True,
+            'repeat_interval_mileage': 5000,
+            'reminder_email': 'kandoroc@gmail.com',
+            'reminder_message': 'message',
+        })
+        self.assertEqual(resp.status_code, 302)
+
+    def test_get_mileage_reminder_list(self):
+        resp = self.client.get(reverse('reports:mileage-reminders-list'))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_get_update_mileage_reminder(self):
+        resp = self.client.get(reverse('reports:update-mileage-reminder', kwargs={
+            'pk': 1
+        }))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_post_update_mileage_reminde(self):
+        resp = self.client.post(reverse('reports:update-mileage-reminder', kwargs={
+            'pk': 1
+        }), data={
+            'vehicle': 1,
+            'reminder_type': 1,
+            'mileage': 5000,
+            'repeat_interval_mileage': 5000,
+            'reminder_email': 'kandoroc@gmail.com',
+            'reminder_message': 'message',
+        })
+        self.assertEqual(resp.status_code, 302)
+
+    def test_get_mileage_reminder_details(self):
+        resp = self.client.get(reverse('reports:mileage-reminder-details', kwargs={
+            'pk': 1
+        }))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_get_create_mileage_reminder_alert_page(self):
+        resp = self.client.get(reverse('reports:create-mileage-reminder-alert',
+            kwargs={
+                'pk': 1
+            }))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_post_create_mileage_reminde_alert_page(self):
+        resp = self.client.post(reverse('reports:create-mileage-reminder-alert',
+            kwargs={
+                'pk': 1
+            }), data={
+                'reminder': 1,
+                'mileage': 4500
+                })
+        self.assertEqual(resp.status_code, 302)
+
+class CalendarReminderViewTests(ReminderViewTests):
+    def test_get_create_reminder_view(self):
+        resp = self.client.get(reverse('reports:create-reminder'))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_post_create_reminder(self):
+        resp = self.client.post(reverse('reports:create-reminder'), data={
+            'vehicle': 1,
+            'reminder_type': 1,
+            'date': datetime.date.today(),
+            'repeat_interval_days': 180,
+            'reminder_email': 'kandoroc@gmail.com',
+            'reminder_message': 'message',
+        })
+        self.assertEqual(resp.status_code, 302)
+
+    def test_get_reminder_list(self):
+        resp = self.client.get(reverse('reports:reminders-list'))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_get_update_reminder(self):
+        resp = self.client.get(reverse('reports:update-reminder', kwargs={
+            'pk': 1
+        }))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_post_update_reminder(self):
+        resp = self.client.post(reverse('reports:update-reminder', kwargs={
+            'pk': 1
+        }), data={
+            'vehicle': 1,
+            'reminder_type': 1,
+            'date': datetime.date.today(),
+            'repeat_interval_days': 180,
+            'reminder_email': 'kandoroc@gmail.com',
+            'reminder_message': 'message',
+        })
+        self.assertEqual(resp.status_code, 302)
+
+    def test_get_reminder_details(self):
+        resp = self.client.get(reverse('reports:reminder-details', kwargs={
+            'pk': 1
+        }))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_get_create_reminder_alert_page(self):
+        resp = self.client.get(reverse('reports:create-reminder-alert',
+            kwargs={
+                'pk': 1
+            }))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_post_create_reminder_alert_page(self):
+        resp = self.client.post(reverse('reports:create-reminder-alert',
+            kwargs={
+                'pk': 1
+            }), data={
+                'reminder': 1,
+                'method': 0,
+                'date': datetime.date.today(),
+                'days': 0
+                })
+        self.assertEqual(resp.status_code, 302)
 
 class ViewTests(TestCase):
     fixtures = ['common.json', 'reminders.json']
@@ -298,7 +250,7 @@ class ViewTests(TestCase):
                         datetime.timedelta(days=100),
                 )
 
-        cls.reminder = models.Reminder.objects.create(
+        cls.reminder = models.CalendarReminder.objects.create(
             vehicle=cls.vehicle,
             driver=cls.driver,
             date=datetime.date.today(),
@@ -321,13 +273,17 @@ class ViewTests(TestCase):
         super().setUpClass()
         cls.client = Client()
         os.chdir('test_server')
-        cls.proc = subprocess.Popen(['python', 'server.py'])
+        cls.proc = subprocess.Popen(['python', 'server.py'],
+            stdout=subprocess.PIPE, shell=True, 
+            creationflags=subprocess.CREATE_NEW_PROCESS_GROUP)
         os.chdir('..')
 
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
-        cls.proc.terminate()#TODO fix, fails to close open sockets
+        cls.proc.send_signal(signal.CTRL_BREAK_EVENT)
+        cls.proc.kill()
+        
 
     #drivers
     def test_get_create_driver_view(self):
@@ -551,6 +507,26 @@ class ViewTests(TestCase):
         })
         self.assertEqual(resp.status_code, 302)
 
+    def test_post_create_calendar_service_log(self):
+        service = models.VehicleService.objects.first()
+        service.repeat_method=1
+        service.save()
+
+        resp = self.client.post(reverse('reports:create-service-log', kwargs={
+            'pk': 1
+        }), data={
+            'vehicle': 1,
+            'vendor': 'vendor',
+            'date': datetime.date.today(),
+            'odometer': 1232143,
+            'service': 1
+        })
+        self.assertEqual(resp.status_code, 302)
+
+        service = models.VehicleService.objects.first()
+        service.repeat_method=0
+        service.save()
+
     def test_get_update_service_view(self):
         resp = self.client.get(reverse('reports:update-service', kwargs={
             'pk': 1
@@ -637,25 +613,6 @@ class ViewTests(TestCase):
             'pk': 1
         }))
         self.assertEqual(resp.status_code, 200)
-
-    def test_get_create_reminder_view(self):
-        resp = self.client.get(reverse('reports:create-reminder'))
-        self.assertEqual(resp.status_code, 200)
-
-    def test_post_create_reminder(self):
-        resp = self.client.post(reverse('reports:create-reminder'), data={
-            'vehicle': 1,
-            'reminder_type': 1,
-            'date': datetime.date.today(),
-            'interval_days': 180,
-            'interval_mileage': 5000,
-            'reminder_email': 'kandoroc@gmail.com',
-            'reminder_message': 'message',
-            'last_reminder_mileage': 100,
-            'reminder_method': 0,
-        })
-        self.assertEqual(resp.status_code, 302)
-
     def test_get_create_reminder_category(self):
         resp = self.client.get(reverse('reports:create-reminder-category'))
         self.assertEqual(resp.status_code, 200)
@@ -667,37 +624,7 @@ class ViewTests(TestCase):
             })
         self.assertEqual(resp.status_code, 302)
 
-    def test_get_reminder_list(self):
-        resp = self.client.get(reverse('reports:reminders-list'))
-        self.assertEqual(resp.status_code, 200)
-
-    def test_get_update_reminder(self):
-        resp = self.client.get(reverse('reports:update-reminder', kwargs={
-            'pk': 1
-        }))
-        self.assertEqual(resp.status_code, 200)
-
-    def test_post_update_reminder(self):
-        resp = self.client.post(reverse('reports:update-reminder', kwargs={
-            'pk': 1
-        }), data={
-            'vehicle': 1,
-            'reminder_type': 1,
-            'date': datetime.date.today(),
-            'interval_days': 180,
-            'interval_mileage': 5000,
-            'reminder_email': 'kandoroc@gmail.com',
-            'reminder_message': 'message',
-            'last_reminder_mileage': 100,
-            'reminder_method': 0
-        })
-        self.assertEqual(resp.status_code, 302)
-
-    def test_get_reminder_details(self):
-        resp = self.client.get(reverse('reports:reminder-details', kwargs={
-            'pk': 1
-        }))
-        self.assertEqual(resp.status_code, 200)
+    
 
     def test_reminder_api(self):
         today = datetime.date.today()
@@ -777,49 +704,13 @@ class ViewTests(TestCase):
         resp = self.client.get(reverse('reports:alarms'))
         self.assertEqual(resp.status_code, 200)
 
+    def test_get_gps_view(self):
+        resp = self.client.get(reverse('reports:map', kwargs={
+            'lat': '17.42345',
+            'lng': '-34.23432'
+        }))
+        self.assertEqual(resp.status_code, 200)
 
-# class DailyReportTests(TestCase):
-#     fixtures = ['common.json', 'reminders.json']
-
-
-#     @classmethod
-#     def setUpTestData(cls):
-
-#         cls.config = Config.objects.first()
-#         cls.config.conn_account= 'admin'
-#         cls.config.conn_password= 'admin'
-#         cls.config.server_domain= 'localhost'
-#         cls.config.server_port= 5000
-#         cls.config.smtp_server= 'localhost'
-#         cls.config.smtp_port= 25
-#         cls.config.email_address= 'test2@mail.com'
-#         cls.config.email_password= 'pwd'
-#         cls.config.save()
-
-
-#     @classmethod
-#     def setUpClass(cls):
-#         super().setUpClass()
-#         cls.client = Client()
-#         os.chdir('test_server')
-#         cls.proc = subprocess.Popen(['python', 'server.py'])
-#         os.chdir('..')
-
-#         #test email server
-#         cls.mail_proc = subprocess.Popen(['python', 
-#                             'common/test_mail_server.py'])
-    
-
-#     @classmethod
-#     def tearDownClass(cls):
-#         super().tearDownClass()
-#         cls.proc.terminate()
-#         cls.mail_proc.terminate()
-
-
-
-#     def test_generate_daily_speeding_summary(self):
-#         self.assertTrue(generate_daily_speeding_report())
-
-#     def test_generate_harsh_braking_report(self):
-#         self.assertTrue(generate_daily_harsh_braking_summary())
+    def test_get_upcoming_reminders(self):
+        resp = self.client.get(reverse('reports:upcoming-reminders'))
+        self.assertEqual(resp.status_code, 200)

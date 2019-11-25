@@ -9,10 +9,6 @@ class ConfigForm(forms.ModelForm):
     class Meta:
         fields = "__all__"
         model = Config
-        """widgets = {
-            'email_password': forms.PasswordInput(),
-            'conn_password': forms.PasswordInput()
-        }"""
         labels = {
             'harsh_braking_delta': 'Harsh Braking Threshold(change in speed in km/hr per 3s)'
         }

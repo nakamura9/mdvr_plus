@@ -62,10 +62,19 @@
             transition: display 0.3s;
         }
 
+        .alarm-list {
+            overflow-y: auto;
+            max-height: 85vh;
+        }
+
 
         #bell {
             transform: rotateZ(45deg);
-            {% comment %} animation: ring 1s infinite; {% endcomment %}
+        }
+
+        .bell-active {  
+            animation: ring 1s infinite;
+            color: #007bff;
         }
 
         @keyframes ring{
@@ -120,7 +129,7 @@
     function minimizeAlarms(){
         $("#id-alarm-modal").removeClass('modal-visible');
         $(".alarm-modal-content").removeClass('modal-content-visible');
-        $("#bell").css('color', 'white');
+        $("#bell").removeClass('bell-active');
 
     }
 
@@ -138,8 +147,8 @@
                 setTimeout(function(){
                     var audio = document.getElementById('chime');
                     audio.play()
-                }, 5000);
-                $("#bell").css('color', '#007bff');
+                }, 500);
+                $("#bell").addClass('bell-active');
                 $.each(data, function(index, value){
                     $('#alarm-data').append('<tr><td>'+ value.timestamp +
                                 '</td><td>'+ value.vehicle   +

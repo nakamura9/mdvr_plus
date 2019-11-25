@@ -1,7 +1,7 @@
 {% extends 'window.html' %}
 
 {% block page_title %}
-Reminder List
+Mileage Reminder List
 {% endblock page_title %}
 
 {% block content %}
@@ -15,9 +15,9 @@ Reminder List
                             Actions
                         </button>
                 <div class="dropdown-menu" aria-labelledby="triggerId">
-                    <a class="dropdown-item" href='{{calendar_url}}' id='calendar-link'> <i class="fa fa-calendar-alt" aria-hidden="true"></i> View Calendar</a>
-                    <a class="dropdown-item" href="{% url  'reports:create-reminder' %}"> <i class='fas fa-plus'></i> Create New Calendar Reminder</a>
+                    <a class="dropdown-item" href="{% url  'reports:create-mileage-reminder' %}"> <i class='fas fa-plus'></i> Create New Mileage Reminder</a>
                     <a class="dropdown-item" href="{% url  'reports:create-reminder-category' %}"> <i class='fas fa-plus-square'></i> Create Reminder Category</a>
+                    
                 </div>
             </div>
 
@@ -40,9 +40,9 @@ Reminder List
             <table class="table table-sm">
                 <thead>
                     <tr class='secondary text-white'>
-                        <th>Date</th>
+                        <th>Vehicle</th>
                         <th>Type</th>
-                        <th>Repeat Interval</th>
+                        <th>Mileage</th>
                         <th>Repeatable?</th>
                         <th>Actions</th>
                     </tr>
@@ -50,9 +50,9 @@ Reminder List
                 <tbody>
                     {% for r in object_list %}
                     <tr>
-                        <td>{{r.date}}</td>
+                        <td>{{r.vehicle}}</td>
                         <td>{{r.reminder_type}}</td>
-                        <td>{{r.repeat_interval_days}}</td>
+                        <td>{{r.mileage}}</td>
                         <td>{{r.repeatable}}</td>
                         <td> <div class="dropdown">
                             <button class="btn btn-sm tertiary dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
@@ -60,10 +60,11 @@ Reminder List
                                         Actions
                                     </button>
                             <div class="dropdown-menu" aria-labelledby="triggerId">
-                                <a class="dropdown-item" href=" {% url 'reports:update-reminder' pk=r.pk %} "> <i class="fas fa-edit"></i> Edit</a>
-                                <a class="dropdown-item" href=" {% url 'reports:reminder-details' pk=r.pk %} "> <i class="fas fa-file"></i> Details</a>
-                                <a class="dropdown-item" href=" {% url 'reports:create-reminder-alert' pk=r.pk %}"
-                                target='popup' onclick='linkClickHandler()'> <i class="fas fa-bell"></i> Add Alert</a>
+                                <a class="dropdown-item" href=" {% url 'reports:update-mileage-reminder' pk=r.pk %} "> <i class="fas fa-edit"></i> Edit</a>
+                                <a class="dropdown-item" href=" {% url 'reports:mileage-reminder-details' pk=r.pk %} "> <i class="fas fa-file"></i> Details</a>
+                                <a class="dropdown-item" href=" {% url 'reports:create-mileage-reminder-alert' pk=r.pk %}" target='popup' onclick='linkClickHandler()'> 
+                                    <i class="fas fa-bell"></i> Add Alert
+                                </a>
                             </div>
                         </div> </td>
                     </tr>
@@ -85,6 +86,5 @@ Reminder List
     $('#id_expected_receipt_date').datepicker({
         changeYear: true,
         dateFormat: 'yy-mm-dd' });
-
 </script>
 {% endblock %}

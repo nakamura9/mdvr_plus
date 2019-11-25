@@ -12,8 +12,8 @@ from reports.daily_reports import (generate_daily_harsh_braking_summary,
                                   generate_daily_speeding_report)
 
 
-from common.api import live_status_checks
-# live_status_checks.now()
+# from common.api import live_status_checks
+# # live_status_checks.now()
 
 
 class Home(TemplateView):

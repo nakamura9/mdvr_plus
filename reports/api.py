@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 import calendar
-from reports.models import Reminder
+from reports.models import CalendarReminder
 import datetime
 import time
 from django.db.models import Q
@@ -60,7 +60,7 @@ def get_month_data(array, user):
     filters = get_filters(flat[0], flat[len(flat)- 1])
     
     
-    event_objs = Reminder.objects.filter(filters)
+    event_objs = CalendarReminder.objects.filter(filters)
     
     events += [{
         'label': e.label,
@@ -69,7 +69,7 @@ def get_month_data(array, user):
         'id': e.pk
     } for e in event_objs]
 
-    active_recurring = Reminder.objects.filter(Q(active=True))
+    active_recurring = CalendarReminder.objects.filter(Q(active=True))
     
     for evt in active_recurring:
         for date in flat:

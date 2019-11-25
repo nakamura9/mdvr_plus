@@ -54,53 +54,118 @@ class VehicleForm(forms.ModelForm):
         self.helper.add_input(Submit('submit', 'Submit'))
 
 
-class ReminderForm(forms.ModelForm):
-    reminder_data = forms.CharField()
+class CalendarReminderForm(forms.ModelForm):
     class Meta:
-        model = models.Reminder
-        exclude = "last_reminder", 'last_reminder_mileage'
+        exclude = 'active', 'last_reminder_date',
+        model = models.CalendarReminder
         widgets = {
-            'reminder_message': forms.Textarea(attrs={'rows': 4}),
-            'reminder_data': forms.HiddenInput()
+
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
+            'date',
+            Row(
+                Column('repeatable', css_class="col-6"),
+                Column('repeat_interval_days', css_class="col-6"),
+            ),
             Row(
                 Column('vehicle', css_class="col-6"),
-                Column('reminder_type', css_class="col-6")
+                Column('driver', css_class="col-6")
+            ),
+            
+            Row(
+                Column('reminder_email', 'reminder_type', css_class="col-6"),
+                Column('reminder_message', css_class="col-6")
+            ),
+            'active'
+        )
+        self.helper.add_input(Submit('submit', 'Submit'))
+
+class MileageReminderForm(forms.ModelForm):
+    class Meta:
+        exclude = 'active', 'last_reminder_mileage', 'reminder_count'
+        model = models.MileageReminder
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            'vehicle',
+            HTML('<p>The distance in KM the vehicle will travel before making '
+                'the reminder</p>'),
+            'mileage',
+            HTML('<p>The regular distance in KM between repeated '
+                'reminders </p>'),
+            Row(
+                Column('repeatable', css_class="col-6"),
+                Column('repeat_interval_mileage', css_class="col-6"),
             ),
             Row(
-                Column('date', css_class="col-6"),
-                Column('active', css_class="col-6")
+                Column('reminder_email', 'reminder_type', css_class="col-6"),
+                Column('reminder_message', css_class="col-6")
             ),
-            Row(
-                Column('interval_days', css_class="col-6"),
-                Column('interval_mileage', css_class="col-6")
-            ),
-            Row(
-                Column('reminder_email', 'reminder_message', css_class="col-6"),
-                Column(HTML("""
-            {% load render_bundle from webpack_loader %}
-            <div id='widget-root'></div>
-            {% render_bundle 'reminder' %}
-            """), css_class="col-6")
-            ),
-            'reminder_data'
+            'active'
+        )
+        self.helper.add_input(Submit('submit', 'Submit'))
+
+class CalendarReminderAlertForm(forms.ModelForm):
+    class Meta:
+        fields = "__all__"
+        model = models.CalendarReminderAlert
+        widgets = {
+            'reminder': forms.HiddenInput
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            'reminder',
+            'method',
+            'date',
+            'days',
+            HTML("""
+            <script>
+                function fieldVisibility(){
+                    if($('#id_method').val() == "0"){
+                        $('#div_id_days').css('visibility', 'hidden')
+                        $('#div_id_date').css('visibility', 'visible')
+                    }else{
+                        $('#div_id_date').css('visibility', 'hidden')
+                        $('#div_id_days').css('visibility', 'visible')
+                    }
+                }
+                $(document).ready(fieldVisibility)
+                document.getElementById('id_method').addEventListener('change', fieldVisibility)
+
+            </script>
+            """)
+
         )
         self.helper.add_input(Submit('submit', 'Submit'))
 
 
-    def clean(self, *args, **kwargs):
-        cleaned_data = super().clean(*args, **kwargs)
+class MileageReminderAlertForm(forms.ModelForm):
+    class Meta:
+        fields = "__all__"
+        model = models.MileageReminderAlert
+        widgets = {
+            'reminder': forms.HiddenInput
+        }
 
-        if not cleaned_data['vehicle'] and \
-                cleaned_data['reminder_method'] == 1:
-            raise forms.ValidationError('A reminder cannot be created for a driver while specifying a reminder method for mileage. Select "interval of time" instead.')
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            'reminder',
+            'mileage',
+        )
+        self.helper.add_input(Submit('submit', 'Submit'))
 
-        return cleaned_data
+
 class NoteForm(forms.ModelForm):
     class Meta:
         exclude = "date",

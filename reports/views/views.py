@@ -20,7 +20,10 @@ import requests
 import json
 import urllib
 from reports.models import Alarm
-from reports.serializers import AlarmSerializer, ReminderEventSerializer
+from reports.serializers import (AlarmSerializer, 
+                                 CalendarReminderAlertSerializer,
+                                 MileageReminderAlertSerializer,
+                                 )
 from django.db.utils import OperationalError
 from rest_framework.viewsets import ModelViewSet
 
@@ -33,7 +36,6 @@ from reports.report_views import (SpeedingPDFReport,
                                   HarshBrakingReport,
                                   harsh_braking_csv_report,
                                   speeding_report_csv,
-                                  report_progress
                                 )
 
 
@@ -76,61 +78,6 @@ class VehicleListView(ContextMixin, FilterView):
         ]
     }
 
-class ReminderCreateView(ContextMixin, CreateView):
-    template_name =CREATE_TEMPLATE
-    form_class = forms.ReminderForm
-    model = models.Reminder
-    success_url = reverse('reports:reminders-list')
-    context = {
-        'title': 'Generate Reminder'
-    }
-
-    def get_initial(self):
-        config = Config.objects.first()
-        return {
-            'reminder_email': config.default_reminder_email
-        }
-
-    def form_valid(self, form):
-        resp = super().form_valid(form)
-        data = json.loads(
-                    urllib.parse.unquote(form.cleaned_data['reminder_data']))
-        for line in data:
-            event = models.ReminderEvent.objects.create(
-                reminder=self.object,
-            )
-            if line['eventType']  == 'Date':
-                event.date = line['value']
-            elif line['eventType'] == 'Mileage':
-                event.mileage = line['value']
-            else:
-                event.days_before = line['value']
-            
-            event.save()
-        
-        
-        return resp
-
-
-class ReminderUpdateView(ContextMixin, UpdateView):
-    template_name =CREATE_TEMPLATE
-    form_class = forms.ReminderForm
-    queryset = models.Reminder.objects.all()
-    success_url = reverse('reports:reminders-list')
-    context = {
-        'title': 'Update Reminder'
-    }
-
-class ReminderListView(PaginationMixin, FilterView):
-    template_name = os.path.join('reports', 'reminder','list.html')
-    queryset = models.Reminder.objects.all()
-    filterset_class = filters.ReminderFilter
-    paginate_by = 20
-
-
-class ReminderDetailView(DetailView):
-    template_name = os.path.join('reports','reminder', 'detail.html')
-    model = models.Reminder
 
     
 class ReportFormView(ContextMixin,FormView):
@@ -218,12 +165,11 @@ class CreateInsurance(ContextMixin, CreateView):
 
     @staticmethod
     def create_reminder(self, form):
-        models.Reminder.objects.create(
+        models.CalendarReminder.objects.create(
             vehicle=self.object.vehicle,
             date=self.object.valid_until - datetime.timedelta(
                 days=int(form.cleaned_data['reminder_days'])),
-            interval_days=0,
-            interval_mileage=0,
+            repeatable=False,
             reminder_email=Config.objects.first().default_reminder_email,
             reminder_message="""
             The insurance for vehicle {} will expire within {} days.
@@ -247,7 +193,7 @@ class UpdateInsurance(ContextMixin, UpdateView):
 
     def form_valid(self, form):
         resp = super().form_valid(form)
-        if not models.Reminder.objects.filter(
+        if not models.CalendarReminder.objects.filter(
                 vehicle=self.object.vehicle, 
                 date=self.object.valid_until - datetime.timedelta(
                     days=int(form.cleaned_data['reminder_days']))).exists():
@@ -269,12 +215,11 @@ class CreateFitnessCertificate(ContextMixin, CreateView):
 
     @staticmethod
     def create_reminder(self, form):
-        models.Reminder.objects.create(
+        models.CalendarReminder.objects.create(
             vehicle=self.object.vehicle,
             date=self.object.valid_until - datetime.timedelta(
                 days=int(form.cleaned_data['reminder_days'])),
-            interval_days=0,
-            interval_mileage=0,
+            repeatable=False,
             reminder_email=Config.objects.first().default_reminder_email,
             reminder_message="""
             The certificate of fitness for vehicle {} will expire within {} days.
@@ -298,7 +243,7 @@ class UpdateFitnessCertificate(ContextMixin, UpdateView):
 
     def form_valid(self, form):
         resp = super().form_valid(form)
-        if not models.Reminder.objects.filter(
+        if not models.CalendarReminder.objects.filter(
                 vehicle=self.object.vehicle, 
                 date=self.object.valid_until - datetime.timedelta(
                     days=int(form.cleaned_data['reminder_days']))).exists():
@@ -328,12 +273,11 @@ class CreateServiceLog(ContextMixin, CreateView):
         service = self.object.service
 
         if service.repeat_method == 1:
-            models.Reminder.objects.create(
+            models.CalendarReminder.objects.create(
                 vehicle=self.object.vehicle,
                 date=self.object.date + datetime.timedelta(days=
                     service.frequency_time),
-                interval_days=0,
-                interval_mileage=0,
+                repeatable=False,
                 reminder_email=Config.objects.first().default_reminder_email,
                 reminder_message="""
                 The vehicle is due for the following service: {}
@@ -341,11 +285,10 @@ class CreateServiceLog(ContextMixin, CreateView):
                 """.format(service)
             )
         else:
-            models.Reminder.objects.create(
+            models.MileageReminder.objects.create(
                 vehicle=self.object.vehicle,
-                date=self.object.date,
-                interval_days=0,
-                interval_mileage=service.interval_mileage,
+                repeat_interval_mileage=service.interval_mileage,
+                repeatable=False,
                 reminder_email=Config.objects.first().default_reminder_email,
                 reminder_message="""
                 The vehicle will due for the following service: {}
@@ -405,12 +348,11 @@ class CreateMedical(ContextMixin, CreateView):
     def form_valid(self, form):
         resp = super().form_valid(form)
 
-        models.Reminder.objects.create(
+        models.CalendarReminder.objects.create(
                 driver=self.object.driver,
                 date=self.object.valid_until + datetime.timedelta(days=
                     int(form.cleaned_data['reminder_days'])),
-                interval_days=0,
-                interval_mileage=0,
+                repeatable=False,
                 reminder_email=Config.objects.first().default_reminder_email,
                 reminder_message="""
                 {} is due for another medical in {} days
@@ -450,12 +392,11 @@ class CreateDDC(ContextMixin, CreateView):
     def form_valid(self, form):
         resp = super().form_valid(form)
 
-        models.Reminder.objects.create(
+        models.CalendarReminder.objects.create(
                 driver=self.object.driver,
                 date=self.object.expiry_date + datetime.timedelta(days=
                     int(form.cleaned_data['reminder_days'])),
-                interval_days=0,
-                interval_mileage=0,
+                repeatable=False,
                 reminder_email=Config.objects.first().default_reminder_email,
                 reminder_message="""
                 {}'s defensive driving certificate will expire in {} days.
@@ -549,6 +490,40 @@ class GPSView(TemplateView):
         
         return context
 
-class ReminderEventViewset(ModelViewSet):
-    serializer_class = ReminderEventSerializer
-    queryset = models.ReminderEvent.objects.all()
+class CalendarReminderAlertViewset(ModelViewSet):
+    serializer_class = CalendarReminderAlertSerializer
+    queryset = models.CalendarReminderAlert.objects.all()
+
+class MileageReminderAlertViewset(ModelViewSet):
+    serializer_class = MileageReminderAlertSerializer
+    queryset = models.MileageReminderAlert.objects.all()
+
+
+class UpcomingRemindersViews(TemplateView):
+    template_name = os.path.join('reports', 'reminder', 'upcoming.html')
+
+    def get_context_data(self, **kwargs):
+        #load reminders asynchronously for distance reminders
+        context = super().get_context_data(**kwargs)
+        today = datetime.date.today()
+        reminders = models.CalendarReminder.objects.filter(
+            active=True)
+        print(reminders)
+        today_events = [i for i in reminders if i.repeat_on_date(today)] + [
+            i for i in reminders.filter(date=today)
+        ]
+
+        seven_days = [i for i in reminders \
+            if abs((today - i.next_reminder_date).days) < 8 and \
+                abs((today - i.next_reminder_date).days) > 1]
+        thirty_days = [i for i in reminders \
+            if abs((today - i.next_reminder_date).days) > 8 and \
+                abs((today - i.next_reminder_date).days) < 31]
+        
+        context.update({
+            'today': today_events,
+            'seven': seven_days,
+            'thirty': thirty_days 
+        })
+        
+        return context
