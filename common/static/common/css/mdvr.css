@@ -34,3 +34,8 @@ textarea:required {
     background-color: #00adb5;
     color: white;
 }
+
+.leaflet-container {
+    height: 700px;
+    width:100%;
+  }

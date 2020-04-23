@@ -2,16 +2,11 @@
 
 block_cipher = None
 
-appdata = [
-    ('installer/templates', 'templates'),
-    ('installer/static', 'static'),
-    ('installer/templates', 'installer/templates'),
-    ('installer/static', 'installer/static'),
-]
+
 a = Analysis(['install.py'],
-             pathex=['C:\\Users\\nakamura9a\\Documents\\code\\git\\mdvr_plus\\deploy'],
+             pathex=['F:\\Documents\\code\\git\\mdvr_plus\\deploy'],
              binaries=[],
-             datas=appdata,
+             datas=[],
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
@@ -35,4 +30,4 @@ exe = EXE(pyz,
           upx=True,
           upx_exclude=[],
           runtime_tmpdir=None,
-          console=True , icon='icon.ico')
+          console=True )

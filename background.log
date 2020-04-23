@@ -602,3 +602,2195 @@ CRITICAL:root:could not obtain the current mileage for setting a reminder for ve
 2019-11-25 15:21:11,230 [CRITI ] could not obtain the current mileage for setting a reminder for vehicle 1000
 CRITICAL:root:could not obtain the current mileage for setting a reminder for vehicle 1000
 2019-11-25 15:21:47,897 [CRITI ] could not obtain the current mileage for setting a reminder for vehicle 1000
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /app/api/config/1
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /app/api/config/1
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /app/api/config/1
+WARNING:django.request:Not Found: /app/api/config/1
+WARNING:django.request:Not Found: /app/config/1
+WARNING:django.request:Not Found: /app/api/config/1
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Not Found: /app/api/config/1
+WARNING:django.request:Not Found: /app/api/config/1
+WARNING:django.request:Not Found: /app/config/1
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+ERROR:django.request:Internal Server Error: /reports/import-vehicles/
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 158, in get
+    context = self.get_context_data(**kwargs)
+  File "F:\Documents\code\git\mdvr_plus\reports\views\views.py", line 428, in get_context_data
+    'password':config.conn_password
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\sessions.py", line 519, in request
+    prep = self.prepare_request(req)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\sessions.py", line 462, in prepare_request
+    hooks=merge_hooks(request.hooks, self.hooks),
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\models.py", line 313, in prepare
+    self.prepare_url(url, params)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\models.py", line 390, in prepare_url
+    raise InvalidURL("Invalid URL %r: No host supplied" % url)
+requests.exceptions.InvalidURL: Invalid URL 'http://:8080/StandardApiAction_login.action': No host supplied
+2020-04-21 17:08:07,263 [ERROR ] Internal Server Error: /reports/import-vehicles/
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 158, in get
+    context = self.get_context_data(**kwargs)
+  File "F:\Documents\code\git\mdvr_plus\reports\views\views.py", line 428, in get_context_data
+    'password':config.conn_password
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\sessions.py", line 519, in request
+    prep = self.prepare_request(req)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\sessions.py", line 462, in prepare_request
+    hooks=merge_hooks(request.hooks, self.hooks),
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\models.py", line 313, in prepare
+    self.prepare_url(url, params)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\requests\models.py", line 390, in prepare_url
+    raise InvalidURL("Invalid URL %r: No host supplied" % url)
+requests.exceptions.InvalidURL: Invalid URL 'http://:8080/StandardApiAction_login.action': No host supplied
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+ERROR:django.request:Internal Server Error: /app/
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\response.py", line 106, in render
+    self.content = self.rendered_content
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    content = template.render(context, self._request)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\library.py", line 192, in render
+    output = self.func(*resolved_args, **resolved_kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\webpack_loader\templatetags\webpack_loader.py", line 12, in render_bundle
+    tags = utils.get_as_tags(bundle_name, extension=extension, config=config, attrs=attrs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\webpack_loader\utils.py", line 45, in get_as_tags
+    bundle = _get_bundle(bundle_name, extension, config)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\webpack_loader\utils.py", line 23, in _get_bundle
+    bundle = get_loader(config).get_bundle(bundle_name)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\webpack_loader\loader.py", line 97, in get_bundle
+    raise WebpackError(error)
+webpack_loader.exceptions.WebpackError: 
+            ModuleNotFoundError in 
+            Module not found: Error: Can't resolve 'leaflet' in 'F:\Documents\code\git\mdvr_plus\assets\node_modules\react-leaflet\es'
+            
+2020-04-21 20:06:01,925 [ERROR ] Internal Server Error: /app/
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\response.py", line 106, in render
+    self.content = self.rendered_content
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    content = template.render(context, self._request)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\base.py", line 904, in render_annotated
+    return self.render(context)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\template\library.py", line 192, in render
+    output = self.func(*resolved_args, **resolved_kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\webpack_loader\templatetags\webpack_loader.py", line 12, in render_bundle
+    tags = utils.get_as_tags(bundle_name, extension=extension, config=config, attrs=attrs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\webpack_loader\utils.py", line 45, in get_as_tags
+    bundle = _get_bundle(bundle_name, extension, config)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\webpack_loader\utils.py", line 23, in _get_bundle
+    bundle = get_loader(config).get_bundle(bundle_name)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\webpack_loader\loader.py", line 97, in get_bundle
+    raise WebpackError(error)
+webpack_loader.exceptions.WebpackError: 
+            ModuleNotFoundError in 
+            Module not found: Error: Can't resolve 'leaflet' in 'F:\Documents\code\git\mdvr_plus\assets\node_modules\react-leaflet\es'
+            
+WARNING:django.request:Not Found: /app/marker-shadow.png
+WARNING:django.request:Not Found: /app/marker-icon-2x.png
+WARNING:django.request:Not Found: /app/[object Object]
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\mdvr_plus\settings.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\mdvr_plus\settings.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\mdvr_plus\routing.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\mdvr_plus\routing.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\mdvr_plus\routing.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\mdvr_plus\routing.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /app/ 200 [0.16, 127.0.0.1:52371]
+INFO:django.channels.server:HTTP GET /static/dashboard.js 304 [0.03, 127.0.0.1:52371]
+INFO:django.channels.server:HTTP GET /app/api/config/1 200 [0.01, 127.0.0.1:52371]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52371]
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.channels.server:HTTP GET /favicon.ico 404 [0.04, 127.0.0.1:52371]
+INFO:django.channels.server:HTTP GET /reports/list-drivers/ 200 [0.12, 127.0.0.1:52371]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52371]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.05, 127.0.0.1:52371]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52371]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.00, 127.0.0.1:52411]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52411]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52448]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52448]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.07, 127.0.0.1:52448]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.02, 127.0.0.1:52448]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52532]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.05, 127.0.0.1:52532]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52532]
+ERROR:daphne.ws_protocol:[Failure instance: Traceback: <class 'ValueError'>: No route found for path 'report-status/None'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+2020-04-23 07:10:17,137 [ERROR ] [Failure instance: Traceback: <class 'ValueError'>: No route found for path 'report-status/None'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+INFO:django.channels.server:WebSocket DISCONNECT /report-status/None [127.0.0.1:52544]
+INFO:django.channels.server:HTTP GET /login/ 200 [0.05, 127.0.0.1:52532]
+INFO:django.channels.server:HTTP POST /login/ 200 [0.21, 127.0.0.1:52532]
+INFO:django.channels.server:HTTP POST /login/ 200 [0.19, 127.0.0.1:52532]
+INFO:django.channels.server:HTTP POST /login/ 302 [0.30, 127.0.0.1:52532]
+INFO:django.channels.server:HTTP GET /app/ 200 [0.05, 127.0.0.1:52532]
+INFO:django.channels.server:HTTP GET /static/dashboard.js 304 [0.01, 127.0.0.1:52532]
+INFO:django.channels.server:HTTP GET /app/api/config/1 200 [0.02, 127.0.0.1:52532]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52532]
+INFO:django.channels.server:HTTP GET /reports/list-drivers/ 200 [0.04, 127.0.0.1:52532]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52532]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.03, 127.0.0.1:52532]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52532]
+ERROR:daphne.ws_protocol:[Failure instance: Traceback: <class 'ValueError'>: No route found for path 'report-status/1'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+2020-04-23 07:11:31,808 [ERROR ] [Failure instance: Traceback: <class 'ValueError'>: No route found for path 'report-status/1'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+INFO:django.channels.server:WebSocket DISCONNECT /report-status/1 [127.0.0.1:52622]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52532]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.00, 127.0.0.1:52691]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.05, 127.0.0.1:52691]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52691]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:52722]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:52722]
+ERROR:daphne.server:Exception inside application: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 12, in receive
+    # text_data_json = json.loads(text_data)
+  File "C:\Python36\Lib\json\__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python36\Lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python36\Lib\json\decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2020-04-23 07:14:13,589 [ERROR ] Exception inside application: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 12, in receive
+    # text_data_json = json.loads(text_data)
+  File "C:\Python36\Lib\json\__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python36\Lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python36\Lib\json\decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:52722]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.03, 127.0.0.1:52691]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52691]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:52749]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:52749]
+ERROR:daphne.server:Exception inside application: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 12, in receive
+    # text_data_json = json.loads(text_data)
+  File "C:\Python36\Lib\json\__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python36\Lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python36\Lib\json\decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2020-04-23 07:14:32,633 [ERROR ] Exception inside application: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 12, in receive
+    # text_data_json = json.loads(text_data)
+  File "C:\Python36\Lib\json\__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python36\Lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python36\Lib\json\decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:52749]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52801]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.04, 127.0.0.1:52801]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52801]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:52809]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:52809]
+ERROR:daphne.server:Exception inside application: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 12, in receive
+    # text_data_json = json.loads(text_data)
+  File "C:\Python36\Lib\json\__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python36\Lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python36\Lib\json\decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2020-04-23 07:15:39,659 [ERROR ] Exception inside application: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 12, in receive
+    # text_data_json = json.loads(text_data)
+  File "C:\Python36\Lib\json\__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python36\Lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python36\Lib\json\decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:52809]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.05, 127.0.0.1:52801]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52801]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:52854]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:52854]
+ERROR:daphne.server:Exception inside application: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 12, in receive
+    # text_data_json = json.loads(text_data)
+  File "C:\Python36\Lib\json\__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python36\Lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python36\Lib\json\decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2020-04-23 07:16:29,678 [ERROR ] Exception inside application: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 12, in receive
+    # text_data_json = json.loads(text_data)
+  File "C:\Python36\Lib\json\__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python36\Lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python36\Lib\json\decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:52854]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.16, 127.0.0.1:52890]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.02, 127.0.0.1:52890]
+ERROR:daphne.ws_protocol:[Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+2020-04-23 07:17:10,903 [ERROR ] [Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/None/ [127.0.0.1:52895]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.14, 127.0.0.1:52915]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52915]
+ERROR:daphne.ws_protocol:[Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+2020-04-23 07:17:29,848 [ERROR ] [Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.03, 127.0.0.1:52915]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/None/ [127.0.0.1:52919]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52915]
+ERROR:daphne.ws_protocol:[Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+2020-04-23 07:17:33,830 [ERROR ] [Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/None/ [127.0.0.1:52928]
+INFO:django.channels.server:HTTP GET /login/ 200 [0.03, 127.0.0.1:52915]
+INFO:django.channels.server:HTTP POST /login/ 302 [0.30, 127.0.0.1:52915]
+INFO:django.channels.server:HTTP GET /app/ 200 [0.05, 127.0.0.1:52915]
+INFO:django.channels.server:HTTP GET /static/dashboard.js 304 [0.03, 127.0.0.1:52915]
+INFO:django.channels.server:HTTP GET /app/api/config/1 200 [0.02, 127.0.0.1:52915]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.02, 127.0.0.1:52915]
+INFO:django.channels.server:HTTP GET /reports/list-drivers/ 200 [0.04, 127.0.0.1:52915]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52915]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.03, 127.0.0.1:52915]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52915]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:52971]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:52971]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52915]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:52915]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.02, 127.0.0.1:53096]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.08, 127.0.0.1:53096]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:53096]
+ERROR:daphne.ws_protocol:[Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+2020-04-23 07:21:11,232 [ERROR ] [Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/None/ [127.0.0.1:53103]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP GET /login/ 200 [0.03, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP POST /login/ 302 [0.28, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP GET /app/ 200 [0.04, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP GET /static/dashboard.js 304 [0.01, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP GET /app/api/config/1 200 [0.05, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP GET /reports/list-drivers/ 200 [0.03, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.04, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:53187]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:53237]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:53237]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.03, 127.0.0.1:53187]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:53237]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:53187]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:53338]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:53338]
+INFO:django.channels.server:HTTP GET /app/ 200 [0.02, 127.0.0.1:53187]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:53338]
+INFO:django.channels.server:HTTP GET /static/dashboard.js 304 [0.01, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP GET /app/api/config/1 200 [0.02, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP GET /reports/list-drivers/ 200 [0.03, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.03, 127.0.0.1:53187]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:53187]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:53363]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:53363]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.00, 127.0.0.1:53424]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:53424]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:53424]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.00, 127.0.0.1:53549]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:53549]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:53549]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.04, 127.0.0.1:53906]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:53906]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.00, 127.0.0.1:54058]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.02, 127.0.0.1:54570]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:54570]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.04, 127.0.0.1:54928]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.03, 127.0.0.1:55103]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.03, 127.0.0.1:55260]
+INFO:django.channels.server:HTTP GET /reports/report-form/harsh-braking-report/ 200 [0.21, 127.0.0.1:55260]
+INFO:django.channels.server:HTTP GET /app/empty-page 200 [0.03, 127.0.0.1:55260]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.02, 127.0.0.1:55260]
+INFO:django.channels.server:HTTP GET /login/ 200 [0.02, 127.0.0.1:55260]
+INFO:django.channels.server:HTTP POST /login/ 302 [0.30, 127.0.0.1:55260]
+INFO:django.channels.server:HTTP GET /app/ 200 [0.06, 127.0.0.1:55260]
+INFO:django.channels.server:HTTP GET /static/dashboard.js 304 [0.02, 127.0.0.1:55260]
+INFO:django.channels.server:HTTP GET /app/api/config/1 200 [0.02, 127.0.0.1:55260]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.02, 127.0.0.1:55260]
+INFO:django.channels.server:HTTP GET /reports/report-form/harsh-braking-report/ 200 [0.10, 127.0.0.1:55260]
+INFO:django.channels.server:HTTP GET /app/empty-page 200 [0.01, 127.0.0.1:55260]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55260]
+ERROR:django.request:Internal Server Error: /reports/harsh-braking-report/
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\reports\report_views.py", line 147, in get
+    report_state.set_state({self.request.user.id: {}})
+TypeError: 'dict' object is not callable
+2020-04-23 07:52:33,330 [ERROR ] Internal Server Error: /reports/harsh-braking-report/
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\reports\report_views.py", line 147, in get
+    report_state.set_state({self.request.user.id: {}})
+TypeError: 'dict' object is not callable
+ERROR:django.channels.server:HTTP GET /reports/harsh-braking-report/?csrfmiddlewaretoken=LQEGGF9IfOgw3RzQTuRubjL1Maz3oepwQr5u1NTOtHKLl3cYAlrW1CMnvshYDqZM&start=2020-04-23&end=2020-04-25&vehicle=1&submit=Generate 500 [0.12, 127.0.0.1:55260]
+2020-04-23 07:52:33,354 [ERROR ] HTTP GET /reports/harsh-braking-report/?csrfmiddlewaretoken=LQEGGF9IfOgw3RzQTuRubjL1Maz3oepwQr5u1NTOtHKLl3cYAlrW1CMnvshYDqZM&start=2020-04-23&end=2020-04-25&vehicle=1&submit=Generate 500 [0.12, 127.0.0.1:55260]
+INFO:django.channels.server:HTTP GET /reports/list-drivers/ 200 [0.05, 127.0.0.1:55260]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55260]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.05, 127.0.0.1:55260]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55260]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:55315]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:55315]
+ERROR:daphne.server:Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 15, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+2020-04-23 07:52:42,577 [ERROR ] Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 15, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:55315]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55359]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\state.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.09, 127.0.0.1:55412]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55412]
+ERROR:daphne.ws_protocol:[Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+2020-04-23 07:54:38,455 [ERROR ] [Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+INFO:django.channels.server:HTTP GET /login/ 200 [0.03, 127.0.0.1:55412]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/None/ [127.0.0.1:55429]
+INFO:django.channels.server:HTTP POST /login/ 302 [0.26, 127.0.0.1:55412]
+INFO:django.channels.server:HTTP GET /app/ 200 [0.03, 127.0.0.1:55412]
+INFO:django.channels.server:HTTP GET /static/dashboard.js 304 [0.02, 127.0.0.1:55412]
+INFO:django.channels.server:HTTP GET /reports/harsh-braking-report/?csrfmiddlewaretoken=LQEGGF9IfOgw3RzQTuRubjL1Maz3oepwQr5u1NTOtHKLl3cYAlrW1CMnvshYDqZM&start=2020-04-23&end=2020-04-25&vehicle=1&submit=Generate 200 [12.29, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /app/api/config/1 200 [0.08, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.03, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /reports/list-drivers/ 200 [0.04, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /reports/report-form/harsh-braking-report/ 200 [0.12, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /app/empty-page 200 [0.01, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.03, 127.0.0.1:55412]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55412]
+ERROR:daphne.ws_protocol:[Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+2020-04-23 07:55:09,792 [ERROR ] [Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/None/ [127.0.0.1:55483]
+INFO:django.channels.server:HTTP GET /reports/harsh-braking-report/?csrfmiddlewaretoken=zYSjfJX4fsKAXWEz2iDtHvZUJOYin6FGCRunC1egQCwpfFCMhfu1RhfE8QMQeKJU&start=2020-04-23&end=2020-04-25&vehicle=1&submit=Generate 200 [12.14, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /app/config/1 200 [0.17, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /login/ 200 [0.01, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP POST /login/ 302 [0.28, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /app/ 200 [0.04, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /static/dashboard.js 304 [0.01, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /app/api/config/1 200 [0.02, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /reports/list-drivers/ 200 [0.04, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.03, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55411]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:55535]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:55535]
+ERROR:daphne.server:Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 15, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+2020-04-23 07:55:46,282 [ERROR ] Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 15, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:55535]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.03, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55411]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:55544]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:55544]
+ERROR:daphne.server:Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 15, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+2020-04-23 07:55:55,284 [ERROR ] Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 15, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:55544]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.03, 127.0.0.1:55411]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55411]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:55551]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:55551]
+ERROR:daphne.server:Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 15, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+2020-04-23 07:55:58,317 [ERROR ] Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 15, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:55551]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.11, 127.0.0.1:55627]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55627]
+ERROR:daphne.ws_protocol:[Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+2020-04-23 07:56:51,271 [ERROR ] [Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+INFO:django.channels.server:HTTP GET /login/ 200 [0.03, 127.0.0.1:55627]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/None/ [127.0.0.1:55631]
+INFO:django.channels.server:HTTP POST /login/ 302 [0.25, 127.0.0.1:55627]
+INFO:django.channels.server:HTTP GET /app/ 200 [0.03, 127.0.0.1:55627]
+INFO:django.channels.server:HTTP GET /static/dashboard.js 304 [0.01, 127.0.0.1:55627]
+INFO:django.channels.server:HTTP GET /app/api/config/1 200 [0.02, 127.0.0.1:55627]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.04, 127.0.0.1:55627]
+INFO:django.channels.server:HTTP GET /reports/list-drivers/ 200 [0.05, 127.0.0.1:55627]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55627]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.03, 127.0.0.1:55627]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55627]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:55657]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:55657]
+ERROR:daphne.server:Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 17, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+2020-04-23 07:57:06,123 [ERROR ] Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 17, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:55657]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.03, 127.0.0.1:55627]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55627]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:55707]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:55707]
+ERROR:daphne.server:Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 17, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+2020-04-23 07:58:06,172 [ERROR ] Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 17, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:55707]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.14, 127.0.0.1:55755]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55755]
+ERROR:daphne.ws_protocol:[Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+2020-04-23 07:58:53,326 [ERROR ] [Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/None/ [127.0.0.1:55759]
+INFO:django.channels.server:HTTP GET /app/config/1 200 [0.16, 127.0.0.1:55755]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55755]
+INFO:django.channels.server:HTTP GET /login/ 200 [0.02, 127.0.0.1:55755]
+INFO:django.channels.server:HTTP POST /login/ 302 [0.26, 127.0.0.1:55755]
+INFO:django.channels.server:HTTP GET /app/ 200 [0.03, 127.0.0.1:55755]
+INFO:django.channels.server:HTTP GET /static/dashboard.js 304 [0.02, 127.0.0.1:55755]
+INFO:django.channels.server:HTTP GET /app/api/config/1 200 [0.02, 127.0.0.1:55755]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.02, 127.0.0.1:55755]
+INFO:django.channels.server:HTTP GET /reports/list-drivers/ 200 [0.04, 127.0.0.1:55755]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55755]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.05, 127.0.0.1:55755]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55755]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:55796]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:55796]
+ERROR:daphne.server:Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 18, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+2020-04-23 07:59:16,306 [ERROR ] Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 18, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:55796]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.13, 127.0.0.1:55867]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:55867]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\mdvr_plus\settings.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.04, 127.0.0.1:55980]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\mdvr_plus\settings.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.13, 127.0.0.1:56007]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.02, 127.0.0.1:56007]
+ERROR:daphne.ws_protocol:[Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+2020-04-23 08:02:34,363 [ERROR ] [Failure instance: Traceback: <class 'ValueError'>: No route found for path 'ws/report-status/None/'.
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\autobahn\websocket\protocol.py:2847:processHandshake
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\txaio\tx.py:366:as_future
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\ws_protocol.py:83:onConnect
+--- <exception caught here> ---
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\twisted\internet\defer.py:151:maybeDeferred
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\daphne\server.py:200:create_application
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\staticfiles.py:41:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:54:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:47:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:145:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py:169:__init__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py:31:__call__
+F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\routing.py:150:__call__
+]
+INFO:django.channels.server:HTTP GET /login/ 200 [0.03, 127.0.0.1:56007]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/None/ [127.0.0.1:56013]
+INFO:django.channels.server:HTTP POST /login/ 302 [0.26, 127.0.0.1:56007]
+INFO:django.channels.server:HTTP GET /app/ 200 [0.04, 127.0.0.1:56007]
+INFO:django.channels.server:HTTP GET /static/dashboard.js 304 [0.01, 127.0.0.1:56007]
+INFO:django.channels.server:HTTP GET /app/api/config/1 200 [0.02, 127.0.0.1:56007]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.02, 127.0.0.1:56007]
+INFO:django.channels.server:HTTP GET /reports/list-drivers/ 200 [0.04, 127.0.0.1:56007]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:56007]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.03, 127.0.0.1:56007]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:56007]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:56045]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:56045]
+ERROR:daphne.server:Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 19, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+2020-04-23 08:02:51,287 [ERROR ] Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 19, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:56045]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.02, 127.0.0.1:56106]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.09, 127.0.0.1:56106]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:56106]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:56129]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:56129]
+ERROR:daphne.server:Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 19, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+2020-04-23 08:04:07,908 [ERROR ] Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 19, in receive
+    if not report_state.state.get(self.request.kwargs['pk'], None):
+AttributeError: 'ReportStatus' object has no attribute 'request'
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:56129]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.08, 127.0.0.1:56205]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.02, 127.0.0.1:56205]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:56209]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:56209]
+ERROR:daphne.server:Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 20, in receive
+    print(self.request.kwargs['pk'])
+AttributeError: 'ReportStatus' object has no attribute 'request'
+2020-04-23 08:05:06,732 [ERROR ] Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 20, in receive
+    print(self.request.kwargs['pk'])
+AttributeError: 'ReportStatus' object has no attribute 'request'
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:56209]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.10, 127.0.0.1:56235]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:56239]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.04, 127.0.0.1:56235]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:56239]
+ERROR:daphne.server:Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 20, in receive
+    print(self.request.kwargs['pk'])
+AttributeError: 'ReportStatus' object has no attribute 'request'
+2020-04-23 08:05:25,562 [ERROR ] Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 20, in receive
+    print(self.request.kwargs['pk'])
+AttributeError: 'ReportStatus' object has no attribute 'request'
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:56239]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.13, 127.0.0.1:56297]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:56297]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:56302]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:56302]
+ERROR:daphne.server:Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 22, in receive
+    print(self.request.kwargs['pk'])
+AttributeError: 'ReportStatus' object has no attribute 'request'
+2020-04-23 08:06:06,588 [ERROR ] Exception inside application: 'ReportStatus' object has no attribute 'request'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 22, in receive
+    print(self.request.kwargs['pk'])
+AttributeError: 'ReportStatus' object has no attribute 'request'
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:56302]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.03, 127.0.0.1:56361]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.12, 127.0.0.1:56420]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:56420]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:56424]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:56424]
+ERROR:daphne.server:Exception inside application: '1'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 22, in receive
+    'pages': report_state.state[text_data]['pages'],
+KeyError: '1'
+2020-04-23 08:07:50,078 [ERROR ] Exception inside application: '1'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 22, in receive
+    'pages': report_state.state[text_data]['pages'],
+KeyError: '1'
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:56424]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.11, 127.0.0.1:56457]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:56457]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:56461]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:56461]
+ERROR:daphne.server:Exception inside application: '1'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 22, in receive
+    'pages': report_state.state[text_data]['pages'],
+KeyError: '1'
+2020-04-23 08:08:17,288 [ERROR ] Exception inside application: '1'
+Traceback (most recent call last):
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\sessions.py", line 183, in __call__
+    return await self.inner(receive, self.send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\middleware.py", line 41, in coroutine_call
+    await inner_instance(receive, send)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 62, in __call__
+    await await_many_dispatch([receive], self.dispatch)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 269, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Python36\Lib\asyncio\tasks.py", line 333, in wait_for
+    return (yield from fut)
+  File "C:\Python36\Lib\concurrent\futures\thread.py", line 55, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\db.py", line 14, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\asgiref\sync.py", line 314, in thread_handler
+    return func(*args, **kwargs)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\consumer.py", line 105, in dispatch
+    handler(message)
+  File "F:\Documents\code\git\mdvr_plus\env\lib\site-packages\channels\generic\websocket.py", line 60, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "F:\Documents\code\git\mdvr_plus\reports\consumers.py", line 22, in receive
+    'pages': report_state.state[text_data]['pages'],
+KeyError: '1'
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:56461]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.09, 127.0.0.1:56492]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:56492]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:56496]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:56496]
+INFO:django.channels.server:HTTP GET /reports/report-form/harsh-braking-report/ 200 [0.15, 127.0.0.1:56492]
+INFO:django.channels.server:HTTP GET /app/empty-page 200 [0.01, 127.0.0.1:56492]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:56492]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.03, 127.0.0.1:56510]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:56496]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:56526]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:56526]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:56510]
+INFO:django.channels.server:HTTP GET /reports/harsh-braking-report/?csrfmiddlewaretoken=g5kxV31SPJfqUhWU5WIi5XirklFomNkDQLKTIDgBDkW4aPmrsapHKlqPGr2Orzak&start=2020-04-23&end=2020-04-25&vehicle=1&submit=Generate 200 [12.15, 127.0.0.1:56492]
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET / 302 [0.16, 127.0.0.1:58843]
+INFO:django.channels.server:HTTP GET /login/ 200 [0.21, 127.0.0.1:58843]
+INFO:django.channels.server:HTTP POST /login/ 302 [0.59, 127.0.0.1:58843]
+INFO:django.channels.server:HTTP GET /app/ 200 [0.15, 127.0.0.1:58843]
+INFO:django.channels.server:HTTP GET /static/dashboard.js 304 [0.07, 127.0.0.1:58843]
+INFO:django.channels.server:HTTP GET /app/api/config/1 200 [0.15, 127.0.0.1:58843]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.08, 127.0.0.1:58843]
+INFO:django.channels.server:HTTP GET /reports/list-drivers/ 200 [0.12, 127.0.0.1:58843]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:58843]
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.09, 127.0.0.1:58843]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:58843]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:58867]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:58867]
+INFO:django.channels.server:HTTP GET / 302 [0.01, 127.0.0.1:58843]
+INFO:django.channels.server:HTTP GET /login/ 200 [0.03, 127.0.0.1:58843]
+WARNING:django.request:Not Found: /dashboard/
+WARNING:django.channels.server:HTTP GET /dashboard/ 404 [0.05, 127.0.0.1:58843]
+WARNING:django.request:Not Found: /reports/dashboard/
+WARNING:django.channels.server:HTTP GET /reports/dashboard/ 404 [0.03, 127.0.0.1:58843]
+WARNING:django.request:Not Found: /app/dashboard/
+WARNING:django.channels.server:HTTP GET /app/dashboard/ 404 [0.02, 127.0.0.1:58843]
+INFO:django.channels.server:HTTP GET /reports/report-form/harsh-braking-report/ 200 [0.30, 127.0.0.1:58843]
+INFO:django.channels.server:HTTP GET /app/empty-page 200 [0.02, 127.0.0.1:58843]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:58843]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:58843]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\state.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/harsh-braking-report/?csrfmiddlewaretoken=FO0r83Lcpapnp1zNOCd23fTr2uIzO2T3FMqUcl9DEAmIi0ZHzCjx1QAIg8xxhqh8&start=2020-04-23&end=2020-04-25&vehicle=1&submit=Generate 200 [12.32, 127.0.0.1:58957]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:58957]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\consumers.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/driver-details/1/ 200 [0.08, 127.0.0.1:59037]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59037]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:59048]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:59048]
+INFO:django.channels.server:HTTP GET /reports/harsh-braking-report/?csrfmiddlewaretoken=FO0r83Lcpapnp1zNOCd23fTr2uIzO2T3FMqUcl9DEAmIi0ZHzCjx1QAIg8xxhqh8&start=2020-04-23&end=2020-04-25&vehicle=1&submit=Generate 200 [12.23, 127.0.0.1:59036]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59036]
+INFO:django.channels.server:HTTP GET /reports/list-drivers/ 200 [0.05, 127.0.0.1:59036]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:59048]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59139]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.02, 127.0.0.1:59139]
+INFO:django.channels.server:HTTP GET /reports/report-form/harsh-braking-report/ 200 [0.07, 127.0.0.1:59139]
+INFO:django.channels.server:HTTP GET /app/empty-page 200 [0.02, 127.0.0.1:59139]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59139]
+INFO:django.channels.server:HTTP GET /reports/report-form/harsh-braking-report/ 200 [0.08, 127.0.0.1:59139]
+INFO:django.channels.server:HTTP GET /app/empty-page 200 [0.02, 127.0.0.1:59139]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59139]
+INFO:django.channels.server:HTTP GET /reports/report-form/harsh-braking-report/ 200 [0.07, 127.0.0.1:59139]
+INFO:django.channels.server:HTTP GET /app/empty-page 200 [0.02, 127.0.0.1:59139]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59139]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59139]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59302]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59302]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59302]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59302]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59302]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59302]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59302]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59302]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59302]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59302]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59696]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59696]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59761]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59761]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59761]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59761]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59761]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59965]
+INFO:django.channels.server:HTTP GET /reports/harsh-braking-report/?csrfmiddlewaretoken=DHgrEsVrBbh4ja1xlrlbHkiAnlp2BjYxDFGUIKjSQBepc9rr6rrGFVZRBZe04HmC&start=2020-04-23&end=2020-04-25&vehicle=1&submit=Generate 200 [12.14, 127.0.0.1:59761]
+INFO:django.channels.server:HTTP GET /reports/report-form/harsh-braking-report/ 200 [0.07, 127.0.0.1:59761]
+INFO:django.channels.server:HTTP GET /reports/list-drivers/ 200 [0.04, 127.0.0.1:59761]
+INFO:django.channels.server:HTTP GET /reports/report-form/harsh-braking-report/ 200 [0.05, 127.0.0.1:59761]
+INFO:django.channels.server:HTTP GET /app/empty-page 200 [0.01, 127.0.0.1:59761]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59761]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:60016]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:60016]
+INFO:django.channels.server:HTTP GET /reports/harsh-braking-report/?csrfmiddlewaretoken=jbLc5aoRmAnP1tBJr7OfIxBeN8bE4QhPj9bF9sMiB0kaUs1Dc7UKG8iv1M0CxeFU&start=2020-04-23&end=2020-04-25&vehicle=1&submit=Generate 200 [12.14, 127.0.0.1:59761]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:60016]
+INFO:django.channels.server:HTTP GET /reports/report-form/harsh-braking-report/ 200 [0.05, 127.0.0.1:59761]
+INFO:django.channels.server:HTTP GET /reports/report-form/harsh-braking-report/ 200 [0.09, 127.0.0.1:59761]
+INFO:django.channels.server:HTTP GET /app/empty-page 200 [0.01, 127.0.0.1:59761]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:59761]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:60095]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:60095]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:60095]
+INFO:django.channels.server:HTTP GET /reports/report-form/harsh-braking-report/ 200 [0.09, 127.0.0.1:60095]
+INFO:django.channels.server:HTTP GET /app/empty-page 200 [0.01, 127.0.0.1:60095]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:60095]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:60208]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:60208]
+INFO:django.channels.server:HTTP GET /reports/harsh-braking-report/?csrfmiddlewaretoken=0CbniBv32m5aDkZA0L1gjR5fIrTNumSW0ABQmTTuhM2vwjpuLL7LhsMwW5ILXKg1&start=2020-04-23&end=2020-04-25&vehicle=1&submit=Generate 200 [12.23, 127.0.0.1:60095]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:60208]
+INFO:django.channels.server:HTTP GET /reports/map/31.0335/-17.8252/ 200 [0.05, 127.0.0.1:60095]
+INFO:django.channels.server:HTTP GET /reports/report-form/speeding-report/ 200 [0.05, 127.0.0.1:60095]
+INFO:django.channels.server:HTTP GET /app/empty-page 200 [0.01, 127.0.0.1:60095]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:60095]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:60268]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:60268]
+INFO:django.channels.server:HTTP GET /reports/speeding-report/?csrfmiddlewaretoken=PlGKsPE078PUnpBzuwd8Ofxw1Xi1GZLcPj6dw72rmyMfgo1tfwjDMQeNfB7Z9n9h&start=2020-04-23&end=2020-04-25&vehicle=1&submit=Generate 200 [12.21, 127.0.0.1:60095]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:60268]
+INFO:django.channels.server:HTTP GET /reports/report-form/speeding-report/ 200 [0.07, 127.0.0.1:60095]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:60318]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:60318]
+INFO:django.channels.server:HTTP GET /reports/speeding-report/?csrfmiddlewaretoken=Puk9IYvD4r3WMomUNf6KkllJw5CtpJBmPsKCMgT4jR0hFnMOyfcfiW20KJrrS7Zr&start=2020-04-23&end=2020-04-25&vehicle=1&submit=Generate 200 [12.21, 127.0.0.1:60095]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:60318]
+INFO:django.channels.server:HTTP GET /reports/map/31.0335/-17.8252/ 200 [0.02, 127.0.0.1:60095]
+INFO:django.channels.server:HTTP GET /reports/map/31.0335/-17.8252/ 200 [0.01, 127.0.0.1:61049]
+INFO:django.channels.server:HTTP GET /static/common/css/mdvr.css 304 [0.01, 127.0.0.1:61049]
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.utils.autoreload:F:\Documents\code\git\mdvr_plus\reports\report_views.py changed, reloading.
+INFO:django.utils.autoreload:Watching for file changes with StatReloader
+INFO:django.channels.server:HTTP GET /reports/speeding-report/?csrfmiddlewaretoken=Puk9IYvD4r3WMomUNf6KkllJw5CtpJBmPsKCMgT4jR0hFnMOyfcfiW20KJrrS7Zr&start=2020-04-23&end=2020-04-25&vehicle=1&submit=Generate 200 [12.31, 127.0.0.1:61227]
+INFO:django.channels.server:HTTP GET /static/common/css/mdvr.css 304 [0.01, 127.0.0.1:61227]
+INFO:django.channels.server:HTTP GET /app/ 200 [0.25, 127.0.0.1:65479]
+INFO:django.channels.server:HTTP GET /static/dashboard.js 304 [0.01, 127.0.0.1:65479]
+INFO:django.channels.server:HTTP GET /static/common/css/mdvr.css 304 [0.01, 127.0.0.1:65480]
+INFO:django.channels.server:HTTP GET /app/api/config/1 200 [0.11, 127.0.0.1:65480]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.02, 127.0.0.1:65480]
+INFO:django.channels.server:HTTP GET /reports/report-form/harsh-braking-report/ 200 [0.35, 127.0.0.1:65480]
+INFO:django.channels.server:HTTP GET /static/common/css/mdvr.css 304 [0.03, 127.0.0.1:65480]
+INFO:django.channels.server:HTTP GET /app/empty-page 200 [0.03, 127.0.0.1:65480]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:65480]
+INFO:django.channels.server:HTTP GET /static/common/css/mdvr.css 304 [0.01, 127.0.0.1:65480]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:49164]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:49164]
+INFO:django.channels.server:HTTP GET /app/ 200 [0.02, 127.0.0.1:49175]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:49164]
+INFO:django.channels.server:HTTP GET /app/api/config/1 200 [0.02, 127.0.0.1:49175]
+INFO:django.channels.server:HTTP GET /reports/report-form/harsh-braking-report/ 200 [0.06, 127.0.0.1:49175]
+INFO:django.channels.server:HTTP GET /static/common/css/mdvr.css 304 [0.01, 127.0.0.1:49175]
+INFO:django.channels.server:HTTP GET /app/empty-page 200 [0.01, 127.0.0.1:49175]
+INFO:django.channels.server:HTTP GET /reports/alarms/ 200 [0.01, 127.0.0.1:49175]
+INFO:django.channels.server:HTTP GET /static/common/css/mdvr.css 304 [0.01, 127.0.0.1:49175]
+INFO:django.channels.server:WebSocket HANDSHAKING /ws/report-status/1/ [127.0.0.1:49202]
+INFO:django.channels.server:WebSocket CONNECT /ws/report-status/1/ [127.0.0.1:49202]
+INFO:django.channels.server:HTTP GET /reports/harsh-braking-report/?csrfmiddlewaretoken=oNSQEf5lm1LJ3aMU0KSqjQuhzFF5srwtoLijIxtMBrI4W9cOLKYVhrbyNju3VPUy&start=2020-04-23&end=2020-04-25&vehicle=1&submit=Generate 200 [12.24, 127.0.0.1:49175]
+INFO:django.channels.server:WebSocket DISCONNECT /ws/report-status/1/ [127.0.0.1:49202]
+INFO:django.channels.server:HTTP GET /static/common/css/mdvr.css 304 [0.01, 127.0.0.1:49175]
+INFO:django.channels.server:HTTP GET /reports/map/31.0335/-17.8252/ 200 [0.04, 127.0.0.1:49175]
+INFO:django.channels.server:HTTP GET /static/common/css/mdvr.css 304 [0.00, 127.0.0.1:49175]

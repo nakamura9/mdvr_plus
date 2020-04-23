@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 from django.test import Client
 from statistics import mean
 import socket
-
+from .state import report_state
 
 def login():
     """
@@ -44,8 +44,11 @@ class HarshBrakingReport(TemplateView):
     harsh_braking_records = []
 
     def get_vehicle_records(self):
-        self.request.session['pages'] = 1
-        self.request.session['current'] = 0
+        
+        report_state.set_state({self.request.user.id: {
+            'pages': 1,
+            'current': 0
+        }})
         #get vehicle
         vehicle = Vehicle.objects.get(pk=self.request.GET['vehicle'])
         #get time params
@@ -93,12 +96,18 @@ class HarshBrakingReport(TemplateView):
         if not data['pagination']:
             return
         
-        self.request.session['pages'] = data['pagination']['totalPages']
-
+        report_state.set_state({self.request.user.id: {
+            'pages': data['pagination']['totalPages'],
+            'current': 0
+        }})
+        
         while data['pagination']['hasNextPage']:
             current_page += 1
             
-            self.request.session['current'] = current_page
+            report_state.set_state({self.request.user.id: {
+                'current': current_page,
+                'pages': report_state.state[self.request.user.id]['pages']
+            }})
             
             params['currentPage'] = current_page
             resp = requests.get(url, params=params)
@@ -135,6 +144,8 @@ class HarshBrakingReport(TemplateView):
                 })
 
     def get(self, *args, **kwargs):
+        report_state.set_state({self.request.user.id: {}})
+        self.harsh_braking_records = []
         resp = self.get_vehicle_records()
         if isinstance(resp, HttpResponse):
             return resp
@@ -164,6 +175,7 @@ class SpeedingReport(TemplateView):
     template_name = os.path.join('reports', 'report','speeding.html')
 
     def get(self, *args, **kwargs):
+        self.speeding_records = []
         resp = HarshBrakingReport.get_vehicle_records(self)
         if isinstance(resp, HttpResponse):
             return resp
@@ -231,6 +243,7 @@ class HarshBrakingPDFReport(PDFTemplateView):
         return HarshBrakingReport.process_data(self, data, config)
 
     def get(self, *args, **kwargs):
+        self.harsh_braking_records = []
         resp = HarshBrakingReport.get_vehicle_records(self)
         if isinstance(resp, HttpResponse):
             return resp
@@ -261,6 +274,7 @@ class SpeedingPDFReport(PDFTemplateView):
         return SpeedingReport.process_data(self, data, config)
 
     def get(self, *args, **kwargs):
+        self.speeding_records = []
         resp = HarshBrakingReport.get_vehicle_records(self)
         if isinstance(resp, HttpResponse):
             return resp

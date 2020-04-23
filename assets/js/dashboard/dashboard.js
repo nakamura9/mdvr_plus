@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import styles from './dashboard.css';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 
 
 
@@ -17,6 +18,8 @@ class Dashboard extends Component{
         port: null,
         vehicle_ids: [],
         vehicles: [],
+        mapLat: -18.6652,
+        mapLng: 30.3560
 
     }
 
@@ -34,10 +37,11 @@ class Dashboard extends Component{
     }
 
 
-    linkClickHandler = (url) =>{
-        document.getElementById('popup-frame').setAttribute('src', url);
-        var modal = document.getElementById('id-my-modal');
-        modal.style.display = 'block';
+    linkClickHandler = (lat, lng) =>{
+        this.setState({
+            mapLat: lat,
+            mapLng: lng
+        })
     }
 
   
@@ -134,6 +138,8 @@ class Dashboard extends Component{
                         <div className={"card " +styles.dash_card} 
                         style={{borderTopColor: 'red'}}>
                             <div className="card-body">
+                            <i className="fas fa-wifi fa-7x   " style={{position:'absolute', opacity:0.4, transform: 'rotateZ(30deg)'}}></i>
+                                
                                 <h3>Online Vehicles</h3>
                                 {this.state.online != null
                                     ? <h1>{this.state.online}</h1>
@@ -146,6 +152,8 @@ class Dashboard extends Component{
                         <div className={"card " +styles.dash_card}
                             style={{borderTopColor: 'green'}}>
                             <div className="card-body">
+                            <i className="fas fa-truck fa-7x   " style={{position:'absolute', opacity:0.4}}></i>
+
                                 <h3>Moving Vehicles</h3>
                                 {this.state.moving != null 
                                     ? <h1>{this.state.moving}</h1>
@@ -157,6 +165,8 @@ class Dashboard extends Component{
                     <div className="col-sm-12 col-md-3">
                         <div className={"card " +styles.dash_card}>
                             <div className="card-body">
+                            <i className="fas fa-traffic-light fa-7x   " style={{position:'absolute', opacity:0.4}}></i>
+
                                 <h3>Idling Vehicles</h3>
                                 {this.state.idling != null 
                                     ? <h1>{this.state.idling}</h1>
@@ -169,6 +179,7 @@ class Dashboard extends Component{
                         <div className={"card " +styles.dash_card}
                             style={{borderTopColor: 'grey'}}>
                             <div className="card-body">
+                            <i className="fas fa-power-off fa-7x   " style={{position:'absolute', opacity:0.4, transform: 'rotateZ(30deg)'}}></i>
                                 <h3>Offline Vehicles</h3>
                                 {this.state.offline != null
                                     ? <h1>{this.state.offline}</h1>
@@ -180,50 +191,55 @@ class Dashboard extends Component{
                 </div>
                 <hr className="my-4"/>
                 <div className="row">
-                    <div className="col-12">
-                    <table className={"table " + styles.dashTable}>
-                        <thead>
-                            <tr className='primary text-white'>
-                                <th></th>
-                                <th>Vehicle</th>
-                                <th>Location</th>
-                                <th>Status</th>
-                                <th>Last Update</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <div className="col-md-3 col-sm-12" style={{maxHeight: '100vh', overlfowY: 'auto'}}>
                             { this.state.vehicles.length > 0
                                 ? this.state.vehicles.map((vehicle) =>{
                                     return(
-                                        <tr key={vehicle.id}>
-                                            {/*
-                                            The color of the icon depends on the status of the vehicle. Offline vehicles are grey, moving vehicles are green, idling vehicles are blue and stationary online vehicles are red.
-                                            */}
-                                            <td><i className={"fas fa-truck " + styles.icon} style={{
-                                                color: vehicle.status == "Online" ? 
-                                                    vehicle.moving ? "green" : vehicle.idling ? "blue" : "red"
-                                                : "grey"
-                                                
-                                            }}></i></td>
-                                            <td>{vehicle.id}</td>
-                                            <td><a 
-                                                target='popup'
-                                                onClick={this.linkClickHandler}
-                                                href={`/reports/map/${vehicle.lat}/${vehicle.lng}`}><i  className="fas fa-map"></i></a>  {vehicle.location}</td>
-                                            <td>{vehicle.status}</td>
-                                            <td>{vehicle.timestamp}</td>
-                                        </tr>
+                                        <div key={vehicle.id} className="card">
+                                            <div className="row">
+                                                <div className="col-4" style={{display:'flex', justifyContent: 'center',alignItems:'center'}}>
+                                                <i className={"fas fa-truck " + styles.icon} style={{
+                                                    fontSize: '3rem',
+                                                    color: vehicle.status == "Online" ? 
+                                                        vehicle.moving ? "green" : vehicle.idling ? "blue" : "red"
+                                                    : "grey"
+                                                    
+                                                }}></i>
+                                                </div>
+                                                <div className="col-8">
+                                                    <h6>{vehicle.id}</h6>
+                                                    <p>{vehicle.status}</p>
+                                                    <p><button className='btn btn-sm'
+                                                        onClick={() => this.linkClickHandler(vehicle.lat, vehicle.lng)}
+                                                        href={`/reports/map/${vehicle.lat}/${vehicle.lng}`}><i  className="fas fa-map"></i>{vehicle.location}</button></p>
+                                                    <p><i class="fas fa-stopwatch    "></i> {vehicle.timestamp}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                     )
                                 })
-                                : <tr>
-                                    <td colSpan={5}>
-                                        <img className={styles.imgCenter} width='55' height='55' src='/static/common/images/spinner.gif'/>
-                                    </td>
-                                </tr>
+                                : 
+                                    <img className={styles.imgCenter} width='55' height='55' src='/static/common/images/spinner.gif'/>    
                                  }
-                        </tbody>
-                    </table>
                     </div>
+                    <div className="col-md-9 col-sm-12" >
+                    <Map center={[this.state.mapLat, this.state.mapLng]} zoom={10}>
+                        <TileLayer
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                        />
+                        {this.state.vehicles.map((vehicle) =>{
+                            return(
+                                <Marker position={[vehicle.lat,vehicle.lng]}>
+                                    <Popup>{vehicle.id}</Popup>
+                                </Marker>
+                            )
+                        })}
+                         
+                    </Map>
+                    </div>
+
                 </div>
             </div>
         )

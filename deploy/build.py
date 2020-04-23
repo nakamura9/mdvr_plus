@@ -3,90 +3,122 @@ import shutil
 from distutils.dir_util import copy_tree
 import subprocess
 import copy 
-
-
 #separate application into two phases, the service that starts with the machine and the executable client that is launched.
 
 
 #copy server source
-SERVER_DIRS = [
-    'common',
-    'mdvr_plus',
-    os.path.join('assets', 'bundles'),
-    'reports',
-    'wkhtmltopdf'
-]
-
-ENV = copy.deepcopy(os.environ)
-PYTHON_PATH = os.path.join('dist', 'client','python')
-ENV["PATH"] = PYTHON_PATH + ';' + ENV['PATH']
-
-SERVER_FILES = [
-    'manage.py',
-    'createsuperuser.py',
-    os.path.join('deploy', 'db.sqlite3')
-]
-
-NEW_DIRS = [
-    'media',
-    'daily_reports'
-]
-DEST_DIR = os.path.abspath(os.path.join('dist', 'client', 'server'))
-os.chdir('..')
-
-REQUIREMENTS = os.path.abspath('requirements.txt')
-result = subprocess.run(['python', 'manage.py', 'collectstatic', '--noinput'])
 
 
-# build client executable
-os.chdir('deploy')
-code = subprocess.run(['pyinstaller', 'deploy.spec', '--clean'])
 
-if code.returncode != 0:
-    raise Exception('Failed to build client')
+class AppBuilder():
+    def __init__(self):
+        self.env = copy.deepcopy(os.environ)
+        self.server_files = [
+            'manage.py',
+            'createsuperuser.py',
+            # os.path.join('deploy', 'db.sqlite3')
+        ]
+        self.new_dirs = [
+            'media',
+            'daily_reports'
+        ]
+        self.server_dirs = [
+            'common',
+            'mdvr_plus',
+            os.path.join('assets', 'bundles'),
+            'reports',
+            'wkhtmltopdf'
+        ]
+        self.app_dir = os.path.abspath('..')
 
-os.chdir('..')
-print('copying code')
-if os.path.exists(DEST_DIR):
-    #clear the exisitng data
-    shutil.rmtree(DEST_DIR)
+        self.dest_dir = os.path.abspath(os.path.join('dist', 'app'))
+        self.server_dir = os.path.join(self.dest_dir, 'server')
+        self.build_dir = os.path.abspath('.')
+        self.requirements = os.path.join(self.app_dir, 'requirements.txt')
+        self.py_path = os.path.join(self.build_dir, 'dist', 'app','python')
 
-#create new server instance 
-os.makedirs(DEST_DIR)
+        self.env["PATH"] = self.py_path + ';' + self.env['PATH']
+        
 
-for dir in SERVER_DIRS:
-    copy_tree(dir, os.path.join(DEST_DIR, dir))
+    def run(self):
+        self.copy_src()
+        self.build_service()
+        self.build_installer()
+        self.build_client()
+        self.setup_python()
+        self.setup_database()
 
-for fil in SERVER_FILES:
-    shutil.copy(fil, DEST_DIR)
+    def setup_python(self):
+        os.chdir(self.build_dir)
+        print('copying python')
+        copy_tree('python', self.py_path)
 
-    
-shutil.copy(os.path.join('assets', 'webpack-stats.json'), 
-    os.path.join(DEST_DIR, 'assets'))
+        os.chdir(self.py_path)
+        subprocess.run(['./python', '-m', 'pip', 'install', '-r', self.requirements], 
+            env=self.env)
 
-for dir in NEW_DIRS:
-    os.makedirs(os.path.join(DEST_DIR, dir))
+    def build_client(self):
+        os.chdir(self.build_dir)
 
-os.chdir('deploy')
-print('copying python')
-copy_tree('python', os.path.join('dist', 'client','python'))
+        code = subprocess.run(['pyinstaller', 'client.spec', '--clean'])
 
+        if code.returncode != 0:
+            raise Exception('Failed to build client')
 
-os.chdir(PYTHON_PATH)
-subprocess.run(['./python', '-m', 'pip', 'install', '-r', REQUIREMENTS], 
-    env=ENV)
+    def build_service(self):
+        os.chdir(self.build_dir)
+        code = subprocess.run(['pyinstaller', 'service.spec', '--clean'])
 
-os.chdir(DEST_DIR)
+        if code.returncode != 0:
+            raise Exception('Failed to build service')
 
-#migrate database
-subprocess.run(['python', 'manage.py', 'migrate'], 
-    env=ENV)
+    def build_installer(self):
+        os.chdir(self.build_dir)
 
-#install fixtures
-subprocess.run(['python', 'manage.py', 'loaddata', 'common.json', 
-    'reminders.json'], env=ENV)    
+        code = subprocess.run(['pyinstaller', 'install.py', '--clean', '--onefile'])
 
-#create superuser
-subprocess.run(['python', 'createsuperuser.py'], env=ENV)
-os.chdir('../..')
-#shutil.make_archive(os.path.abspath('client'), 'zip', os.getcwd())
+        if code.returncode != 0:
+            raise Exception('Failed to build installer')
+
+    def copy_src(self):
+        os.chdir(self.app_dir)
+        print('setting up static files')
+        result = subprocess.run(['python', 'manage.py', 'collectstatic', '--noinput'])
+        os.chdir(self.build_dir)
+
+        print('copying code')
+        if os.path.exists(self.dest_dir):
+            #clear the exisitng data
+            shutil.rmtree(self.dest_dir)
+        
+        os.makedirs(self.dest_dir)
+        
+        for dir in self.server_dirs:
+            copy_tree(os.path.join(self.app_dir, dir), os.path.join(self.server_dir, dir))
+
+        for dir in self.new_dirs:
+            os.makedirs(os.path.join(self.server_dir, dir))
+
+        for fil in self.server_files:
+            shutil.copy(os.path.join(self.app_dir, fil), self.server_dir)
+
+        shutil.copy(os.path.join(self.app_dir, 'assets', 'webpack-stats.json'), 
+            os.path.join(self.server_dir, 'assets'))
+
+    def setup_database(self):
+        os.chdir(self.server_dir)
+        #migrate database
+        subprocess.run(['python', 'manage.py', 'migrate'], 
+            env=self.env)
+
+        #install fixtures
+        subprocess.run(['python', 'manage.py', 'loaddata', 'common.json', 
+            'reminders.json'], env=self.env)    
+
+        #create superuser
+        subprocess.run(['python', 'createsuperuser.py'], env=self.env)
+        os.chdir('../..')
+
+if __name__ == '__main__':
+    builder = AppBuilder()
+    builder.run()
